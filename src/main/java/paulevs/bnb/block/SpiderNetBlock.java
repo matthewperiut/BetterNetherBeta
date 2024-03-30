@@ -7,6 +7,7 @@ import net.minecraft.entity.living.monster.SpiderEntity;
 import net.minecraft.entity.living.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShearsItem;
 import net.minecraft.level.BlockView;
 import net.minecraft.level.Level;
 import net.minecraft.util.maths.BlockPos;
@@ -136,7 +137,7 @@ public class SpiderNetBlock extends TemplateBlock {
 	public void afterBreak(Level level, PlayerEntity player, int x, int y, int z, int meta) {
 		if (level.isRemote) super.afterBreak(level, player, x, y, z, meta);
 		ItemStack heldItem = player.getHeldItem();
-		if (heldItem == null || heldItem.getType() != Item.shears) {
+		if (heldItem == null || !(heldItem.getType() instanceof ShearsItem)) {
 			if (level.random.nextBoolean()) {
 				int count = level.random.nextInt(2) + 1;
 				drop(level, x, y, z, new ItemStack(Item.string, count));
