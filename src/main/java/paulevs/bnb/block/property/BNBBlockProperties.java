@@ -14,6 +14,7 @@ public class BNBBlockProperties {
 	public static final EnumProperty<Axis> AXIS = EnumProperty.of("axis", Axis.class);
 	public static final BooleanProperty NEAR_LAVA = BooleanProperty.of("near_lava");
 	public static final BooleanProperty LIT = BooleanProperty.of("lit");
+	public static final BooleanProperty BERRIES = BooleanProperty.of("berries");
 	public static final IntProperty STAGE_4 = IntProperty.of("stage", 0, 3);
 	public static final BooleanProperty[] FACES = new BooleanProperty[6];
 	

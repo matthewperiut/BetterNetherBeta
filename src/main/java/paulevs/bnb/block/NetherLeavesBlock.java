@@ -59,7 +59,7 @@ public class NetherLeavesBlock extends VBELeavesBlock {
 	
 	private void tickVine(Level level, int x, int y, int z) {
 		BlockState state = level.getBlockState(x, y, z);
-		if (state.getBlock() instanceof NetherVineBlock vine) {
+		if (state.getBlock() instanceof BNBVineBlock vine) {
 			vine.tick(level, x, y, z);
 		}
 	}

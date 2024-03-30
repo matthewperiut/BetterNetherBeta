@@ -27,11 +27,11 @@ public class ItemEntityMixin {
 		if (!(stack.getType() instanceof BlockItem item)) return;
 		Block block = item.getBlock();
 		
-		if (block == BNBBlocks.FALUN_LOG) player.incrementStat(BNBAchievements.COLLECT_FALUN_LOG);
+		if (block == BNBBlocks.FALURIAN_LOG) player.incrementStat(BNBAchievements.COLLECT_FALURIAN_LOG);
 		if (block == BNBBlocks.PIROZEN_LOG) player.incrementStat(BNBAchievements.COLLECT_PIROZEN_LOG);
 		if (block == BNBBlocks.POISON_LOG) player.incrementStat(BNBAchievements.COLLECT_POISON_LOG);
 		
-		int summ = BNBAchievements.readStat(BNBAchievements.COLLECT_FALUN_LOG) > 0 ? 1 : 0;
+		int summ = BNBAchievements.readStat(BNBAchievements.COLLECT_FALURIAN_LOG) > 0 ? 1 : 0;
 		summ += BNBAchievements.readStat(BNBAchievements.COLLECT_PIROZEN_LOG) > 0 ? 1 : 0;
 		summ += BNBAchievements.readStat(BNBAchievements.COLLECT_POISON_LOG) > 0 ? 1 : 0;
 		

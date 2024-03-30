@@ -138,7 +138,7 @@ public class CommonListener {
 					ItemStack stack = ingredients[i];
 					if (stack == null) continue;
 					if (stack.itemId == planksID) {
-						stack = new ItemStack(BNBBlocks.FALUN_PLANKS);
+						stack = new ItemStack(BNBBlocks.FALURIAN_PLANKS);
 					}
 					else stack = stack.copy();
 					newIngredients[i] = stack;

@@ -18,7 +18,5 @@ public class CreativeTabListener {
 		event.register(tab);
 		BNBBlocks.BLOCKS_WITH_ITEMS.forEach(block -> tab.addItem(new ItemStack(block)));
 		BNBItems.ITEMS.forEach(item -> tab.addItem(new ItemStack(item)));
-		
-		BlockSelectAPI.registerConverter(BNBBlocks.FALUN_VINE_WITH_BERRIES, state -> new ItemStack(BNBBlocks.FALUN_VINE.asItem()));
 	}
 }

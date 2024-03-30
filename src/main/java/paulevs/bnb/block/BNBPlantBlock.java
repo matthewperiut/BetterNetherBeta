@@ -10,8 +10,8 @@ import net.modificationstation.stationapi.api.util.Identifier;
 
 import java.util.Random;
 
-public abstract class NetherPlantBlock extends TemplateBlock {
-	public NetherPlantBlock(Identifier id, Material material) {
+public abstract class BNBPlantBlock extends TemplateBlock {
+	public BNBPlantBlock(Identifier id, Material material) {
 		super(id, material);
 		disableNotifyOnMetaDataChange();
 		setSounds(GRASS_SOUNDS);

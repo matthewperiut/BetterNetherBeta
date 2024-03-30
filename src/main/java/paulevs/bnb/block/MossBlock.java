@@ -16,7 +16,7 @@ import paulevs.bnb.block.property.BNBBlockMaterials;
 import paulevs.bnb.block.property.BNBBlockProperties;
 import paulevs.bnb.sound.BNBSounds;
 
-public class MossBlock extends NetherPlantBlock {
+public class MossBlock extends BNBPlantBlock {
 	public MossBlock(Identifier id) {
 		super(id, BNBBlockMaterials.NETHER_PLANT);
 		setSounds(BNBSounds.MOSS_BLOCK);

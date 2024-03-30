@@ -3,21 +3,20 @@ package paulevs.bnb.world.structure.plant;
 import net.minecraft.level.Level;
 import net.minecraft.level.structure.Structure;
 import net.modificationstation.stationapi.api.block.BlockState;
-import paulevs.bnb.block.NetherVineBlock;
+import paulevs.bnb.block.BNBCollectableVineBlock;
+import paulevs.bnb.block.BNBVineBlock;
 import paulevs.bnb.block.property.BNBBlockProperties;
 import paulevs.bnb.block.property.BNBBlockProperties.VineShape;
 
 import java.util.Random;
 
 public class BerriesVineStructure extends Structure {
-	private final NetherVineBlock normal;
-	private final NetherVineBlock berries;
+	private final BNBVineBlock vine;
 	private final int minLength;
 	private final int delta;
 	
-	public BerriesVineStructure(NetherVineBlock normal, NetherVineBlock berries, int minLength, int maxLength) {
-		this.normal = normal;
-		this.berries = berries;
+	public BerriesVineStructure(BNBCollectableVineBlock vine, int minLength, int maxLength) {
+		this.vine = vine;
 		this.minLength = minLength;
 		this.delta = maxLength - minLength + 1;
 	}
@@ -25,12 +24,12 @@ public class BerriesVineStructure extends Structure {
 	@Override
 	public boolean generate(Level level, Random random, int x, int y, int z) {
 		if (!level.getBlockState(x, y, z).isAir()) return false;
-		if (!normal.canPlaceAt(level, x, y, z)) return false;
+		if (!vine.canPlaceAt(level, x, y, z)) return false;
 		
-		BlockState normal = this.normal.getDefaultState().with(BNBBlockProperties.VINE_SHAPE, VineShape.NORMAL);
-		BlockState bottom = this.normal.getDefaultState().with(BNBBlockProperties.VINE_SHAPE, VineShape.BOTTOM);
-		BlockState berriesNormal = this.berries.getDefaultState().with(BNBBlockProperties.VINE_SHAPE, VineShape.NORMAL);
-		BlockState berriesBottom = this.berries.getDefaultState().with(BNBBlockProperties.VINE_SHAPE, VineShape.BOTTOM);
+		BlockState normal = vine.getDefaultState().with(BNBBlockProperties.VINE_SHAPE, VineShape.NORMAL);
+		BlockState bottom = vine.getDefaultState().with(BNBBlockProperties.VINE_SHAPE, VineShape.BOTTOM);
+		BlockState berriesNormal = normal.with(BNBBlockProperties.BERRIES, true);
+		BlockState berriesBottom = bottom.with(BNBBlockProperties.BERRIES, true);
 		int length = minLength + random.nextInt(delta);
 		
 		for (int i = 1; i <= length; i++) {

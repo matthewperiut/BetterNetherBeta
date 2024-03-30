@@ -3,9 +3,11 @@ package paulevs.bnb.block;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.level.structure.Structure;
+import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.template.block.TemplateStairsBlock;
 import net.modificationstation.stationapi.api.util.Identifier;
 import paulevs.bnb.BNB;
+import paulevs.bnb.block.property.BNBBlockProperties;
 import paulevs.bnb.world.structure.BNBStructures;
 import paulevs.vbe.block.VBEFullSlabBlock;
 import paulevs.vbe.block.VBEHalfSlabBlock;
@@ -29,25 +31,25 @@ public class BNBBlocks {
 	public static final Block TREE_LANTERN = make("tree_lantern", NetherLanternBlock::new);
 	public static final Block GHOST_PUMPKIN = make("ghost_pumpkin", GhostPumpkinBlock::new);
 	
-	public static final Block FALUN_LOG = make("falurian_log", NetherLogBlock::new);
-	public static final Block FALUN_STEM = make("falurian_stem", StemBlock::new);
-	public static final Block FALUN_BRANCH = make("falurian_branch", BranchBlock::new);
-	public static final NetherLeavesBlock FALUN_LEAVES = make("falurian_leaves", NetherLeavesBlock::new);
-	public static final Block FALUN_SAPLING = makeSapling(
+	public static final Block FALURIAN_LOG = make("falurian_log", NetherLogBlock::new);
+	public static final Block FALURIAN_STEM = make("falurian_stem", StemBlock::new);
+	public static final Block FALURIAN_BRANCH = make("falurian_branch", BranchBlock::new);
+	public static final NetherLeavesBlock FALURIAN_LEAVES = make("falurian_leaves", NetherLeavesBlock::new);
+	public static final Block FALURIAN_SAPLING = makeSapling(
 		"falurian_sapling",
-		() -> BNBStructures.FALUN_TREE,
+		() -> BNBStructures.FALURIAN_TREE,
 		new String[] {
 			" # ",
 			"###",
 			" # "
 		},
-		() -> BNBStructures.LARGE_FALUN_TREE
+		() -> BNBStructures.LARGE_FALURIAN_TREE
 	);
-	public static final Block FALUN_PLANKS = make("falurian_planks", NetherPlanksBlock::new);
-	public static final Block FALUN_STAIRS = make("falurian_stairs", TemplateStairsBlock::new, FALUN_PLANKS);
-	public static final VBEHalfSlabBlock FALUN_SLAB_HALF = make("falurian_slab_half", VBEHalfSlabBlock::new, FALUN_PLANKS);
-	public static final VBEFullSlabBlock FALUN_SLAB_FULL = makeNI("falurian_slab_full", VBEFullSlabBlock::new, FALUN_PLANKS);
-	public static final Block FALUN_FENCE = make("falurian_fence", FenceBlock::new, FALUN_PLANKS);
+	public static final Block FALURIAN_PLANKS = make("falurian_planks", NetherPlanksBlock::new);
+	public static final Block FALURIAN_STAIRS = make("falurian_stairs", TemplateStairsBlock::new, FALURIAN_PLANKS);
+	public static final VBEHalfSlabBlock FALURIAN_SLAB_HALF = make("falurian_slab_half", VBEHalfSlabBlock::new, FALURIAN_PLANKS);
+	public static final VBEFullSlabBlock FALURIAN_SLAB_FULL = makeNI("falurian_slab_full", VBEFullSlabBlock::new, FALURIAN_PLANKS);
+	public static final Block FALURIAN_FENCE = make("falurian_fence", FenceBlock::new, FALURIAN_PLANKS);
 	
 	public static final Block PIROZEN_LOG = make("pirozen_log", NetherLogBlock::new);
 	public static final Block PIROZEN_STEM = make("pirozen_stem", StemBlock::new);
@@ -97,24 +99,26 @@ public class BNBBlocks {
 	
 	public static final Block FLAME_BAMBOO_BLOCK = make("flame_bamboo_block", NetherLogBlock::new);
 	
-	public static final Block FALUN_WEEPING_VINE = make("falurian_weeping_vine", NetherVineBlock::new);
-	public static final Block PIROZEN_WEEPING_VINE = make("pirozen_weeping_vine", NetherVineBlock::new);
-	public static final Block POISON_WEEPING_VINE = make("poison_weeping_vine", NetherVineBlock::new);
-	public static final Block PALE_TREE_WEEPING_VINE = make("pale_tree_weeping_vine", NetherVineBlock::new);
-	public static final Block EMBER_TREE_WEEPING_VINE = make("ember_tree_weeping_vine", NetherVineBlock::new);
+	public static final Block FALURIAN_WEEPING_VINE = make("falurian_weeping_vine", BNBVineBlock::new);
+	public static final Block PIROZEN_WEEPING_VINE = make("pirozen_weeping_vine", BNBVineBlock::new);
+	public static final Block POISON_WEEPING_VINE = make("poison_weeping_vine", BNBVineBlock::new);
+	public static final Block PALE_TREE_WEEPING_VINE = make("pale_tree_weeping_vine", BNBVineBlock::new);
+	public static final Block EMBER_TREE_WEEPING_VINE = make("ember_tree_weeping_vine", BNBVineBlock::new);
 	
 	public static final Block FLAME_BULBS = make("flame_bulbs", NetherGrassBlock::new);
 	public static final Block FLAME_BULBS_TALL = make("flame_bulbs_tall", DoubleGrassPlantBlock::new);
-	public static final Block FALUN_ROOTS = make("falurian_roots", NetherRootsBlock::new);
+	public static final Block FALURIAN_ROOTS = make("falurian_roots", NetherRootsBlock::new);
 	public static final Block NETHER_DAISY = make("nether_daisy", NetherFloorPlantBlock::new).setLightEmittance(0.5F);
 	public static final Block FIREWEED = make("fireweed", DoubleFloorPlantBlock::new).setLightEmittance(0.5F);
 	public static final Block LANTERN_GRASS = make("lantern_grass", DoubleFloorPlantBlock::new).setLightEmittance(0.75F);
 	
-	public static final Block FALUN_MOSS = make("falurian_moss", MossBlock::new);
-	public static final Block FALUN_MOSS_BLOCK = make("falurian_moss_block", NetherMossBlock::new);
+	public static final Block FALURIAN_MOSS = make("falurian_moss", MossBlock::new);
+	public static final Block FALURIAN_MOSS_BLOCK = make("falurian_moss_block", NetherMossBlock::new);
 	
-	public static final GrowingNetherVineBlock FALUN_VINE = make("falurian_vine", GrowingNetherVineBlock::new);
-	public static final CollectableNetherVineBlock FALUN_VINE_WITH_BERRIES = (CollectableNetherVineBlock) makeNI("falurian_vine_with_berries", CollectableNetherVineBlock::new).setLightEmittance(0.5F);
+	public static final BNBCollectableVineBlock FALURIAN_VINE = (BNBCollectableVineBlock) make(
+		"falurian_vine",
+		BNBCollectableVineBlock::new
+	).setLuminance(BNBBlocks::getVineLight);
 	
 	public static final Block PIROZEN_ROOTS = make("pirozen_roots", NetherRootsBlock::new);
 	public static final Block POISON_ROOTS = make("poison_roots", NetherRootsBlock::new);
@@ -122,7 +126,7 @@ public class BNBBlocks {
 	public static final GlowstoneShards GLOWSTONE_SHARDS = (GlowstoneShards) make("glowstone_shards", GlowstoneShards::new).setLightEmittance(1F);
 	
 	public static final SpiderNetBlock SPIDER_NET = make("spider_net", SpiderNetBlock::new);
-	public static final Block FALUN_SPIDER_COCOON = make("falurian_spider_cocoon", SpiderCocoonBlock::new);
+	public static final Block FALURIAN_SPIDER_COCOON = make("falurian_spider_cocoon", SpiderCocoonBlock::new);
 	public static final Block PIROZEN_SPIDER_COCOON = make("pirozen_spider_cocoon", SpiderCocoonBlock::new);
 	public static final Block POISON_SPIDER_COCOON = make("poison_spider_cocoon", SpiderCocoonBlock::new);
 	
@@ -206,9 +210,13 @@ public class BNBBlocks {
 		return block;
 	}
 	
+	private static int getVineLight(BlockState state) {
+		return state.get(BNBBlockProperties.BERRIES) ? 8 : 0;
+	}
+	
 	public static void init() {
-		FALUN_SLAB_HALF.setFullBlock(FALUN_SLAB_FULL);
-		FALUN_SLAB_FULL.setHalfBlock(FALUN_SLAB_HALF);
+		FALURIAN_SLAB_HALF.setFullBlock(FALURIAN_SLAB_FULL);
+		FALURIAN_SLAB_FULL.setHalfBlock(FALURIAN_SLAB_HALF);
 		PIROZEN_SLAB_HALF.setFullBlock(PIROZEN_SLAB_FULL);
 		PIROZEN_SLAB_FULL.setHalfBlock(PIROZEN_SLAB_HALF);
 		POISON_SLAB_HALF.setFullBlock(POISON_SLAB_FULL);
@@ -216,11 +224,8 @@ public class BNBBlocks {
 		ORICHALCUM_SLAB_HALF.setFullBlock(ORICHALCUM_SLAB_FULL);
 		ORICHALCUM_SLAB_FULL.setHalfBlock(ORICHALCUM_SLAB_HALF);
 		
-		FALUN_LEAVES.setSapling(FALUN_SAPLING);
+		FALURIAN_LEAVES.setSapling(FALURIAN_SAPLING);
 		PIROZEN_LEAVES.setSapling(PIROZEN_SAPLING);
 		POISON_LEAVES.setSapling(POISON_SAPLING);
-		
-		FALUN_VINE.setGrown(FALUN_VINE_WITH_BERRIES);
-		FALUN_VINE_WITH_BERRIES.setBasic(FALUN_VINE);
 	}
 }

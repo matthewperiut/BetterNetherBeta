@@ -14,8 +14,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class NetherVineBlock extends NetherCeilPlantBlock {
-	public NetherVineBlock(Identifier id) {
+public class BNBVineBlock extends BNBCeilPlantBlock {
+	public BNBVineBlock(Identifier id) {
 		super(id);
 		setDefaultState(getDefaultState().with(BNBBlockProperties.VINE_SHAPE, VineShape.BOTTOM));
 		this.setBoundingBox(0.125F, 0.0F, 0.125F, 0.875F, 1.0F, 0.875F);

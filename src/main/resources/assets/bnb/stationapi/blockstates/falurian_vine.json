@@ -1,6 +1,11 @@
 {
 	"variants": {
-		"shape=normal": { "model": "bnb:block/falurian_vine_normal" },
-		"shape=bottom": { "model": "bnb:block/falurian_vine_bottom" }
+		"shape=normal,berries=false": { "model": "bnb:block/falurian_vine_normal" },
+		"shape=bottom,berries=false": { "model": "bnb:block/falurian_vine_bottom" },
+		"shape=normal,berries=true": [
+			{ "model": "bnb:block/falurian_vine_normal_berries_1" },
+			{ "model": "bnb:block/falurian_vine_normal_berries_2" }
+		],
+		"shape=bottom,berries=true": { "model": "bnb:block/falurian_vine_bottom_berries" }
 	}
 }

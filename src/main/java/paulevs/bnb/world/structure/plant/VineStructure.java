@@ -3,18 +3,18 @@ package paulevs.bnb.world.structure.plant;
 import net.minecraft.level.Level;
 import net.minecraft.level.structure.Structure;
 import net.modificationstation.stationapi.api.block.BlockState;
-import paulevs.bnb.block.NetherVineBlock;
+import paulevs.bnb.block.BNBVineBlock;
 import paulevs.bnb.block.property.BNBBlockProperties;
 import paulevs.bnb.block.property.BNBBlockProperties.VineShape;
 
 import java.util.Random;
 
 public class VineStructure extends Structure {
-	private final NetherVineBlock block;
+	private final BNBVineBlock block;
 	private final int minLength;
 	private final int delta;
 	
-	public VineStructure(NetherVineBlock block, int minLength, int maxLength) {
+	public VineStructure(BNBVineBlock block, int minLength, int maxLength) {
 		this.block = block;
 		this.minLength = minLength;
 		this.delta = maxLength - minLength + 1;

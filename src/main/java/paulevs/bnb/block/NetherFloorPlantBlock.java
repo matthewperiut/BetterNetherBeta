@@ -6,7 +6,7 @@ import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.util.Identifier;
 import paulevs.bnb.block.property.BNBBlockMaterials;
 
-public class NetherFloorPlantBlock extends NetherPlantBlock {
+public class NetherFloorPlantBlock extends BNBPlantBlock {
 	public NetherFloorPlantBlock(Identifier id) {
 		this(id, BNBBlockMaterials.NETHER_PLANT_REPLACEABLE);
 	}

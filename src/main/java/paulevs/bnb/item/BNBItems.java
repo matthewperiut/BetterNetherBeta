@@ -28,8 +28,8 @@ public class BNBItems {
 	
 	private static final ToolMaterial ORICHALCUM = ToolMaterialFactory.create("bnb_orichalcum", 2, 750, 6.0F, 2);
 	
-	public static final Item FALUN_TREE_PLACER = make(
-		"falurian_tree_placer", () -> BNBStructures.FALUN_TREE, StructurePlacerItem::new
+	public static final Item FALURIAN_TREE_PLACER = make(
+		"falurian_tree_placer", () -> BNBStructures.FALURIAN_TREE, StructurePlacerItem::new
 	);
 	public static final Item PIROZEN_TREE_PLACER = make(
 		"pirozen_tree_placer", () -> BNBStructures.PIROZEN_TREE, StructurePlacerItem::new
@@ -38,8 +38,8 @@ public class BNBItems {
 		"poison_tree_placer", () -> BNBStructures.POISON_TREE, StructurePlacerItem::new
 	);
 	
-	public static final Item LARGE_FALUN_TREE_PLACER = make(
-		"large_falurian_tree_placer", () -> BNBStructures.LARGE_FALUN_TREE, StructurePlacerItem::new
+	public static final Item LARGE_FALURIAN_TREE_PLACER = make(
+		"large_falurian_tree_placer", () -> BNBStructures.LARGE_FALURIAN_TREE, StructurePlacerItem::new
 	);
 	public static final Item LARGE_PIROZEN_TREE_PLACER = make(
 		"large_pirozen_tree_placer", () -> BNBStructures.LARGE_PIROZEN_TREE, StructurePlacerItem::new
@@ -48,7 +48,7 @@ public class BNBItems {
 		"large_poison_tree_placer", () -> BNBStructures.LARGE_POISON_TREE, StructurePlacerItem::new
 	);
 	
-	public static final Item FALUN_VINE_BERRIES = makeFood("falurian_vine_berries", 1, false).setMaxStackSize(8);
+	public static final Item FALURIAN_VINE_BERRIES = makeFood("falurian_vine_berries", 1, false).setMaxStackSize(8);
 	
 	public static final Item ORICHALCUM_INGOT = make("orichalcum_ingot", TemplateItem::new);
 	
@@ -124,6 +124,6 @@ public class BNBItems {
 	}
 	
 	public static void init() {
-		BNBBlocks.FALUN_VINE_WITH_BERRIES.setCollectableItem(FALUN_VINE_BERRIES);
+		BNBBlocks.FALURIAN_VINE.setCollectableItem(FALURIAN_VINE_BERRIES);
 	}
 }

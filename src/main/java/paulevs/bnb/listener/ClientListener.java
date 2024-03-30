@@ -72,7 +72,7 @@ public class ClientListener {
 			LavaRenderer.STILL_TEXTURES[i] = blockAtlas.addTexture(id).index;
 		}
 		
-		BNBBlocks.FALUN_PLANKS.texture = blockAtlas.addTexture(BNB.id("block/falurian_planks")).index;
+		BNBBlocks.FALURIAN_PLANKS.texture = blockAtlas.addTexture(BNB.id("block/falurian_planks")).index;
 		BNBBlocks.PIROZEN_PLANKS.texture = blockAtlas.addTexture(BNB.id("block/pirozen_planks")).index;
 		BNBBlocks.POISON_PLANKS.texture = blockAtlas.addTexture(BNB.id("block/poison_planks")).index;
 		BNBBlocks.ORICHALCUM_BLOCK.texture = blockAtlas.addTexture(BNB.id("block/orichalcum_block")).index;
@@ -168,7 +168,7 @@ public class ClientListener {
 		}*/
 		
 		/*NetherBiome[] biomes = new NetherBiome[] {
-			BNBBiomes.FALUN_FOREST,
+			BNBBiomes.FALURIAN_FOREST,
 			BNBBiomes.PIROZEN_FOREST,
 			BNBBiomes.POISON_FOREST,
 			new NetherBiome(BNB.id("b")),

@@ -16,7 +16,7 @@ public class BNBBiomes {
 	private static final List<Biome> BIOMES = new ArrayList<>();
 	private static Biome[] biomes;
 	
-	public static final Biome FALUN_FOREST = add(BiomeBuilder
+	public static final Biome FALURIAN_FOREST = add(BiomeBuilder
 		.start("bnb_falurian_forest")
 		.fogColor(0x951922)
 		.surfaceRule(SurfaceBuilder.start(BNBBlocks.MAROON_NYLIUM).replace(Block.NETHERRACK).ground(1).build())
@@ -26,22 +26,22 @@ public class BNBBiomes {
 		.feature(BNBPlacers.LAVA_LAKE_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_FLOOR_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
-		.feature(BNBPlacers.LARGE_FALUN_TREE_PLACER)
-		.feature(BNBPlacers.FALLEN_FALUN_TREE_PLACER)
-		.feature(BNBPlacers.FALUN_TREE_PLACER)
-		.feature(BNBPlacers.FALUN_BUSH_PLACER)
-		.feature(BNBPlacers.FALUN_SPIDER_COCOON)
+		.feature(BNBPlacers.LARGE_FALURIAN_TREE_PLACER)
+		.feature(BNBPlacers.FALLEN_FALURIAN_TREE_PLACER)
+		.feature(BNBPlacers.FALURIAN_TREE_PLACER)
+		.feature(BNBPlacers.FALURIAN_BUSH_PLACER)
+		.feature(BNBPlacers.FALURIAN_SPIDER_COCOON)
 		.feature(BNBPlacers.FIREWEED_STRUCTURE_PLACER)
 		.feature(BNBPlacers.NETHER_DAISY_PLACER)
-		.feature(BNBPlacers.FALUN_ROOTS_PLACER)
+		.feature(BNBPlacers.FALURIAN_ROOTS_PLACER)
 		.feature(BNBPlacers.LANTERN_GRASS_PLACER)
 		.feature(BNBPlacers.FLAME_BULBS_TALL_PLACER)
 		.feature(BNBPlacers.FLAME_BULBS_PLACER)
-		.feature(BNBPlacers.FALUN_MOSS_CEILING_PLACER)
-		.feature(BNBPlacers.FALUN_VINE_SHORT_PLACER)
-		.feature(BNBPlacers.FALUN_VINE_LONG_PLACER)
-		.feature(BNBPlacers.FALUN_MOSS_BLOCK_PLACER)
-		.feature(BNBPlacers.FALUN_MOSS_PLACER)
+		.feature(BNBPlacers.FALURIAN_MOSS_CEILING_PLACER)
+		.feature(BNBPlacers.FALURIAN_VINE_SHORT_PLACER)
+		.feature(BNBPlacers.FALURIAN_VINE_LONG_PLACER)
+		.feature(BNBPlacers.FALURIAN_MOSS_BLOCK_PLACER)
+		.feature(BNBPlacers.FALURIAN_MOSS_PLACER)
 		.build()).bnb_setBiomeAmbience(BNBSounds.NETHER_FOREST_AMBIENCE);
 	
 	
@@ -87,7 +87,7 @@ public class BNBBiomes {
 	}
 	
 	public static void init() {
-		BNBBlocks.MAROON_NYLIUM.setTargetBiome(FALUN_FOREST);
+		BNBBlocks.MAROON_NYLIUM.setTargetBiome(FALURIAN_FOREST);
 		BNBBlocks.MAROON_NYLIUM.addBonemealStructure(BNBStructures.FLAME_BULBS);
 		BNBBlocks.MAROON_NYLIUM.addBonemealStructure(BNBStructures.FLAME_BULBS_TALL);
 		

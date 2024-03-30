@@ -6,8 +6,8 @@ import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.util.Identifier;
 import paulevs.bnb.block.property.BNBBlockMaterials;
 
-public class NetherCeilPlantBlock extends NetherPlantBlock {
-	public NetherCeilPlantBlock(Identifier id) {
+public class BNBCeilPlantBlock extends BNBPlantBlock {
+	public BNBCeilPlantBlock(Identifier id) {
 		super(id, BNBBlockMaterials.NETHER_PLANT);
 		this.setBoundingBox(0.125F, 0.25F, 0.125F, 0.875F, 1.0F, 0.875F);
 	}
