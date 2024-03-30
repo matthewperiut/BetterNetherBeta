@@ -28,7 +28,7 @@ public class BNBWeatherManager {
 	private static final LongSet CHUNKS = new LongOpenHashSet(4096);
 	private static final Random RANDOM = new Random();
 	
-	private static WeatherType currentWeather;
+	private static WeatherType currentWeather = WeatherType.CLEAR;
 	private static int weatherLength;
 	private static int weatherIndex;
 	
