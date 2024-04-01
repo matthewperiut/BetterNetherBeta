@@ -2,7 +2,6 @@ package paulevs.bnb.listener;
 
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.item.ItemStack;
-import paulevs.bhcreative.api.BlockSelectAPI;
 import paulevs.bhcreative.api.SimpleTab;
 import paulevs.bhcreative.registry.TabRegistryEvent;
 import paulevs.bnb.BNB;

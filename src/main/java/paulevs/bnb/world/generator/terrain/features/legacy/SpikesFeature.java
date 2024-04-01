@@ -1,9 +1,10 @@
-package paulevs.bnb.world.generator.terrain.features;
+package paulevs.bnb.world.generator.terrain.features.legacy;
 
 import net.minecraft.util.maths.MathHelper;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
 import paulevs.bnb.noise.VoronoiNoise;
+import paulevs.bnb.world.generator.terrain.features.TerrainFeature;
 
 public class SpikesFeature extends TerrainFeature {
 	private final VoronoiNoise hugeSpikesFloor = new VoronoiNoise();

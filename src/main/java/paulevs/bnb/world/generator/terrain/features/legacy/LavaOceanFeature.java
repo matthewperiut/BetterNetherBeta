@@ -1,8 +1,9 @@
-package paulevs.bnb.world.generator.terrain.features;
+package paulevs.bnb.world.generator.terrain.features.legacy;
 
 import net.minecraft.util.maths.MathHelper;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
+import paulevs.bnb.world.generator.terrain.features.TerrainFeature;
 
 public class LavaOceanFeature extends TerrainFeature {
 	private final FractalNoise ceilingSpikes = new FractalNoise(PerlinNoise::new);

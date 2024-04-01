@@ -27,8 +27,8 @@ import paulevs.bnb.block.BNBBlocks;
 import paulevs.bnb.block.SpinningWheelBlock;
 import paulevs.bnb.entity.CrimsonSpiderEntity;
 import paulevs.bnb.entity.ObsidianBoatEntity;
-import paulevs.bnb.entity.PoisonSpiderEntity;
 import paulevs.bnb.entity.PirozenSpiderEntity;
+import paulevs.bnb.entity.PoisonSpiderEntity;
 import paulevs.bnb.entity.renderer.NetherSpiderRenderer;
 import paulevs.bnb.entity.renderer.ObsidianBoatRenderer;
 import paulevs.bnb.gui.container.SpinningWheelContainer;
@@ -161,11 +161,63 @@ public class ClientListener {
 	
 	// TODO remove that after release
 	private void debugTerrain() {
-		/*if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
-			TerrainFeature feature = new ArchesFeature();
-			feature.setSeed(2);
-			feature.debugImage();
-		}*/
+		/*if (!FabricLoader.getInstance().isDevelopmentEnvironment()) return;
+		
+		TerrainMap terrainMap = new TerrainMap();
+		
+		BufferedImage buffer = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
+		for (int x = 0; x < 512; x++) {
+			for (int z = 0; z < 512; z++) {
+				//int index = terrainMap.getSDFIndex(x, z);
+				//System.out.println(index);
+				TerrainRegion region = terrainMap.getRegion(x << 2, z << 2);
+				int color = switch (region) {
+					case OCEAN_NORMAL -> 0xFFFF0000;
+					case OCEAN_MOUNTAINS -> 0xFFFF0000;
+					case SHORE_NORMAL -> 0xFFFFFF00;
+					case SHORE_MOUNTAINS -> 0xFFFFFF00;
+					case PLAINS -> 0xFFFFFFFF;
+					case HILLS -> 0xFFFFFFFF;
+					case MOUNTAINS -> 0xFFFFFFFF;
+					case BRIDGES -> 0xFFFF00FF;
+				};
+				//int color = sdfIndex | 0xFF000000;
+				buffer.setRGB(x, z, color);
+			}
+		}
+		
+		JFrame frame = new JFrame();
+		frame.add(new JLabel(new ImageIcon(buffer)));
+		frame.setResizable(false);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		
+		BNBWorldGenerator g = new BNBWorldGenerator();
+		buffer = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
+		
+		for (int x = 0; x < 512; x++) {
+			for (int z = 0; z < 512; z++) {
+				//int index = terrainMap.getSDFIndex(x, z);
+				//System.out.println(index);
+				Identifier id = BNBWorldGenerator.TERRAIN_MAP.getData(x << 2, z << 2);
+				System.out.println(id);
+				buffer.setRGB(x, z, id.hashCode() | 0xFF000000);
+			}
+		}
+		
+		frame = new JFrame();
+		frame.add(new JLabel(new ImageIcon(buffer)));
+		frame.setResizable(false);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);*/
+		
+		/*TerrainFeature feature = new BridgesFeature();
+		feature.setSeed(2);
+		feature.debugImage();*/
 		
 		/*NetherBiome[] biomes = new NetherBiome[] {
 			BNBBiomes.FALURIAN_FOREST,

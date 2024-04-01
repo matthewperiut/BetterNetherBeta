@@ -24,6 +24,14 @@ public abstract class TerrainFeature implements TerrainSDF {
 		return MathHelper.lerp((y - minY) / (maxY - minY), minValue, maxValue);
 	}
 	
+	protected float gradient(float y, float minY, float maxY, float minValue, float midValue, float maxValue) {
+		float midY = MathHelper.lerp(0.5F, minY, maxY);
+		return Math.max(
+			gradient(y, minY, midY, minValue, midValue),
+			gradient(y, midY, maxY, midValue, maxValue)
+		);
+	}
+	
 	protected float smoothMax(float a, float b, float k) {
 		return -smoothMin(-a, -b, k);
 	}
@@ -36,11 +44,12 @@ public abstract class TerrainFeature implements TerrainSDF {
 	public void debugImage() {
 		BufferedImage buffer = new BufferedImage(1024, 512, BufferedImage.TYPE_INT_ARGB);
 		int[] pixels = ((DataBufferInt) (buffer.getRaster().getDataBuffer())).getData();
+		int lavaHeight = 96;
 		
 		for (int x = 0; x < 1024; x++) {
 			for (int y = 0; y < 256; y++) {
 				int color = getDensity(x, 255 - y, 0) > 0.5F ? 255 : 0;
-				if (color == 0 && (255 - y) < 32) {
+				if (color == 0 && (255 - y) < lavaHeight) {
 					pixels[y * 1024 + x] = Color.RED.getRGB();
 					continue;
 				}
@@ -48,7 +57,7 @@ public abstract class TerrainFeature implements TerrainSDF {
 			}
 			for (int z = 0; z < 256; z++) {
 				pixels[(z + 256) * 1024 + x] = Color.RED.getRGB();
-				for (int y = 128; y >= 31; y--) {
+				for (int y = 128; y > lavaHeight; y--) {
 					if (getDensity(x, y, z) > 0.5F) {
 						pixels[(z + 256) * 1024 + x] = 255 << 24 | y << 16 | y << 8 | y;
 						break;

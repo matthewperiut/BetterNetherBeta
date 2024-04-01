@@ -99,16 +99,10 @@ public class BNBWeatherRenderer {
 		if (HSV[0] > 1.0F) HSV[0] -= 1.0F;
 		HSV[1] *= 0.9F;
 		HSV[2] = 1.0F;
-		//HSV[2] *= 1.5F;
-		//if (HSV[2] > 1.0F) HSV[2] = 1.0F;
 		int rgb = Color.HSBtoRGB(HSV[0], HSV[1], HSV[2]);
 		SMOKE_COLOR[0] = ((rgb >> 16) & 255) / 255F;
 		SMOKE_COLOR[1] = ((rgb >> 8) & 255) / 255F;
 		SMOKE_COLOR[2] = (rgb & 255) / 255F;
-		
-		/*for (byte i = 0; i < 3; i++) {
-			SMOKE_COLOR[i] = fogColor[i] * 1.25F;
-		}*/
 	}
 	
 	public static float getFogDensity() {
@@ -184,8 +178,8 @@ public class BNBWeatherRenderer {
 		tessellator.start();
 		tessellator.setOffset(-ex, -ey, -ez);
 		
-		int y1 = 32;
-		int y2 = 200;
+		int y1 = 96;
+		int y2 = 250;
 		
 		for (Vec2I offset : SMOKE_OFFSETS) {
 			int sx = cx + offset.x;

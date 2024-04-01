@@ -14,7 +14,9 @@ public class BNBBiomeSource extends BiomeSource {
 	private final BiomeMap map;
 	
 	public BNBBiomeSource(long seed, DimensionData data) {
-		map = new BiomeMap(BNBBiomes.getBiomes(), seed, data);
+		map = new BiomeMap(BNBBiomes.BIOMES);
+		random.setSeed(seed);
+		map.setData(data, random.nextInt());
 		temperatureNoises = new double[256];
 		rainfallNoises = new double[256];
 		detailNoises = new double[256];
@@ -49,7 +51,7 @@ public class BNBBiomeSource extends BiomeSource {
 			for (int j = 0; j < dz; j++) {
 				int px = x + i + random.nextInt(7) - 3;
 				int pz = z + j + random.nextInt(7) - 3;
-				biomes[index++] = map.getBiome(px, pz);
+				biomes[index++] = map.getData(px, pz);
 			}
 		}
 		

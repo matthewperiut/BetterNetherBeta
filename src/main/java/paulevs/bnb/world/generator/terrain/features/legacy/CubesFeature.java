@@ -1,4 +1,4 @@
-package paulevs.bnb.world.generator.terrain.features;
+package paulevs.bnb.world.generator.terrain.features.legacy;
 
 import net.minecraft.util.maths.Vec3D;
 import net.modificationstation.stationapi.api.util.math.MathHelper;
@@ -6,6 +6,7 @@ import paulevs.bnb.math.Matrix3F;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
 import paulevs.bnb.noise.SDFScatter2D;
+import paulevs.bnb.world.generator.terrain.features.TerrainFeature;
 
 import java.util.Random;
 

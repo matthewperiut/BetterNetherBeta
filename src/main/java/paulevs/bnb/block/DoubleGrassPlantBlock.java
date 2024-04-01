@@ -1,7 +1,6 @@
 package paulevs.bnb.block;
 
 import net.minecraft.entity.living.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShearsItem;
 import net.minecraft.level.Level;

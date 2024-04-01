@@ -1,7 +1,8 @@
-package paulevs.bnb.world.generator.terrain.features;
+package paulevs.bnb.world.generator.terrain.features.legacy;
 
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
+import paulevs.bnb.world.generator.terrain.features.TerrainFeature;
 
 public class VolumetricNoiseFeature extends TerrainFeature {
 	private final FractalNoise noise = new FractalNoise(PerlinNoise::new);

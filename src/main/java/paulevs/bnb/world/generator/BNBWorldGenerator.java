@@ -6,34 +6,34 @@ import net.minecraft.level.LightType;
 import net.minecraft.level.chunk.Chunk;
 import net.minecraft.level.dimension.DimensionData;
 import net.modificationstation.stationapi.api.block.BlockState;
+import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.math.MathHelper;
 import net.modificationstation.stationapi.impl.world.chunk.ChunkSection;
 import net.modificationstation.stationapi.impl.world.chunk.FlattenedChunk;
 import net.modificationstation.stationapi.impl.worldgen.WorldDecoratorImpl;
+import paulevs.bnb.BNB;
 import paulevs.bnb.world.generator.terrain.ChunkTerrainMap;
 import paulevs.bnb.world.generator.terrain.CrossInterpolationCell;
+import paulevs.bnb.world.generator.terrain.TerrainMap;
 import paulevs.bnb.world.generator.terrain.TerrainRegion;
-import paulevs.bnb.world.generator.terrain.features.ArchesFeature;
 import paulevs.bnb.world.generator.terrain.features.ArchipelagoFeature;
 import paulevs.bnb.world.generator.terrain.features.BridgesFeature;
-import paulevs.bnb.world.generator.terrain.features.ContinentsFeature;
-import paulevs.bnb.world.generator.terrain.features.CubesFeature;
-import paulevs.bnb.world.generator.terrain.features.DoubleBridgesFeature;
-import paulevs.bnb.world.generator.terrain.features.LavaOceanFeature;
-import paulevs.bnb.world.generator.terrain.features.PancakesFeature;
-import paulevs.bnb.world.generator.terrain.features.PillarsFeature;
-import paulevs.bnb.world.generator.terrain.features.SmallPillarsFeature;
-import paulevs.bnb.world.generator.terrain.features.SpikesFeature;
-import paulevs.bnb.world.generator.terrain.features.TheHiveFeature;
-import paulevs.bnb.world.generator.terrain.features.TheWallFeature;
-import paulevs.bnb.world.generator.terrain.features.VolumetricNoiseFeature;
+import paulevs.bnb.world.generator.terrain.features.FlatHillsFeature;
+import paulevs.bnb.world.generator.terrain.features.FlatMountainsFeature;
+import paulevs.bnb.world.generator.terrain.features.FlatOceanFeature;
+import paulevs.bnb.world.generator.terrain.features.PlainsLandFeature;
+import paulevs.bnb.world.generator.terrain.features.ShoreFeature;
+import paulevs.bnb.world.generator.terrain.features.TerrainFeature;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
 public class BNBWorldGenerator {
+	public static final TerrainMap TERRAIN_MAP = new TerrainMap();
+	
 	private static final BlockState BEDROCK = Block.BEDROCK.getDefaultState();
 	private static final BlockState LAVA = Block.STILL_LAVA.getDefaultState();
 	private static final BlockState NETHERRACK = Block.NETHERRACK.getDefaultState();
@@ -47,7 +47,8 @@ public class BNBWorldGenerator {
 	
 	public static void updateData(DimensionData dimensionData, long seed) {
 		BNBWorldGenerator.seed = new Random(seed).nextInt();
-		ChunkTerrainMap.setData(dimensionData, BNBWorldGenerator.seed);
+		TERRAIN_MAP.setData(dimensionData, BNBWorldGenerator.seed);
+		ChunkTerrainMap.setData(BNBWorldGenerator.seed);
 	}
 	
 	public static Chunk makeChunk(Level level, int cx, int cz) {
@@ -97,7 +98,7 @@ public class BNBWorldGenerator {
 				for (byte by = 0; by < 16; by++) {
 					cell.setY(by);
 					if (cell.get() < 0.5F) {
-						if (index > 1) continue;
+						if (index > 5) continue;
 						section.setBlockState(bx, by, bz, LAVA);
 						section.setLight(LightType.BLOCK, bx, by, bz, 15);
 					}
@@ -114,11 +115,18 @@ public class BNBWorldGenerator {
 	}
 	
 	private static boolean forceSection(int index) {
-		return index == 15 || index < 2;
+		return index == 15 || index < 6;
+	}
+	
+	private static void addFeature(Identifier id, Supplier<TerrainFeature> constructor, TerrainRegion... regions) {
+		ChunkTerrainMap.addFeature(id, constructor);
+		for (TerrainRegion region : regions) {
+			TERRAIN_MAP.addTerrain(id, region);
+		}
 	}
 	
 	static {
-		ChunkTerrainMap.addFeature(ArchipelagoFeature::new, TerrainRegion.OCEAN_NORMAL);
+		/*ChunkTerrainMap.addFeature(ArchipelagoFeature::new, TerrainRegion.OCEAN_NORMAL);
 		ChunkTerrainMap.addFeature(PillarsFeature::new, TerrainRegion.OCEAN_MOUNTAINS, TerrainRegion.SHORE_MOUNTAINS);
 		ChunkTerrainMap.addFeature(SpikesFeature::new, TerrainRegion.MOUNTAINS);
 		ChunkTerrainMap.addFeature(ContinentsFeature::new, TerrainRegion.PLAINS, TerrainRegion.HILLS, TerrainRegion.MOUNTAINS, TerrainRegion.SHORE_NORMAL, TerrainRegion.SHORE_MOUNTAINS);
@@ -131,6 +139,14 @@ public class BNBWorldGenerator {
 		ChunkTerrainMap.addFeature(TheWallFeature::new, TerrainRegion.MOUNTAINS);
 		ChunkTerrainMap.addFeature(SmallPillarsFeature::new, TerrainRegion.OCEAN_MOUNTAINS, TerrainRegion.SHORE_MOUNTAINS);
 		ChunkTerrainMap.addFeature(BridgesFeature::new, TerrainRegion.BRIDGES);
-		ChunkTerrainMap.addFeature(DoubleBridgesFeature::new, TerrainRegion.BRIDGES);
+		ChunkTerrainMap.addFeature(DoubleBridgesFeature::new, TerrainRegion.BRIDGES);*/
+		
+		addFeature(BNB.id("plains"), PlainsLandFeature::new, TerrainRegion.PLAINS);
+		addFeature(BNB.id("flat_hills"), FlatHillsFeature::new, TerrainRegion.HILLS);
+		addFeature(BNB.id("bridges"), BridgesFeature::new, TerrainRegion.BRIDGES);
+		addFeature(BNB.id("flat_mountains"), FlatMountainsFeature::new, TerrainRegion.MOUNTAINS);
+		addFeature(BNB.id("shore"), ShoreFeature::new, TerrainRegion.SHORE_NORMAL, TerrainRegion.SHORE_MOUNTAINS);
+		addFeature(BNB.id("flat_ocean"), FlatOceanFeature::new, TerrainRegion.OCEAN_NORMAL, TerrainRegion.OCEAN_MOUNTAINS);
+		addFeature(BNB.id("archipelago"), ArchipelagoFeature::new, TerrainRegion.OCEAN_NORMAL, TerrainRegion.OCEAN_MOUNTAINS);
 	}
 }
