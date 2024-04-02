@@ -1,6 +1,7 @@
 package paulevs.bnb.world.biome;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.living.monster.GhastEntity;
 import net.minecraft.level.biome.Biome;
 import net.modificationstation.stationapi.api.worldgen.biome.BiomeBuilder;
 import net.modificationstation.stationapi.api.worldgen.surface.SurfaceBuilder;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class BNBBiomes {
 	public static final EnumMap<TerrainRegion, List<Biome>> BIOMES = new EnumMap<>(TerrainRegion.class);
 	
@@ -84,18 +86,30 @@ public class BNBBiomes {
 	
 	public static final Biome GRAVEL_SHORE = addShore(BiomeBuilder
 		.start("bnb_gravel_shore")
-		.fogColor(0x951922)
-		.surfaceRule(SurfaceBuilder.start(Block.GRAVEL).replace(Block.NETHERRACK).ground(3).build())
+		.fogColor(0xab1302)
+		.surfaceRule(SurfaceBuilder.start(Block.GRAVEL).replace(Block.NETHERRACK).ground(3).range(0, 100).build())
 		.noDimensionFeatures()
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
+		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
 		.build());
 	
 	public static final Biome OBSIDIAN_SHORE = addShore(BiomeBuilder
-		.start("bnb_gravel_shore")
-		.fogColor(0x951922)
-		.surfaceRule(SurfaceBuilder.start(Block.OBSIDIAN).replace(Block.NETHERRACK).ground(3).build())
+		.start("bnb_obsidian_shore")
+		.fogColor(0xab1302)
+		.surfaceRule(SurfaceBuilder.start(Block.OBSIDIAN).replace(Block.NETHERRACK).ground(3).range(0, 100).build())
 		.noDimensionFeatures()
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
+		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
+		.build());
+	
+	public static final Biome LAVA_OCEAN = addOcean(BiomeBuilder
+		.start("bnb_lava_ocean")
+		.fogColor(0xab1302)
+		.surfaceRule(SurfaceBuilder.start(Block.GRAVEL).replace(Block.NETHERRACK).ground(3).range(0, 100).build())
+		.noDimensionFeatures()
+		.hostileEntity(GhastEntity.class, 1)
+		.feature(BNBPlacers.ORICHALCUM_PLACER)
+		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
 		.build());
 	
 	private static void add(TerrainRegion region, Biome biome) {
@@ -107,12 +121,12 @@ public class BNBBiomes {
 		add(TerrainRegion.HILLS, biome);
 		add(TerrainRegion.MOUNTAINS, biome);
 		add(TerrainRegion.BRIDGES, biome);
+		add(TerrainRegion.SHORE_MOUNTAINS, biome);
 		return biome;
 	}
 	
 	private static Biome addShore(Biome biome) {
 		add(TerrainRegion.SHORE_NORMAL, biome);
-		add(TerrainRegion.SHORE_MOUNTAINS, biome);
 		return biome;
 	}
 	

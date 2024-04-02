@@ -23,6 +23,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+@SuppressWarnings("unused")
 public class BNBItems {
 	public static final List<Item> ITEMS = new ArrayList<>();
 	

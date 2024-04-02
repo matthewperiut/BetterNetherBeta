@@ -18,6 +18,7 @@ import paulevs.bnb.world.generator.terrain.TerrainMap;
 import paulevs.bnb.world.generator.terrain.TerrainRegion;
 import paulevs.bnb.world.generator.terrain.features.ArchipelagoFeature;
 import paulevs.bnb.world.generator.terrain.features.BridgesFeature;
+import paulevs.bnb.world.generator.terrain.features.FlatCliffFeature;
 import paulevs.bnb.world.generator.terrain.features.FlatHillsFeature;
 import paulevs.bnb.world.generator.terrain.features.FlatMountainsFeature;
 import paulevs.bnb.world.generator.terrain.features.FlatOceanFeature;
@@ -143,10 +144,11 @@ public class BNBWorldGenerator {
 		
 		addFeature(BNB.id("plains"), PlainsLandFeature::new, TerrainRegion.PLAINS);
 		addFeature(BNB.id("flat_hills"), FlatHillsFeature::new, TerrainRegion.HILLS);
-		addFeature(BNB.id("bridges"), BridgesFeature::new, TerrainRegion.BRIDGES);
+		//addFeature(BNB.id("bridges"), BridgesFeature::new, TerrainRegion.BRIDGES);
 		addFeature(BNB.id("flat_mountains"), FlatMountainsFeature::new, TerrainRegion.MOUNTAINS);
-		addFeature(BNB.id("shore"), ShoreFeature::new, TerrainRegion.SHORE_NORMAL, TerrainRegion.SHORE_MOUNTAINS);
-		addFeature(BNB.id("flat_ocean"), FlatOceanFeature::new, TerrainRegion.OCEAN_NORMAL, TerrainRegion.OCEAN_MOUNTAINS);
+		addFeature(BNB.id("shore"), ShoreFeature::new, TerrainRegion.SHORE_NORMAL);
+		addFeature(BNB.id("flat_ocean"), FlatOceanFeature::new, TerrainRegion.OCEAN_NORMAL, TerrainRegion.OCEAN_MOUNTAINS, TerrainRegion.BRIDGES);
 		addFeature(BNB.id("archipelago"), ArchipelagoFeature::new, TerrainRegion.OCEAN_NORMAL, TerrainRegion.OCEAN_MOUNTAINS);
+		addFeature(BNB.id("flat_cliff"), FlatCliffFeature::new, TerrainRegion.SHORE_MOUNTAINS);
 	}
 }
