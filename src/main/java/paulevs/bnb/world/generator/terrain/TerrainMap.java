@@ -52,7 +52,7 @@ public class TerrainMap extends DataMap<Identifier> {
 		TerrainRegion region = getRegionInternal(x, z);
 		List<Identifier> list = regionTerrain.get(region);
 		if (list.isEmpty()) return DEFAULT_TERRAIN;
-		int index = (int) Math.floor(cellNoise.getID(x * 0.25, z * 0.25) * list.size());
+		int index = (int) Math.floor(cellNoise.getID(x * 0.1, z * 0.1) * list.size());
 		return list.get(index);
 	}
 	
@@ -134,19 +134,22 @@ public class TerrainMap extends DataMap<Identifier> {
 	}
 	
 	public TerrainRegion getRegionInternal(int x, int z) {
-		float ocean = oceanNoise.get(x * 0.05, z * 0.05);
-		float mountains = mountainNoise.get(x * 0.1, z * 0.1);
+		float ocean = oceanNoise.get(x * 0.0375, z * 0.0375);
+		float mountains = mountainNoise.get(x * 0.075, z * 0.075);
 		if (ocean > 0.5F) {
-			double px = x * 0.03 + distortionX.get(x * 0.02, z * 0.02);
-			double pz = z * 0.03 + distortionX.get(x * 0.02, z * 0.02);
+			double px = x * 0.03 * 0.75 + distortionX.get(x * 0.015, z * 0.015);
+			double pz = z * 0.03 * 0.75 + distortionZ.get(x * 0.015, z * 0.015);
 			float bridges = bridgesNoise.getF1F2(px, pz);
 			if (bridges > 0.9) return TerrainRegion.BRIDGES;
-			if (ocean > 0.55F) {
-				return mountains > 0.6F ? TerrainRegion.OCEAN_MOUNTAINS : TerrainRegion.OCEAN_NORMAL;
-			}
-			return mountains > 0.6F ? TerrainRegion.SHORE_MOUNTAINS : TerrainRegion.SHORE_NORMAL;
+			if (
+				oceanNoise.get((x + 1) * 0.0375, z * 0.0375) < 0.5F ||
+				oceanNoise.get((x - 1) * 0.0375, z * 0.0375) < 0.5F ||
+				oceanNoise.get(x * 0.0375, (z + 1) * 0.0375) < 0.5F ||
+				oceanNoise.get(x * 0.0375, (z - 1) * 0.0375) < 0.5F
+			) return mountains > 0.6F ? TerrainRegion.SHORE_MOUNTAINS : TerrainRegion.SHORE_NORMAL;
+			return mountains > 0.65F ? TerrainRegion.OCEAN_MOUNTAINS : TerrainRegion.OCEAN_NORMAL;
 		}
-		return mountains > 0.6F ? TerrainRegion.MOUNTAINS : mountains > 0.5F ? TerrainRegion.HILLS : TerrainRegion.PLAINS;
+		return mountains > 0.6F ? TerrainRegion.MOUNTAINS : mountains > 0.53F ? TerrainRegion.HILLS : TerrainRegion.PLAINS;
 	}
 	
 	static {

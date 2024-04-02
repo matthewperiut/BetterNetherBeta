@@ -163,21 +163,19 @@ public class ClientListener {
 	private void debugTerrain() {
 		/*if (!FabricLoader.getInstance().isDevelopmentEnvironment()) return;
 		
-		TerrainMap terrainMap = new TerrainMap();
-		
 		BufferedImage buffer = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
 		for (int x = 0; x < 512; x++) {
 			for (int z = 0; z < 512; z++) {
 				//int index = terrainMap.getSDFIndex(x, z);
 				//System.out.println(index);
-				TerrainRegion region = terrainMap.getRegion(x << 2, z << 2);
+				TerrainRegion region = BNBWorldGenerator.TERRAIN_MAP.getRegion(x << 2, z << 2);
 				int color = switch (region) {
 					case OCEAN_NORMAL -> 0xFFFF0000;
 					case OCEAN_MOUNTAINS -> 0xFFFF0000;
 					case SHORE_NORMAL -> 0xFFFFFF00;
 					case SHORE_MOUNTAINS -> 0xFFFFFF00;
-					case PLAINS -> 0xFFFFFFFF;
-					case HILLS -> 0xFFFFFFFF;
+					case PLAINS -> 0xFF333333;
+					case HILLS -> 0xFFcccccc;
 					case MOUNTAINS -> 0xFFFFFFFF;
 					case BRIDGES -> 0xFFFF00FF;
 				};
@@ -192,9 +190,9 @@ public class ClientListener {
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		frame.setVisible(true);*/
 		
-		BNBWorldGenerator g = new BNBWorldGenerator();
+		/*BNBWorldGenerator g = new BNBWorldGenerator();
 		buffer = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
 		
 		for (int x = 0; x < 512; x++) {
@@ -215,7 +213,7 @@ public class ClientListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);*/
 		
-		/*TerrainFeature feature = new BridgesFeature();
+		/*TerrainFeature feature = new ArchesFeature();
 		feature.setSeed(2);
 		feature.debugImage();*/
 		

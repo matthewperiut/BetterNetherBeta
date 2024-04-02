@@ -1,4 +1,4 @@
-package paulevs.bnb.world.generator.terrain.features.legacy;
+package paulevs.bnb.world.generator.terrain.features;
 
 import net.minecraft.util.maths.Vec3D;
 import net.modificationstation.stationapi.api.util.math.MathHelper;
@@ -6,14 +6,12 @@ import paulevs.bnb.math.Matrix3F;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
 import paulevs.bnb.noise.SDFScatter2D;
-import paulevs.bnb.world.generator.terrain.features.TerrainFeature;
 
 import java.util.Random;
 
 public class ArchesFeature extends TerrainFeature {
 	private final SDFScatter2D scatter = new SDFScatter2D(this::getArches);
-	private final FractalNoise floor = new FractalNoise(PerlinNoise::new);
-	private final FractalNoise ceiling = new FractalNoise(PerlinNoise::new);
+	private final FractalNoise noise = new FractalNoise(PerlinNoise::new);
 	private final PerlinNoise distortionX = new PerlinNoise();
 	private final PerlinNoise distortionY = new PerlinNoise();
 	private final PerlinNoise distortionZ = new PerlinNoise();
@@ -23,20 +21,18 @@ public class ArchesFeature extends TerrainFeature {
 	private int lastSeed;
 	
 	public ArchesFeature() {
-		floor.setOctaves(5);
-		ceiling.setOctaves(3);
+		noise.setOctaves(5);
 	}
 	
 	@Override
 	public float getDensity(int x, int y, int z) {
-		float density = gradient(y, 5, 130, 0.6F, -1.0F) + floor.get(x * 0.003, z * 0.003);
+		float density = gradient(y, 96, 128, 1, -1);
+		density = Math.max(density, gradient(y, 224, 256, -1, 1));
+		density += noise.get(x * 0.03, z * 0.03) * 0.8F - 0.4F;
 		
-		float arches = scatter.get(x * 0.01, y * 0.01, z * 0.01);
-		arches += ceiling.get(x * 0.02, y * 0.02, z * 0.02) * 0.1F;
-		density = smoothMax(density, arches, 0.1F);
-		
-		float ceil = gradient(y, 200, 255, -1.0F, 1.0F) + ceiling.get(x * 0.01, z * 0.01);
-		density = Math.max(density, ceil);
+		float arches = scatter.get(x * 0.03, y * 0.03, z * 0.03);
+		arches += noise.get(x * 0.02, y * 0.02, z * 0.02) * 0.1F;
+		density = smoothMax(density, arches, 0.5F);
 		
 		return density;
 	}
@@ -45,8 +41,7 @@ public class ArchesFeature extends TerrainFeature {
 	public void setSeed(int seed) {
 		RANDOM.setSeed(seed);
 		scatter.setSeed(RANDOM.nextInt());
-		floor.setSeed(RANDOM.nextInt());
-		ceiling.setSeed(RANDOM.nextInt());
+		noise.setSeed(RANDOM.nextInt());
 		distortionX.setSeed(RANDOM.nextInt());
 		distortionY.setSeed(RANDOM.nextInt());
 		distortionZ.setSeed(RANDOM.nextInt());
@@ -55,11 +50,11 @@ public class ArchesFeature extends TerrainFeature {
 	private float getArches(int seed, Vec3D pos) {
 		random.setSeed(seed);
 		
-		float radiusBig = MathHelper.lerp(random.nextFloat(), 0.1F, 0.5F);
+		float radiusBig = MathHelper.lerp(random.nextFloat(), 0.1F, 0.75F);
 		float radiusSmall = MathHelper.lerp(random.nextFloat(), radiusBig * 0.02F, radiusBig * 0.2F);
 		float angle = random.nextFloat() * 6.283F;
 		
-		pos.y -= (random.nextFloat() * 30 + 40) * 0.01;
+		pos.y -= (random.nextFloat() * 20 + 96) * 0.03;
 		
 		if (seed != lastSeed) {
 			lastSeed = seed;

@@ -16,6 +16,7 @@ import paulevs.bnb.world.generator.terrain.ChunkTerrainMap;
 import paulevs.bnb.world.generator.terrain.CrossInterpolationCell;
 import paulevs.bnb.world.generator.terrain.TerrainMap;
 import paulevs.bnb.world.generator.terrain.TerrainRegion;
+import paulevs.bnb.world.generator.terrain.features.ArchesFeature;
 import paulevs.bnb.world.generator.terrain.features.ArchipelagoFeature;
 import paulevs.bnb.world.generator.terrain.features.FlatCliffFeature;
 import paulevs.bnb.world.generator.terrain.features.FlatHillsFeature;
@@ -43,12 +44,11 @@ public class BNBWorldGenerator {
 	private static ChunkSection[] sections;
 	private static int startX;
 	private static int startZ;
-	private static int seed;
 	
 	public static void updateData(DimensionData dimensionData, long seed) {
-		BNBWorldGenerator.seed = new Random(seed).nextInt();
-		TERRAIN_MAP.setData(dimensionData, BNBWorldGenerator.seed);
-		ChunkTerrainMap.setData(BNBWorldGenerator.seed);
+		RANDOM.setSeed(seed);
+		TERRAIN_MAP.setData(dimensionData, RANDOM.nextInt());
+		ChunkTerrainMap.setData(RANDOM.nextInt());
 	}
 	
 	public static Chunk makeChunk(Level level, int cx, int cz) {
@@ -142,6 +142,7 @@ public class BNBWorldGenerator {
 		ChunkTerrainMap.addFeature(DoubleBridgesFeature::new, TerrainRegion.BRIDGES);*/
 		
 		addFeature(BNB.id("plains"), PlainsLandFeature::new, TerrainRegion.PLAINS);
+		addFeature(BNB.id("arches"), ArchesFeature::new, TerrainRegion.PLAINS);
 		addFeature(BNB.id("flat_hills"), FlatHillsFeature::new, TerrainRegion.HILLS);
 		//addFeature(BNB.id("bridges"), BridgesFeature::new, TerrainRegion.BRIDGES);
 		addFeature(BNB.id("flat_mountains"), FlatMountainsFeature::new, TerrainRegion.MOUNTAINS);

@@ -1,6 +1,5 @@
 package paulevs.bnb.mixin.common;
 
-import net.minecraft.entity.living.monster.GhastEntity;
 import net.minecraft.entity.living.monster.ZombieEntity;
 import net.minecraft.entity.living.monster.ZombiePigmanEntity;
 import net.minecraft.level.Level;
@@ -19,7 +18,7 @@ public abstract class ZombiePigmanEntityMixin extends ZombieEntity {
 	@Inject(method = "canSpawn", at = @At("HEAD"), cancellable = true)
 	private void bnb_canSpawn(CallbackInfoReturnable<Boolean> info) {
 		Box bounds = Box.createAndCache(x - 64, y - 64, z - 64, x + 64, y + 64, z + 64);
-		if (level.getEntities(GhastEntity.class, bounds).size() > 8) {
+		if (level.getEntities(ZombiePigmanEntity.class, bounds).size() > 8) {
 			info.setReturnValue(false);
 		}
 	}
