@@ -2,6 +2,7 @@ package paulevs.bnb.world.biome;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.living.monster.GhastEntity;
+import net.minecraft.entity.living.monster.ZombiePigmanEntity;
 import net.minecraft.level.biome.Biome;
 import net.modificationstation.stationapi.api.worldgen.biome.BiomeBuilder;
 import net.modificationstation.stationapi.api.worldgen.surface.SurfaceBuilder;
@@ -108,6 +109,7 @@ public class BNBBiomes {
 		.surfaceRule(SurfaceBuilder.start(Block.GRAVEL).replace(Block.NETHERRACK).ground(3).range(0, 100).build())
 		.noDimensionFeatures()
 		.hostileEntity(GhastEntity.class, 1)
+		.hostileEntity(ZombiePigmanEntity.class, 10)
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
 		.build());

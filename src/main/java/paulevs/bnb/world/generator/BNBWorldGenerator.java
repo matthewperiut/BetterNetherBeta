@@ -17,7 +17,6 @@ import paulevs.bnb.world.generator.terrain.CrossInterpolationCell;
 import paulevs.bnb.world.generator.terrain.TerrainMap;
 import paulevs.bnb.world.generator.terrain.TerrainRegion;
 import paulevs.bnb.world.generator.terrain.features.ArchipelagoFeature;
-import paulevs.bnb.world.generator.terrain.features.BridgesFeature;
 import paulevs.bnb.world.generator.terrain.features.FlatCliffFeature;
 import paulevs.bnb.world.generator.terrain.features.FlatHillsFeature;
 import paulevs.bnb.world.generator.terrain.features.FlatMountainsFeature;
