@@ -1,4 +1,4 @@
-package paulevs.bnb.weather;
+package paulevs.bnb.rendering;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -12,6 +12,8 @@ import net.minecraft.util.maths.MathHelper;
 import net.minecraft.util.maths.Vec2I;
 import net.minecraft.util.maths.Vec3D;
 import org.lwjgl.opengl.GL11;
+import paulevs.bnb.weather.BNBWeatherManager;
+import paulevs.bnb.weather.WeatherType;
 
 import javax.imageio.ImageIO;
 import java.awt.Color;

@@ -1,5 +1,7 @@
 package paulevs.bnb.sound;
 
+import it.unimi.dsi.fastutil.objects.Reference2FloatMap;
+import it.unimi.dsi.fastutil.objects.Reference2FloatOpenHashMap;
 import net.minecraft.client.options.GameOptions;
 import net.minecraft.client.sound.SoundEntry;
 import net.minecraft.entity.living.player.PlayerEntity;
@@ -20,21 +22,20 @@ public class BNBSoundManager {
 	private static GameOptions gameOptions;
 	private static SoundSystem soundSystem;
 	
-	private static Identifier currentAmbientSoundID;
-	private static Identifier nextAmbientSoundID;
-	private static String currentAmbientKey;
-	private static String nextAmbientKey;
-	private static int ambientTicks = 10;
-	private static SoundState state;
+	private static final Reference2FloatMap<Identifier> OLD_AMBIENCE_MAP = new Reference2FloatOpenHashMap<>();
+	private static final Reference2FloatMap<Identifier> AMBIENCE_MAP = new Reference2FloatOpenHashMap<>();
 	
 	public static void setInTheNether(boolean inTheNether) {
 		if (BNBSoundManager.inTheNether != inTheNether) {
 			soundSystem.stop(MUSIC_KEY);
-			if (soundSystem.playing(currentAmbientKey)) soundSystem.stop(currentAmbientKey);
-			if (soundSystem.playing(nextAmbientKey)) soundSystem.stop(nextAmbientKey);
-			currentAmbientSoundID = null;
-			nextAmbientSoundID = null;
 			musicCountdown = 50;
+			AMBIENCE_MAP.putAll(OLD_AMBIENCE_MAP);
+			for (Identifier sound : AMBIENCE_MAP.keySet()) {
+				String key = sound.toString();
+				if (soundSystem.playing(key)) soundSystem.stop(key);
+			}
+			OLD_AMBIENCE_MAP.clear();
+			AMBIENCE_MAP.clear();
 		}
 		BNBSoundManager.inTheNether = inTheNether;
 	}
@@ -62,78 +63,55 @@ public class BNBSoundManager {
 	}
 	
 	public static void playAmbience(PlayerEntity player, BiomeSource biomeSource) {
-		if (gameOptions.sound == 0.0f) {
-			if (soundSystem.playing(currentAmbientKey)) soundSystem.stop(currentAmbientKey);
-			if (soundSystem.playing(nextAmbientKey)) soundSystem.stop(nextAmbientKey);
-			return;
+		if (!inTheNether) return;
+		
+		int x1 = MathHelper.floor(player.x / 16.0);
+		int z1 = MathHelper.floor(player.z / 16.0);
+		float dx = (float) (player.x / 16.0 - x1);
+		float dz = (float) (player.z / 16.0 - z1);
+		x1 <<= 4;
+		z1 <<= 4;
+		int x2 = x1 + 16;
+		int z2 = z1 + 16;
+		
+		Identifier sa = biomeSource.getBiome(x1, z1).bnb_getBiomeAmbience();
+		Identifier sb = biomeSource.getBiome(x2, z1).bnb_getBiomeAmbience();
+		Identifier sc = biomeSource.getBiome(x1, z2).bnb_getBiomeAmbience();
+		Identifier sd = biomeSource.getBiome(x2, z2).bnb_getBiomeAmbience();
+		
+		float va = (1.0F - dx) * (1.0F - dz);
+		float vb = dx * (1.0F - dz);
+		float vc = (1.0F - dx) * dz;
+		float vd = dx * dz;
+		
+		AMBIENCE_MAP.clear();
+		if (sa != null) AMBIENCE_MAP.put(sa, va);
+		if (sb != null) AMBIENCE_MAP.put(sb, AMBIENCE_MAP.getOrDefault(sb, 0.0F) + vb);
+		if (sc != null) AMBIENCE_MAP.put(sc, AMBIENCE_MAP.getOrDefault(sc, 0.0F) + vc);
+		if (sd != null) AMBIENCE_MAP.put(sd, AMBIENCE_MAP.getOrDefault(sd, 0.0F) + vd);
+		
+		for (Identifier sound : AMBIENCE_MAP.keySet()) {
+			OLD_AMBIENCE_MAP.removeFloat(sound);
+			SoundEntry entry = BNBClientSounds.getSound(sound);
+			String key = sound.toString();
+			float volume = AMBIENCE_MAP.getFloat(sound) * gameOptions.sound;
+			boolean playing = soundSystem.playing(key);
+			if (!playing && volume > 0.01F) {
+				soundSystem.backgroundMusic(key, entry.soundUrl, entry.soundName, true);
+			}
+			if (playing && volume < 0.01F) {
+				soundSystem.stop(key);
+				continue;
+			}
+			soundSystem.setVolume(key, volume);
 		}
 		
-		if (ambientTicks == 81) {
-			currentAmbientSoundID = nextAmbientSoundID;
-			nextAmbientSoundID = getSound(player, biomeSource);
-			
-			if (nextAmbientSoundID == null) {
-				if (currentAmbientSoundID != null) state = SoundState.FADE_DOWN;
-				else state = null;
-			}
-			else {
-				if (currentAmbientSoundID != null) {
-					if (currentAmbientSoundID == nextAmbientSoundID) state = null;
-					else state = SoundState.FADE_BETWEEN;
-				}
-				else state = SoundState.FADE_UP;
-			}
-			
-			ambientTicks = 0;
-			
-			if (currentAmbientSoundID != null) currentAmbientKey = currentAmbientSoundID.toString();
-			if (nextAmbientSoundID != null) nextAmbientKey = nextAmbientSoundID.toString();
+		for (Identifier sound : OLD_AMBIENCE_MAP.keySet()) {
+			String key = sound.toString();
+			if (soundSystem.playing(key)) soundSystem.stop(key);
 		}
-		else ambientTicks++;
 		
-		if (state == null) return;
-		
-		float delta = ambientTicks / 80F;
-		
-		switch (state) {
-			case FADE_UP -> {
-				if (nextAmbientSoundID == null) return;
-				if (!soundSystem.playing(nextAmbientKey)) {
-					SoundEntry soundEntry = BNBClientSounds.getSound(nextAmbientSoundID);
-					soundSystem.backgroundMusic(nextAmbientKey, soundEntry.soundUrl, soundEntry.soundName, true);
-					soundSystem.play(nextAmbientKey);
-				}
-				soundSystem.setVolume(nextAmbientKey, gameOptions.sound * delta);
-			}
-			case FADE_DOWN -> {
-				float volume = gameOptions.sound * (1.0F - delta);
-				soundSystem.setVolume(currentAmbientKey, volume);
-				if (volume == 0) soundSystem.stop(currentAmbientKey);
-			}
-			case FADE_BETWEEN -> {
-				float volume1 = gameOptions.sound * delta;
-				float volume2 = gameOptions.sound * (1.0F - delta);
-				
-				soundSystem.setVolume(currentAmbientKey, volume1);
-				if (volume1 == 0) soundSystem.stop(currentAmbientKey);
-				
-				if (!soundSystem.playing(nextAmbientKey)) {
-					SoundEntry soundEntry = BNBClientSounds.getSound(nextAmbientSoundID);
-					soundSystem.backgroundMusic(nextAmbientKey, soundEntry.soundUrl, soundEntry.soundName, true);
-					soundSystem.play(nextAmbientKey);
-				}
-				soundSystem.setVolume(nextAmbientKey, volume2);
-			}
-		}
-	}
-	
-	private static Identifier getSound(PlayerEntity player, BiomeSource source) {
-		int x = MathHelper.floor(player.x);
-		int z = MathHelper.floor(player.z);
-		return source.getBiome(x, z).bnb_getBiomeAmbience();
-	}
-	
-	private enum SoundState {
-		FADE_UP, FADE_DOWN, FADE_BETWEEN
+		OLD_AMBIENCE_MAP.clear();
+		OLD_AMBIENCE_MAP.putAll(AMBIENCE_MAP);
 	}
 }

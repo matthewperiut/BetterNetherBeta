@@ -6,6 +6,7 @@ import net.minecraft.client.sound.SoundEntry;
 import net.minecraft.entity.living.LivingEntity;
 import net.minecraft.level.Level;
 import net.minecraft.util.maths.MathHelper;
+import paulevs.bnb.rendering.BNBWeatherRenderer;
 import paulscode.sound.SoundSystem;
 
 import java.net.URL;

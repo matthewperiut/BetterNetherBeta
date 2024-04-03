@@ -12,7 +12,7 @@ import paulevs.bnb.entity.NetherSpiderEntity;
 import java.util.Random;
 
 public class CocoonSpawnerBlockEntity extends BlockEntity {
-	private int delay = 200;
+	private int delay = 200 + (hashCode() % 600);
 	
 	@Override
 	public void tick() {

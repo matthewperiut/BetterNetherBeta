@@ -13,4 +13,5 @@ public class BNBSounds {
 	public static final Identifier BAMBOO_FOREST_AMBIENCE = BNB.id("ambient/bamboo_forest");
 	public static final Identifier GRASSLANDS_AMBIENCE = BNB.id("ambient/grasslands");
 	public static final Identifier SWAMPLAND_AMBIENCE = BNB.id("ambient/nether_bog");
+	public static final Identifier LAVA_SEA_AMBIENCE = BNB.id("ambient/lava_sea");
 }

@@ -1,5 +1,6 @@
 package paulevs.bnb.mixin.common;
 
+import net.minecraft.level.biome.Biome;
 import net.minecraft.level.dimension.Dimension;
 import net.minecraft.level.dimension.NetherDimension;
 import net.modificationstation.stationapi.api.util.math.MathHelper;
@@ -8,6 +9,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import paulevs.bnb.world.biome.BNBBiomes;
+
+import java.util.Collection;
 
 @Mixin(NetherDimension.class)
 public class NetherDimensionMixin extends Dimension implements StationDimension {
@@ -31,9 +35,8 @@ public class NetherDimensionMixin extends Dimension implements StationDimension 
 		}
 	}
 	
-	/*@Environment(value= EnvType.CLIENT)
-	@Inject(method = "getSkyColor", at = @At("HEAD"), cancellable = true)
-	protected void bnb_getSkyColor(CallbackInfoReturnable<Vec3f> info) {
-		info.setReturnValue(FogInfo.getVector());
-	}*/
+	@Override
+	public Collection<Biome> getBiomes() {
+		return BNBBiomes.BIOMES;
+	}
 }

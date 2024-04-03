@@ -10,12 +10,11 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
 
 @Environment(EnvType.CLIENT)
-public class SkyRenderer {
+public class BNBSkyRenderer {
 	private static final int GRADIENT = makeSkyGradient();
 	private static int gradientTexture;
 	
 	public static void init(TextureManager textureManager) {
-		if (gradientTexture != 0) return;
 		gradientTexture = textureManager.getTextureId("/assets/bnb/stationapi/textures/environment/gradient.png");
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, gradientTexture);
 		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL11.GL_REPEAT);

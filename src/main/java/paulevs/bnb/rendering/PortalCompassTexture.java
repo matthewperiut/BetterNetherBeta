@@ -8,7 +8,6 @@ import net.modificationstation.stationapi.api.client.texture.atlas.Atlas;
 import net.modificationstation.stationapi.api.client.texture.atlas.Atlases;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
-import paulevs.bnb.weather.BNBWeatherRenderer;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

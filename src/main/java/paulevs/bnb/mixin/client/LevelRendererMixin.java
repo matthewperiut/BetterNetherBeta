@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import paulevs.bnb.rendering.SkyRenderer;
+import paulevs.bnb.rendering.BNBSkyRenderer;
 
 @Mixin(LevelRenderer.class)
 public class LevelRendererMixin {
@@ -17,13 +17,13 @@ public class LevelRendererMixin {
 	
 	@Inject(method = "<init>", at = @At("TAIL"))
 	private void bnb_onInit(Minecraft mc, TextureManager manager, CallbackInfo info) {
-		SkyRenderer.init(manager);
+		BNBSkyRenderer.init(manager);
 	}
 	
 	@Inject(method = "renderSky", at = @At("HEAD"), cancellable = true)
 	public void bnb_renderSky(float delta, CallbackInfo info) {
 		if (this.level.dimension.id == -1) {
-			SkyRenderer.renderSky();
+			BNBSkyRenderer.renderSky();
 			info.cancel();
 		}
 	}

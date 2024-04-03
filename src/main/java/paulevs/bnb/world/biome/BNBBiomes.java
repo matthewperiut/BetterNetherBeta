@@ -18,7 +18,8 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public class BNBBiomes {
-	public static final EnumMap<TerrainRegion, List<Biome>> BIOMES = new EnumMap<>(TerrainRegion.class);
+	public static final EnumMap<TerrainRegion, List<Biome>> BIOME_BY_TERRAIN = new EnumMap<>(TerrainRegion.class);
+	public static final List<Biome> BIOMES = new ArrayList<>();
 	
 	public static final Biome FALURIAN_FOREST = addLand(BiomeBuilder
 		.start("bnb_falurian_forest")
@@ -92,7 +93,7 @@ public class BNBBiomes {
 		.noDimensionFeatures()
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
-		.build());
+		.build()).bnb_setBiomeAmbience(BNBSounds.LAVA_SEA_AMBIENCE);
 	
 	public static final Biome OBSIDIAN_SHORE = addShore(BiomeBuilder
 		.start("bnb_obsidian_shore")
@@ -101,7 +102,7 @@ public class BNBBiomes {
 		.noDimensionFeatures()
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
-		.build());
+		.build()).bnb_setBiomeAmbience(BNBSounds.LAVA_SEA_AMBIENCE);
 	
 	public static final Biome LAVA_OCEAN = addOcean(BiomeBuilder
 		.start("bnb_lava_ocean")
@@ -112,13 +113,14 @@ public class BNBBiomes {
 		.hostileEntity(ZombiePigmanEntity.class, 10)
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
-		.build());
+		.build()).bnb_setBiomeAmbience(BNBSounds.LAVA_SEA_AMBIENCE);
 	
 	private static void add(TerrainRegion region, Biome biome) {
-		BIOMES.computeIfAbsent(region, k -> new ArrayList<>()).add(biome);
+		BIOME_BY_TERRAIN.computeIfAbsent(region, k -> new ArrayList<>()).add(biome);
 	}
 	
 	private static Biome addLand(Biome biome) {
+		BIOMES.add(biome);
 		add(TerrainRegion.PLAINS, biome);
 		add(TerrainRegion.HILLS, biome);
 		add(TerrainRegion.MOUNTAINS, biome);
@@ -128,11 +130,13 @@ public class BNBBiomes {
 	}
 	
 	private static Biome addShore(Biome biome) {
+		BIOMES.add(biome);
 		add(TerrainRegion.SHORE_NORMAL, biome);
 		return biome;
 	}
 	
 	private static Biome addOcean(Biome biome) {
+		BIOMES.add(biome);
 		add(TerrainRegion.OCEAN_NORMAL, biome);
 		add(TerrainRegion.OCEAN_MOUNTAINS, biome);
 		return biome;

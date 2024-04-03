@@ -147,7 +147,7 @@ public class TerrainMap extends DataMap<Identifier> {
 				oceanNoise.get(x * 0.0375, (z + 1) * 0.0375) < 0.5F ||
 				oceanNoise.get(x * 0.0375, (z - 1) * 0.0375) < 0.5F
 			) return mountains > 0.6F ? TerrainRegion.SHORE_MOUNTAINS : TerrainRegion.SHORE_NORMAL;
-			if (ocean < 0.67F) return TerrainRegion.OCEAN_NORMAL;
+			if (ocean < 0.63F) return TerrainRegion.OCEAN_NORMAL;
 			return mountains > 0.5F ? TerrainRegion.OCEAN_MOUNTAINS : TerrainRegion.OCEAN_NORMAL;
 		}
 		return mountains > 0.6F ? TerrainRegion.MOUNTAINS : mountains > 0.53F ? TerrainRegion.HILLS : TerrainRegion.PLAINS;
