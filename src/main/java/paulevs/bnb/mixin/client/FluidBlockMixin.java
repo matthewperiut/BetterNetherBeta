@@ -33,4 +33,12 @@ public abstract class FluidBlockMixin extends Block {
 	private float bnb_changeLavaBrightness(float original) {
 		return this == STILL_LAVA || this == FLOWING_LAVA ? original * 2.0F : original;
 	}
+	
+	@Environment(EnvType.CLIENT)
+	@Inject(method = "getRenderPass", at = @At("HEAD"), cancellable = true)
+	private void bnb_getRenderPass(CallbackInfoReturnable<Integer> info) {
+		if (this == STILL_LAVA || this == FLOWING_LAVA) {
+			info.setReturnValue(1);
+		}
+	}
 }

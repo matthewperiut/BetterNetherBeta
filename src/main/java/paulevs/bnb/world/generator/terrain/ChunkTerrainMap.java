@@ -14,64 +14,63 @@ import java.util.function.Supplier;
 
 public class ChunkTerrainMap implements TerrainSDF {
 	private static final Reference2ObjectMap<Identifier, Supplier<TerrainFeature>> CONSTRUCTORS = new Reference2ObjectOpenHashMap<>();
-	private static final List<Reference2ObjectMap<Identifier, TerrainFeature>> FEATURES = new ArrayList<>(16);
-	private static final List<Reference2FloatMap<Identifier>> FEATURE_DENSITY = new ArrayList<>(72);
+	private static final List<Supplier<TerrainFeature>> COMMON_CONSTRUCTORS = new ArrayList<>();
 	
-	private final int sectionIndex;
+	private final Reference2ObjectMap<Identifier, TerrainFeature> features = new Reference2ObjectOpenHashMap<>();
+	private final List<TerrainFeature> commonFeatures = new ArrayList<>();
+	
+	@SuppressWarnings("unchecked")
+	private static final Reference2FloatMap<Identifier>[] FEATURE_DENSITY = new Reference2FloatMap[72];
+	
 	private static int posX;
 	private static int posZ;
 	
-	public ChunkTerrainMap(int sectionIndex) {
-		this.sectionIndex = sectionIndex;
+	public ChunkTerrainMap() {
+		CONSTRUCTORS.forEach((id, constructor) ->
+			features.put(id, constructor.get())
+		);
+		
+		COMMON_CONSTRUCTORS.forEach((constructor) ->
+			commonFeatures.add(constructor.get())
+		);
 	}
 	
-	public static void setData(int seed) {
-		if (FEATURE_DENSITY.isEmpty()) {
-			for (byte i = 0; i < 72; i++) {
-				FEATURE_DENSITY.add(new Reference2FloatOpenHashMap<>());
-			}
-		}
+	public void setSeed(int seed) {
+		features.forEach((id, feature) ->
+			feature.setSeed(seed + id.hashCode())
+		);
 		
-		if (FEATURES.isEmpty()) {
-			for (byte i = 0; i < 16; i++) {
-				Reference2ObjectMap<Identifier, TerrainFeature> features = new Reference2ObjectOpenHashMap<>();
-				CONSTRUCTORS.forEach((id, constructor) ->
-					features.put(id, constructor.get())
-				);
-				FEATURES.add(features);
-			}
-		}
-		
-		for (byte i = 0; i < 16; i++) {
-			FEATURES.get(i).forEach((id, feature) ->
-				feature.setSeed(seed + id.hashCode())
-			);
-		}
+		commonFeatures.forEach((feature) ->
+			feature.setSeed(seed)
+		);
 	}
 	
-	public static void prepare(int cx, int cz) {
-		posX = cx << 4;
-		posZ = cz << 4;
-		
+	public static void prepare(int x, int z) {
+		posX = x;
+		posZ = z;
 		for (short i = 0; i < 144; i++) {
 			byte dx = (byte) (i / 12);
 			byte dz = (byte) (i % 12);
 			if ((dx + dz & 1) == 1) continue;
 			dx = (byte) ((dx << 1) - 2);
 			dz = (byte) ((dz << 1) - 2);
-			Reference2FloatMap<Identifier> density = FEATURE_DENSITY.get(i >> 1);
-			BNBWorldGenerator.TERRAIN_MAP.getDensity(dx + posX, dz + posZ, density);
+			Reference2FloatMap<Identifier> density = FEATURE_DENSITY[i >> 1];
+			BNBWorldGenerator.TERRAIN_MAP.getDensity(dx + x, dz + z, density);
 		}
 	}
 	
 	@Override
 	public float getDensity(int x, int y, int z) {
-		Reference2FloatMap<Identifier> density = FEATURE_DENSITY.get(getIndex(x, z));
-		Reference2ObjectMap<Identifier, TerrainFeature> features = FEATURES.get(sectionIndex);
+		Reference2FloatMap<Identifier> density = FEATURE_DENSITY[getIndex(x, z)];
 		
 		float result = 0;
+		
 		for (Identifier id : density.keySet()) {
 			result += features.get(id).getDensity(x, y, z) * density.getFloat(id);
+		}
+		
+		for (TerrainFeature feature : commonFeatures) {
+			result = Math.max(result, feature.getDensity(x, y, z));
 		}
 		
 		return result;
@@ -81,9 +80,19 @@ public class ChunkTerrainMap implements TerrainSDF {
 		CONSTRUCTORS.put(id, constructor);
 	}
 	
-	private short getIndex(int x, int z) {
-		byte dx = (byte) ((x - posX + 2) >> 1);
-		byte dz = (byte) ((z - posZ + 2) >> 1);
-		return (short) ((dx * 12 + dz) >> 1);
+	public static void addCommonFeature(Supplier<TerrainFeature> constructor) {
+		COMMON_CONSTRUCTORS.add(constructor);
+	}
+	
+	private static int getIndex(int x, int z) {
+		int dx = ((x - posX + 2) >> 1);
+		int dz = ((z - posZ + 2) >> 1);
+		return ((dx * 12 + dz) >> 1);
+	}
+	
+	static {
+		for (byte i = 0; i < 72; i++) {
+			FEATURE_DENSITY[i] = new Reference2FloatOpenHashMap<>();
+		}
 	}
 }

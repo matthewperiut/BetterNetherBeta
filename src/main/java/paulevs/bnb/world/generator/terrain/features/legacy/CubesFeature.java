@@ -5,15 +5,14 @@ import net.modificationstation.stationapi.api.util.math.MathHelper;
 import paulevs.bnb.math.Matrix3F;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
-import paulevs.bnb.noise.SDFScatter2D;
 import paulevs.bnb.world.generator.terrain.features.TerrainFeature;
 
 import java.util.Random;
 
 public class CubesFeature extends TerrainFeature {
-	private final SDFScatter2D scatter1 = new SDFScatter2D(this::getCubesBig);
-	private final SDFScatter2D scatter2 = new SDFScatter2D(this::getCubesSmall);
-	private final SDFScatter2D scatter3 = new SDFScatter2D(this::getCubesCeiling);
+	//private final SDFScatter2D scatter1 = new SDFScatter2D(this::getCubesBig);
+	//private final SDFScatter2D scatter2 = new SDFScatter2D(this::getCubesSmall);
+	//private final SDFScatter2D scatter3 = new SDFScatter2D(this::getCubesCeiling);
 	private final FractalNoise floor = new FractalNoise(PerlinNoise::new);
 	private final FractalNoise ceiling = new FractalNoise(PerlinNoise::new);
 	private final Matrix3F matrix1 = new Matrix3F();
@@ -34,14 +33,14 @@ public class CubesFeature extends TerrainFeature {
 	public float getDensity(int x, int y, int z) {
 		float density = gradient(y, 5, 130, 0.7F, -1.0F) + floor.get(x * 0.01, z * 0.01);
 		
-		float cubes = scatter1.get(x * 0.01, y * 0.01, z * 0.01);
-		float cubes2 = scatter2.get(x * 0.04, y * 0.04, z * 0.04);
-		cubes = Math.max(cubes, cubes2);
-		density = smoothMax(density, cubes, 0.1F);
+		//float cubes = scatter1.get(x * 0.01, y * 0.01, z * 0.01);
+		//float cubes2 = scatter2.get(x * 0.04, y * 0.04, z * 0.04);
+		//cubes = Math.max(cubes, cubes2);
+		//density = smoothMax(density, cubes, 0.1F);
 		
 		float ceil = gradient(y, 200, 255, -1.0F, 1.0F) + ceiling.get(x * 0.01, z * 0.01);
-		cubes = scatter3.get(x * 0.03, y * 0.03, z * 0.03);
-		ceil = smoothMax(ceil, cubes, 0.1F);
+		//cubes = scatter3.get(x * 0.03, y * 0.03, z * 0.03);
+		//ceil = smoothMax(ceil, cubes, 0.1F);
 		density = Math.max(density, ceil);
 		
 		return density;
@@ -50,9 +49,9 @@ public class CubesFeature extends TerrainFeature {
 	@Override
 	public void setSeed(int seed) {
 		RANDOM.setSeed(seed);
-		scatter1.setSeed(RANDOM.nextInt());
-		scatter2.setSeed(RANDOM.nextInt());
-		scatter3.setSeed(RANDOM.nextInt());
+		//scatter1.setSeed(RANDOM.nextInt());
+		//scatter2.setSeed(RANDOM.nextInt());
+		//scatter3.setSeed(RANDOM.nextInt());
 		floor.setSeed(RANDOM.nextInt());
 		ceiling.setSeed(RANDOM.nextInt());
 	}

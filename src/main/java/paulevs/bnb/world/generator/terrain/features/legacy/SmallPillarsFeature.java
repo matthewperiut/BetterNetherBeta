@@ -4,13 +4,12 @@ import net.minecraft.util.maths.MathHelper;
 import net.minecraft.util.maths.Vec3D;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
-import paulevs.bnb.noise.SDFScatter2D;
 import paulevs.bnb.world.generator.terrain.features.TerrainFeature;
 
 import java.util.Random;
 
 public class SmallPillarsFeature extends TerrainFeature {
-	private final SDFScatter2D scatter = new SDFScatter2D(this::getPillar);
+	//private final SDFScatter2D scatter = new SDFScatter2D(this::getPillar);
 	private final FractalNoise floor = new FractalNoise(PerlinNoise::new);
 	private final FractalNoise ceiling = new FractalNoise(PerlinNoise::new);
 	private final Random random = new Random();
@@ -24,11 +23,11 @@ public class SmallPillarsFeature extends TerrainFeature {
 	public float getDensity(int x, int y, int z) {
 		float density = gradient(y, 1, 60, 0.7F, -1.0F) + floor.get(x * 0.01, z * 0.01);
 		
-		float feature = scatter.get(x * 0.03, y * 0.03, z * 0.03);
-		density = smoothMax(density, feature, 1F);
+		//float feature = scatter.get(x * 0.03, y * 0.03, z * 0.03);
+		//density = smoothMax(density, feature, 1F);
 		
-		feature = gradient(y, 200, 255, -1.0F, 1.0F) + ceiling.get(x * 0.01, z * 0.01);
-		density = Math.max(density, feature);
+		//feature = gradient(y, 200, 255, -1.0F, 1.0F) + ceiling.get(x * 0.01, z * 0.01);
+		//density = Math.max(density, feature);
 		
 		return density;
 	}
@@ -36,7 +35,7 @@ public class SmallPillarsFeature extends TerrainFeature {
 	@Override
 	public void setSeed(int seed) {
 		RANDOM.setSeed(seed);
-		scatter.setSeed(RANDOM.nextInt());
+		//scatter.setSeed(RANDOM.nextInt());
 		floor.setSeed(RANDOM.nextInt());
 		ceiling.setSeed(RANDOM.nextInt());
 	}

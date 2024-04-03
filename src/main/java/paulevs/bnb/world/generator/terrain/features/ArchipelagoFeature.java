@@ -22,7 +22,7 @@ public class ArchipelagoFeature extends TerrainFeature {
 		
 		float density = -1F;
 		
-		if (y < 100) {
+		if (y < 150) {
 			density = gradient(y, 70, 110, 1.0F, -1.0F);
 			
 			float power = MathHelper.cos(islandsPower.get(x * 0.005 * 3.0, z * 0.005 * 3.0) * PI_HALF) * 0.5F + 0.5F;

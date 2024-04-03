@@ -29,7 +29,7 @@ public class BNBWeatherManager {
 	private static final Random RANDOM = new Random();
 	
 	private static WeatherType currentWeather = WeatherType.CLEAR;
-	private static int weatherLength;
+	private static int weatherLength = 1200;
 	private static int weatherIndex;
 	
 	public static void tick(Level level) {

@@ -3,14 +3,13 @@ package paulevs.bnb.noise;
 import net.minecraft.util.maths.MathHelper;
 import net.minecraft.util.maths.Vec3D;
 
-import java.util.function.BiFunction;
-
 public class SDFScatter2D extends FloatNoise {
 	private final Vec3D pos = Vec3D.make(0, 0, 0);
-	private final BiFunction<Integer, Vec3D, Float> sdf;
+	private final Vec3D worldPos = Vec3D.make(0, 0, 0);
+	private final ScatterSDF sdf;
 	private int seed;
 	
-	public SDFScatter2D(BiFunction<Integer, Vec3D, Float> sdf) {
+	public SDFScatter2D(ScatterSDF sdf) {
 		this.sdf = sdf;
 	}
 	
@@ -31,11 +30,16 @@ public class SDFScatter2D extends FloatNoise {
 		
 		for (byte i = -1; i < 2; i++) {
 			for (byte k = -1; k < 2; k++) {
-				pos.x = wrap(hash(x1 + i, z1 + k, seed), 3607) / 3607.0F * 0.7F + i - sdx;
-				pos.z = wrap(hash(x1 + i, z1 + k, seed + 23), 3607) / 3607.0F * 0.7F + k - sdz;
+				float dx = wrap(hash(x1 + i, z1 + k, seed), 3607) / 3607.0F * 0.7F;
+				float dz = wrap(hash(x1 + i, z1 + k, seed + 23), 3607) / 3607.0F * 0.7F;
+				worldPos.x = x + dx + i - sdx;
+				worldPos.z = z + dz + k - sdz;
+				worldPos.y = y;
+				pos.x = dx + i - sdx;
+				pos.z = dz + k - sdz;
 				pos.y = y;
 				int featureSeed = wrap(hash(x1 + i, z1 + k, seed + 157), 378632);
-				float d = sdf.apply(featureSeed, pos);
+				float d = sdf.getDensity(featureSeed, pos, worldPos);
 				if (d > distance) distance = d;
 			}
 		}
