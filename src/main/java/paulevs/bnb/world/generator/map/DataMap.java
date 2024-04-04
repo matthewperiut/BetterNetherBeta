@@ -35,7 +35,7 @@ public abstract class DataMap<T> {
 	
 	protected abstract String serialize(T value);
 	protected abstract T deserialize(String name);
-	protected abstract T generateData(int x, int z);
+	public abstract T generateData(int x, int z);
 	
 	public void setData(DimensionData data, int seed) {
 		random.setSeed(seed);

@@ -1,5 +1,6 @@
 package paulevs.bnb.world.generator;
 
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.Block;
 import net.minecraft.level.Level;
 import net.minecraft.level.LightType;
@@ -19,16 +20,21 @@ import paulevs.bnb.world.generator.terrain.TerrainRegion;
 import paulevs.bnb.world.generator.terrain.features.ArchesFeature;
 import paulevs.bnb.world.generator.terrain.features.ArchipelagoFeature;
 import paulevs.bnb.world.generator.terrain.features.BigPillarsFeature;
+import paulevs.bnb.world.generator.terrain.features.CubesFeature;
 import paulevs.bnb.world.generator.terrain.features.FlatCliffFeature;
 import paulevs.bnb.world.generator.terrain.features.FlatHillsFeature;
 import paulevs.bnb.world.generator.terrain.features.FlatMountainsFeature;
 import paulevs.bnb.world.generator.terrain.features.FlatOceanFeature;
-import paulevs.bnb.world.generator.terrain.features.PlainsLandFeature;
+import paulevs.bnb.world.generator.terrain.features.LandPillarsFeature;
+import paulevs.bnb.world.generator.terrain.features.OceanPillarsFeature;
+import paulevs.bnb.world.generator.terrain.features.PlainsFeature;
 import paulevs.bnb.world.generator.terrain.features.ShoreFeature;
 import paulevs.bnb.world.generator.terrain.features.StalactitesFeature;
 import paulevs.bnb.world.generator.terrain.features.TerrainFeature;
 import paulevs.bnb.world.generator.terrain.features.ThinPillarsFeature;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
@@ -36,8 +42,8 @@ import java.util.stream.IntStream;
 public class BNBWorldGenerator {
 	private static final CrossInterpolationCell[] CELLS = new CrossInterpolationCell[16];
 	private static final ChunkTerrainMap[] FEATURE_MAPS = new ChunkTerrainMap[16];
-	public static final TerrainMap TERRAIN_MAP = new TerrainMap();
 	
+	private static final List<Pair<Identifier, TerrainRegion>> MAP_FEATURES = new ArrayList<>();
 	private static final BlockState NETHERRACK = Block.NETHERRACK.getDefaultState();
 	private static final BlockState BEDROCK = Block.BEDROCK.getDefaultState();
 	private static final BlockState LAVA = Block.STILL_LAVA.getDefaultState();
@@ -47,12 +53,10 @@ public class BNBWorldGenerator {
 	private static ChunkSection[] sections;
 	private static int startX;
 	private static int startZ;
-	public static boolean run;
 	
 	public static void updateData(DimensionData dimensionData, long seed) {
 		RANDOM.setSeed(seed);
 		final int mapSeed = RANDOM.nextInt();
-		TERRAIN_MAP.setData(dimensionData, mapSeed);
 		
 		int terrainSeed = RANDOM.nextInt();
 		for (byte i = 0; i < 16; i++) {
@@ -65,6 +69,7 @@ public class BNBWorldGenerator {
 		mapCopies = ThreadLocal.withInitial(() -> {
 			TerrainMap map = new TerrainMap();
 			map.setData(dimensionData, mapSeed);
+			MAP_FEATURES.forEach(pair -> map.addTerrain(pair.getFirst(), pair.getSecond()));
 			return map;
 		});
 	}
@@ -134,7 +139,7 @@ public class BNBWorldGenerator {
 	}
 	
 	public static TerrainMap getMapCopy() {
-		return mapCopies == null ? null : mapCopies.get();
+		return mapCopies.get();
 	}
 	
 	private static boolean forceSection(int index) {
@@ -144,31 +149,16 @@ public class BNBWorldGenerator {
 	private static void addFeature(Identifier id, Supplier<TerrainFeature> constructor, TerrainRegion... regions) {
 		ChunkTerrainMap.addFeature(id, constructor);
 		for (TerrainRegion region : regions) {
-			TERRAIN_MAP.addTerrain(id, region);
+			MAP_FEATURES.add(new Pair<>(id, region));
 		}
 	}
 	
 	static {
 		for (byte i = 0; i < 16; i++) {
-			CELLS[i] = new CrossInterpolationCell(4);
+			CELLS[i] = new CrossInterpolationCell(8);
 		}
 		
-		/*ChunkTerrainMap.addFeature(ArchipelagoFeature::new, TerrainRegion.OCEAN_NORMAL);
-		ChunkTerrainMap.addFeature(PillarsFeature::new, TerrainRegion.OCEAN_MOUNTAINS, TerrainRegion.SHORE_MOUNTAINS);
-		ChunkTerrainMap.addFeature(SpikesFeature::new, TerrainRegion.MOUNTAINS);
-		ChunkTerrainMap.addFeature(ContinentsFeature::new, TerrainRegion.PLAINS, TerrainRegion.HILLS, TerrainRegion.MOUNTAINS, TerrainRegion.SHORE_NORMAL, TerrainRegion.SHORE_MOUNTAINS);
-		ChunkTerrainMap.addFeature(TheHiveFeature::new, TerrainRegion.MOUNTAINS);
-		ChunkTerrainMap.addFeature(CubesFeature::new, TerrainRegion.MOUNTAINS);
-		ChunkTerrainMap.addFeature(ArchesFeature::new, TerrainRegion.PLAINS, TerrainRegion.SHORE_NORMAL);
-		ChunkTerrainMap.addFeature(VolumetricNoiseFeature::new, TerrainRegion.MOUNTAINS);
-		ChunkTerrainMap.addFeature(LavaOceanFeature::new, TerrainRegion.OCEAN_NORMAL, TerrainRegion.OCEAN_MOUNTAINS);
-		ChunkTerrainMap.addFeature(PancakesFeature::new, TerrainRegion.HILLS, TerrainRegion.MOUNTAINS);
-		ChunkTerrainMap.addFeature(TheWallFeature::new, TerrainRegion.MOUNTAINS);
-		ChunkTerrainMap.addFeature(SmallPillarsFeature::new, TerrainRegion.OCEAN_MOUNTAINS, TerrainRegion.SHORE_MOUNTAINS);
-		ChunkTerrainMap.addFeature(BridgesFeature::new, TerrainRegion.BRIDGES);
-		ChunkTerrainMap.addFeature(DoubleBridgesFeature::new, TerrainRegion.BRIDGES);*/
-		
-		addFeature(BNB.id("plains"), PlainsLandFeature::new, TerrainRegion.PLAINS);
+		addFeature(BNB.id("plains"), PlainsFeature::new, TerrainRegion.PLAINS);
 		addFeature(BNB.id("arches"), ArchesFeature::new, TerrainRegion.PLAINS);
 		addFeature(BNB.id("flat_hills"), FlatHillsFeature::new, TerrainRegion.HILLS);
 		//addFeature(BNB.id("bridges"), BridgesFeature::new, TerrainRegion.BRIDGES);
@@ -177,9 +167,18 @@ public class BNBWorldGenerator {
 		addFeature(BNB.id("flat_ocean"), FlatOceanFeature::new, TerrainRegion.OCEAN_NORMAL, TerrainRegion.OCEAN_MOUNTAINS, TerrainRegion.BRIDGES);
 		addFeature(BNB.id("archipelago"), ArchipelagoFeature::new, TerrainRegion.OCEAN_MOUNTAINS);
 		addFeature(BNB.id("flat_cliff"), FlatCliffFeature::new, TerrainRegion.SHORE_MOUNTAINS);
+		addFeature(BNB.id("cubes"), CubesFeature::new, TerrainRegion.HILLS, TerrainRegion.MOUNTAINS);
+		addFeature(BNB.id("ocean_pillars"), OceanPillarsFeature::new, TerrainRegion.OCEAN_MOUNTAINS);
+		addFeature(BNB.id("land_pillars"), LandPillarsFeature::new, TerrainRegion.MOUNTAINS);
 		
 		ChunkTerrainMap.addCommonFeature(BigPillarsFeature::new);
 		ChunkTerrainMap.addCommonFeature(ThinPillarsFeature::new);
 		ChunkTerrainMap.addCommonFeature(StalactitesFeature::new);
+		
+		mapCopies = ThreadLocal.withInitial(() -> {
+			TerrainMap map = new TerrainMap();
+			MAP_FEATURES.forEach(pair -> map.addTerrain(pair.getFirst(), pair.getSecond()));
+			return map;
+		});
 	}
 }

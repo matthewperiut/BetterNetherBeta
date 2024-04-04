@@ -20,7 +20,7 @@ public class ChunkTerrainMap implements TerrainSDF {
 	private final List<TerrainFeature> commonFeatures = new ArrayList<>();
 	
 	@SuppressWarnings("unchecked")
-	private static final Reference2FloatMap<Identifier>[] FEATURE_DENSITY = new Reference2FloatMap[72];
+	private static final Reference2FloatMap<Identifier>[] FEATURE_DENSITY = new Reference2FloatMap[32];
 	
 	private static int posX;
 	private static int posZ;
@@ -48,14 +48,15 @@ public class ChunkTerrainMap implements TerrainSDF {
 	public static void prepare(int x, int z) {
 		posX = x;
 		posZ = z;
-		for (short i = 0; i < 144; i++) {
-			byte dx = (byte) (i / 12);
-			byte dz = (byte) (i % 12);
+		TerrainMap map = BNBWorldGenerator.getMapCopy();
+		for (byte i = 0; i < 64; i++) {
+			byte dx = (byte) (i / 8);
+			byte dz = (byte) (i % 8);
 			if ((dx + dz & 1) == 1) continue;
-			dx = (byte) ((dx << 1) - 2);
-			dz = (byte) ((dz << 1) - 2);
+			dx = (byte) ((dx << 2) - 4);
+			dz = (byte) ((dz << 2) - 4);
 			Reference2FloatMap<Identifier> density = FEATURE_DENSITY[i >> 1];
-			BNBWorldGenerator.TERRAIN_MAP.getDensity(dx + x, dz + z, density);
+			map.getDensity(dx + x, dz + z, density);
 		}
 	}
 	
@@ -85,13 +86,13 @@ public class ChunkTerrainMap implements TerrainSDF {
 	}
 	
 	private static int getIndex(int x, int z) {
-		int dx = ((x - posX + 2) >> 1);
-		int dz = ((z - posZ + 2) >> 1);
-		return ((dx * 12 + dz) >> 1);
+		int dx = ((x - posX + 4) >> 2);
+		int dz = ((z - posZ + 4) >> 2);
+		return ((dx * 8 + dz) >> 1);
 	}
 	
 	static {
-		for (byte i = 0; i < 72; i++) {
+		for (byte i = 0; i < FEATURE_DENSITY.length; i++) {
 			FEATURE_DENSITY[i] = new Reference2FloatOpenHashMap<>();
 		}
 	}

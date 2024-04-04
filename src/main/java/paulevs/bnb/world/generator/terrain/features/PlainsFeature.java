@@ -3,10 +3,10 @@ package paulevs.bnb.world.generator.terrain.features;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
 
-public class PlainsLandFeature extends TerrainFeature {
+public class PlainsFeature extends TerrainFeature {
 	private final FractalNoise noise = new FractalNoise(PerlinNoise::new);
 	
-	public PlainsLandFeature() {
+	public PlainsFeature() {
 		noise.setOctaves(2);
 	}
 	

@@ -22,14 +22,20 @@ public class StalactitesFeature extends TerrainFeature {
 		float height = Math.max(1.0F - placement.get(x * 0.01, z * 0.01) * 1.5F, 0.0F);
 		height *= height;
 		
+		float h = 256 - 100 * height;
+		if (y < h) return 0;
+		
 		float spikes = MathHelper.cos(this.bigSpikesCeiling.get(x * 0.1, z * 0.1) * PI_HALF) * 0.5F + 0.5F;
 		spikes = spikes * spikes * spikes;
-		spikes += gradient(y, 256 - 100 * height, 256, -1.0F, 0.1F);
-		float density =spikes;
+		spikes += gradient(y, h, 256, -1.0F, 0.1F);
+		float density = spikes;
+		
+		h = 256 - 50 * height;
+		if (y < h) return density;
 		
 		spikes = MathHelper.cos(this.smallSpikesCeiling.get(x * 0.3, z * 0.3) * PI_HALF) * 0.5F + 0.5F;
 		spikes = spikes * spikes * spikes;
-		spikes += gradient(y, 256 - 50 * height, 256, -1.0F, 0.1F);
+		spikes += gradient(y, h, 256, -1.0F, 0.1F);
 		density = Math.max(density, spikes);
 		
 		density += noise.get(x * 0.03, y * 0.03, z * 0.03) * 0.2F;

@@ -4,10 +4,13 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.level.biome.Biome;
 import net.minecraft.level.dimension.DimensionData;
+import net.modificationstation.stationapi.api.util.Identifier;
 import paulevs.bnb.noise.VoronoiNoise;
 import paulevs.bnb.world.generator.BNBWorldGenerator;
 import paulevs.bnb.world.generator.map.DataMap;
+import paulevs.bnb.world.generator.terrain.TerrainMap;
 import paulevs.bnb.world.generator.terrain.TerrainRegion;
+import paulevs.bnb.world.generator.terrain.features.OceanPillarsFeature;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -16,6 +19,7 @@ public class BiomeMap extends DataMap<Biome> {
 	private final Object2ObjectMap<String, Biome> nameToBiome = new Object2ObjectOpenHashMap<>();
 	private final EnumMap<TerrainRegion, List<Biome>> biomes;
 	private final VoronoiNoise cellNoise = new VoronoiNoise();
+	private TerrainMap map;
 	
 	public BiomeMap(EnumMap<TerrainRegion, List<Biome>> biomes) {
 		super("bnb_biomes");
@@ -36,8 +40,14 @@ public class BiomeMap extends DataMap<Biome> {
 	}
 	
 	@Override
-	protected Biome generateData(int x, int z) {
-		TerrainRegion region = BNBWorldGenerator.TERRAIN_MAP.getRegionInternal(x, z);
+	public Biome generateData(int x, int z) {
+		TerrainRegion region = map.getRegionInternal(x, z);
+		if (region == TerrainRegion.OCEAN_MOUNTAINS) {
+			Identifier id = map.generateData(x, z);
+			if (id == OceanPillarsFeature.FEATURE_ID) {
+				region = TerrainRegion.MOUNTAINS;
+			}
+		}
 		List<Biome> biomes = this.biomes.get(region);
 		if (biomes == null || biomes.isEmpty()) return Biome.NETHER;
 		double px = x * 0.05 + distortionX.get(x * 0.1, z * 0.1);
@@ -50,5 +60,6 @@ public class BiomeMap extends DataMap<Biome> {
 	public void setData(DimensionData data, int seed) {
 		super.setData(data, seed);
 		cellNoise.setSeed(random.nextInt());
+		map = BNBWorldGenerator.getMapCopy();
 	}
 }

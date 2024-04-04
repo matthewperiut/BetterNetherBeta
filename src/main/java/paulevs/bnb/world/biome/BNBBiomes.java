@@ -4,9 +4,13 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.living.monster.GhastEntity;
 import net.minecraft.entity.living.monster.ZombiePigmanEntity;
 import net.minecraft.level.biome.Biome;
+import net.minecraft.util.maths.BlockPos;
 import net.modificationstation.stationapi.api.worldgen.biome.BiomeBuilder;
 import net.modificationstation.stationapi.api.worldgen.surface.SurfaceBuilder;
+import net.modificationstation.stationapi.api.worldgen.surface.condition.PositionSurfaceCondition;
 import paulevs.bnb.block.BNBBlocks;
+import paulevs.bnb.noise.FractalNoise;
+import paulevs.bnb.noise.PerlinNoise;
 import paulevs.bnb.sound.BNBSounds;
 import paulevs.bnb.world.generator.terrain.TerrainRegion;
 import paulevs.bnb.world.structure.BNBPlacers;
@@ -20,6 +24,9 @@ import java.util.List;
 public class BNBBiomes {
 	public static final EnumMap<TerrainRegion, List<Biome>> BIOME_BY_TERRAIN = new EnumMap<>(TerrainRegion.class);
 	public static final List<Biome> BIOMES = new ArrayList<>();
+	
+	private static final FractalNoise SHORE_NOISE = new FractalNoise(PerlinNoise::new);
+	private static final PositionSurfaceCondition SHORE_COND = new PositionSurfaceCondition(BNBBiomes::shoreHeight);
 	
 	public static final Biome FALURIAN_FOREST = addLand(BiomeBuilder
 		.start("bnb_falurian_forest")
@@ -89,7 +96,7 @@ public class BNBBiomes {
 	public static final Biome GRAVEL_SHORE = addShore(BiomeBuilder
 		.start("bnb_gravel_shore")
 		.fogColor(0xab1302)
-		.surfaceRule(SurfaceBuilder.start(Block.GRAVEL).replace(Block.NETHERRACK).ground(3).range(0, 100).build())
+		.surfaceRule(SurfaceBuilder.start(Block.GRAVEL).replace(Block.NETHERRACK).ground(3).condition(SHORE_COND, 1).build())
 		.noDimensionFeatures()
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
@@ -98,7 +105,7 @@ public class BNBBiomes {
 	public static final Biome OBSIDIAN_SHORE = addShore(BiomeBuilder
 		.start("bnb_obsidian_shore")
 		.fogColor(0xab1302)
-		.surfaceRule(SurfaceBuilder.start(Block.OBSIDIAN).replace(Block.NETHERRACK).ground(3).range(0, 100).build())
+		.surfaceRule(SurfaceBuilder.start(Block.OBSIDIAN).replace(Block.NETHERRACK).ground(3).condition(SHORE_COND, 1).build())
 		.noDimensionFeatures()
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
@@ -107,7 +114,7 @@ public class BNBBiomes {
 	public static final Biome LAVA_OCEAN = addOcean(BiomeBuilder
 		.start("bnb_lava_ocean")
 		.fogColor(0xab1302)
-		.surfaceRule(SurfaceBuilder.start(Block.GRAVEL).replace(Block.NETHERRACK).ground(3).range(0, 100).build())
+		.surfaceRule(SurfaceBuilder.start(Block.GRAVEL).replace(Block.NETHERRACK).ground(3).condition(SHORE_COND, 1).build())
 		.noDimensionFeatures()
 		.hostileEntity(GhastEntity.class, 1)
 		.hostileEntity(ZombiePigmanEntity.class, 10)
@@ -142,6 +149,11 @@ public class BNBBiomes {
 		return biome;
 	}
 	
+	private static boolean shoreHeight(BlockPos pos) {
+		if (pos.y < 100) return true;
+		return pos.y - 100 < SHORE_NOISE.get(pos.x * 0.1, pos.z * 0.1) * 5;
+	}
+	
 	public static void init() {
 		BNBBlocks.MAROON_NYLIUM.setTargetBiome(FALURIAN_FOREST);
 		BNBBlocks.MAROON_NYLIUM.addBonemealStructure(BNBStructures.FLAME_BULBS);
@@ -149,5 +161,10 @@ public class BNBBiomes {
 		
 		BNBBlocks.TURQUOISE_NYLIUM.setTargetBiome(PIROZEN_FOREST);
 		BNBBlocks.POISON_NYLIUM.setTargetBiome(POISON_FOREST);
+	}
+	
+	static {
+		SHORE_NOISE.setOctaves(2);
+		SHORE_NOISE.setSeed(123);
 	}
 }

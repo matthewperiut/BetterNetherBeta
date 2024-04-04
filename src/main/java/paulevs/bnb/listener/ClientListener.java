@@ -34,17 +34,13 @@ import paulevs.bnb.entity.renderer.ObsidianBoatRenderer;
 import paulevs.bnb.gui.container.SpinningWheelContainer;
 import paulevs.bnb.gui.screen.SpinningWheelScreen;
 import paulevs.bnb.item.PortalCompassItem;
+import paulevs.bnb.rendering.BNBWeatherRenderer;
 import paulevs.bnb.rendering.LavaRenderer;
 import paulevs.bnb.rendering.OBJModel;
-import paulevs.bnb.rendering.BNBWeatherRenderer;
-import paulevs.bnb.world.generator.BNBWorldGenerator;
-import paulevs.bnb.world.generator.terrain.TerrainRegion;
+import paulevs.bnb.world.generator.terrain.features.StalactitesFeature;
+import paulevs.bnb.world.generator.terrain.features.TerrainFeature;
 import uk.co.benjiweber.expressions.tuple.BiTuple;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -169,10 +165,11 @@ public class ClientListener {
 	private void debugTerrain() {
 		if (!FabricLoader.getInstance().isDevelopmentEnvironment()) return;
 		
+		/*TerrainMap map = BNBWorldGenerator.getMapCopy();
 		BufferedImage buffer = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
 		for (int x = 0; x < 512; x++) {
 			for (int z = 0; z < 512; z++) {
-				TerrainRegion region = BNBWorldGenerator.TERRAIN_MAP.getRegion(x << 2, z << 2);
+				TerrainRegion region = map.getRegion(x << 2, z << 2);
 				int color = switch (region) {
 					case OCEAN_NORMAL -> 0xFFFF0000;
 					case OCEAN_MOUNTAINS -> 0xFFFF3333;
@@ -193,7 +190,7 @@ public class ClientListener {
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		frame.setVisible(true);*/
 		
 		/*BNBWorldGenerator g = new BNBWorldGenerator();
 		buffer = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
@@ -216,9 +213,12 @@ public class ClientListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);*/
 		
-		/*TerrainFeature feature = new StalactitesFeature();
+		long t = System.currentTimeMillis();
+		TerrainFeature feature = new StalactitesFeature();
 		feature.setSeed(2);
-		feature.debugImage();*/
+		feature.debugImage();
+		t = System.currentTimeMillis() - t;
+		System.out.println("\n\nF: " + t + "\n\n");
 		
 		/*NetherBiome[] biomes = new NetherBiome[] {
 			BNBBiomes.FALURIAN_FOREST,
