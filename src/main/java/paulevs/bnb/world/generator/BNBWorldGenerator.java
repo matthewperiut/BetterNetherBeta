@@ -34,6 +34,7 @@ import paulevs.bnb.world.generator.terrain.features.TerrainFeature;
 import paulevs.bnb.world.generator.terrain.features.ThinPillarsFeature;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
@@ -42,6 +43,8 @@ import java.util.stream.IntStream;
 public class BNBWorldGenerator {
 	private static final CrossInterpolationCell[] CELLS = new CrossInterpolationCell[16];
 	private static final ChunkTerrainMap[] FEATURE_MAPS = new ChunkTerrainMap[16];
+	private static final byte[][] BLOCKS = new byte[16][4096];
+	private static final boolean[] EMPTY = new boolean[16];
 	
 	private static final List<Pair<Identifier, TerrainRegion>> MAP_FEATURES = new ArrayList<>();
 	private static final BlockState NETHERRACK = Block.NETHERRACK.getDefaultState();
@@ -80,32 +83,33 @@ public class BNBWorldGenerator {
 		startX = cx << 4;
 		startZ = cz << 4;
 		ChunkTerrainMap.prepare(startX, startZ);
+		IntStream.range(0, sections.length).parallel().forEach(BNBWorldGenerator::fillBlocksData);
+		fixGenerationErrors();
 		IntStream.range(0, sections.length).parallel().forEach(BNBWorldGenerator::fillSection);
 		return chunk;
 	}
 	
-	private static void fillSection(int index) {
+	private static void fillBlocksData(int index) {
+		byte[] section = BLOCKS[index];
+		Arrays.fill(section, (byte) 0);
+		
 		CrossInterpolationCell cell = CELLS[index];
 		cell.fill(startX, index << 4, startZ, FEATURE_MAPS[index]);
-		if (forceSection(index) || !cell.isEmpty()) {
-			sections[index] = new ChunkSection(index);
-		}
-		else return;
+		if (cell.isEmpty()) return;
 		
-		ChunkSection section = sections[index];
 		for (byte bx = 0; bx < 16; bx++) {
 			cell.setX(bx);
 			for (byte bz = 0; bz < 16; bz++) {
 				cell.setZ(bz);
 				for (byte by = 0; by < 16; by++) {
 					cell.setY(by);
+					int pos = getIndex(bx, by, bz);
 					if (cell.get() < 0.5F) {
 						if (index > 5) continue;
-						section.setBlockState(bx, by, bz, LAVA);
-						section.setLight(LightType.BLOCK, bx, by, bz, 15);
+						section[pos] = 3;
 					}
 					else {
-						section.setBlockState(bx, by, bz, NETHERRACK);
+						section[pos] = 1;
 					}
 				}
 			}
@@ -115,9 +119,9 @@ public class BNBWorldGenerator {
 		if (index == 0) {
 			for (byte bx = 0; bx < 16; bx++) {
 				for (byte bz = 0; bz < 16; bz++) {
-					section.setBlockState(bx, 0, bz, BEDROCK);
+					section[getIndex(bx, 0, bz)] = 4;
 					if (random.nextInt(2) == 0) {
-						section.setBlockState(bx, 1, bz, BEDROCK);
+						section[getIndex(bx, 1, bz)] = 4;
 					}
 				}
 			}
@@ -125,11 +129,71 @@ public class BNBWorldGenerator {
 		else if (index == 15) {
 			for (byte bx = 0; bx < 16; bx++) {
 				for (byte bz = 0; bz < 16; bz++) {
-					section.setBlockState(bx, 15, bz, BEDROCK);
+					section[getIndex(bx, 15, bz)] = 4;
 					if (random.nextInt(2) == 0) {
-						section.setBlockState(bx, 14, bz, BEDROCK);
+						section[getIndex(bx, 14, bz)] = 4;
 					}
 				}
+			}
+		}
+	}
+	
+	private static void fixGenerationErrors() {
+		for (byte i = 0; i < 16; i++) {
+			if (EMPTY[i]) continue;
+			byte[] blocks = BLOCKS[i];
+			for (short n = 0; n < 4096; n++) {
+				if (blocks[n] != 1) continue;
+				byte x = (byte) (n & 15);
+				byte z = (byte) ((n >> 4) & 15);
+				boolean	hasSupport = n >= 256 ? blocks[n - 256] > 1 : i == 0 || BLOCKS[i - 1][n + 3840] > 1;
+				hasSupport = hasSupport || x == 0 || blocks[n - 1] > 1;
+				hasSupport = hasSupport || x == 15 || blocks[n + 1] > 1;
+				hasSupport = hasSupport || z == 0 || blocks[n - 16] > 1;
+				hasSupport = hasSupport || z == 15 || blocks[n + 16] > 1;
+				if (!hasSupport) continue;
+				blocks[n] = 2;
+			}
+		}
+		
+		for (byte i = 15; i >= 0; i--) {
+			if (EMPTY[i]) continue;
+			byte[] blocks = BLOCKS[i];
+			for (short n = 4095; n >= 0; n--) {
+				if (blocks[n] != 1) continue;
+				byte x = (byte) (n & 15);
+				byte z = (byte) ((n >> 4) & 15);
+				boolean	hasSupport = n < 3840 ? blocks[n + 256] > 1 : i == 15 || BLOCKS[i + 1][n & 255] > 1;
+				hasSupport = hasSupport || x == 0 || blocks[n - 1] > 1;
+				hasSupport = hasSupport || x == 15 || blocks[n + 1] > 1;
+				hasSupport = hasSupport || z == 0 || blocks[n - 16] > 1;
+				hasSupport = hasSupport || z == 15 || blocks[n + 16] > 1;
+				if (!hasSupport) continue;
+				blocks[n] = 2;
+			}
+		}
+	}
+	
+	private static void fillSection(int index) {
+		if (EMPTY[index]) return;
+		byte[] blocks = BLOCKS[index];
+		
+		ChunkSection section = new ChunkSection(index);
+		sections[index] = section;
+		
+		for (short i = 0; i < 4096; i++) {
+			if (blocks[i] < 2) continue;
+			byte x = (byte) (i & 15);
+			byte z = (byte) ((i >> 4) & 15);
+			byte y = (byte) (i >> 8);
+			BlockState state = switch (blocks[i]) {
+				case 3 -> LAVA;
+				case 4 -> BEDROCK;
+				default -> NETHERRACK;
+			};
+			section.setBlockState(x, y, z, state);
+			if (blocks[i] == 3) {
+				section.setLight(LightType.BLOCK, x, y, z, 15);
 			}
 		}
 	}
@@ -142,8 +206,8 @@ public class BNBWorldGenerator {
 		return mapCopies.get();
 	}
 	
-	private static boolean forceSection(int index) {
-		return index == 15 || index < 6;
+	private static int getIndex(int x, int y, int z) {
+		return y << 8 | z << 4 | x;
 	}
 	
 	private static void addFeature(Identifier id, Supplier<TerrainFeature> constructor, TerrainRegion... regions) {
