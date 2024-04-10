@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{ "item": "bnb:netherrack_tiles" },
+		{ "item": "bnb:orichalcum_tiles" }
+	],
+	"result": {
+		"item": "bnb:netherrack_orichalcum_tiles",
+		"count": 2
+	}
+}

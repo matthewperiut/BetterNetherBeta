@@ -4,10 +4,12 @@
 		"XXX"
 	],
 	"key": {
-		"X": { "item": "bnb:poison_planks" }
+		"X": {
+			"item": "bnb:falurian_planks"
+		}
 	},
 	"result": {
-		"item": "bnb:poison_slab_half",
+		"item": "bnb:falurian_slab_half",
 		"count": 6
 	}
 }

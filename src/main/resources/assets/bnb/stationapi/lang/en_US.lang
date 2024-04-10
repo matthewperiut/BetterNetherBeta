@@ -191,6 +191,12 @@ tile.netherrack_bricks_slab_full.name=Netherrack Bricks Slab
 tile.netherrack_tiles_slab_half.name=Netherrack Tiles Slab
 tile.netherrack_tiles_slab_full.name=Netherrack Tiles Slab
 
+tile.orichalcum_tiles.name=Orichalcum Tiles
+tile.orichalcum_tiles_stairs.name=Orichalcum Tiles Stairs
+tile.orichalcum_tiles_slab_half.name=Orichalcum Tiles Slab
+tile.orichalcum_tiles_slab_full.name=Orichalcum Tiles Slab
+tile.netherrack_orichalcum_tiles.name=Netherrack-Orichalcum Tiles
+
 item.fiber_helmet.name=Fiber Helmet
 item.fiber_chestplate.name=Fiber Chestplate
 item.fiber_leggings.name=Fiber Leggings

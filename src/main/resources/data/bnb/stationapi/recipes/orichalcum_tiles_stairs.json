@@ -7,11 +7,11 @@
 	],
 	"key": {
 		"X": {
-			"item": "bnb:orichalcum_block"
+			"item": "bnb:orichalcum_tiles"
 		}
 	},
 	"result": {
-		"item": "bnb:orichalcum_stairs",
+		"item": "bnb:orichalcum_tiles_stairs",
 		"count": 6
 	}
 }

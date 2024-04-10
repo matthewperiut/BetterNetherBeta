@@ -5,11 +5,11 @@
 	],
 	"key": {
 		"X": {
-			"item": "bnb:orichalcum_block"
+			"item": "bnb:orichalcum_tiles"
 		}
 	},
 	"result": {
-		"item": "bnb:orichalcum_slab_half",
+		"item": "bnb:orichalcum_tiles_slab_half",
 		"count": 6
 	}
 }

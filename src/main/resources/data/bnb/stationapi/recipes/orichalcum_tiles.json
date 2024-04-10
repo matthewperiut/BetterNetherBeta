@@ -1,0 +1,14 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"XX",
+		"XX"
+	],
+	"key": {
+		"X": { "item": "bnb:orichalcum_block" }
+	},
+	"result": {
+		"item": "bnb:orichalcum_tiles",
+		"count": 4
+	}
+}

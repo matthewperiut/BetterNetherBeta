@@ -143,9 +143,10 @@ public class BNBBlocks {
 	
 	public static final Block ORICHALCUM_ORE = make("orichalcum_ore", NetherOre::new);
 	public static final Block ORICHALCUM_BLOCK = make("orichalcum_block", NetherMetalBlock::new);
-	public static final Block ORICHALCUM_STAIRS = make("orichalcum_stairs", TemplateStairsBlock::new, ORICHALCUM_BLOCK);
-	public static final VBEHalfSlabBlock ORICHALCUM_SLAB_HALF = make("orichalcum_slab_half", VBEHalfSlabBlock::new, ORICHALCUM_BLOCK);
-	public static final VBEFullSlabBlock ORICHALCUM_SLAB_FULL = makeNI("orichalcum_slab_full", VBEFullSlabBlock::new, ORICHALCUM_BLOCK);
+	public static final Block ORICHALCUM_TILES = make("orichalcum_tiles", NetherMetalBlock::new);
+	public static final Block ORICHALCUM_TILES_STAIRS = make("orichalcum_tiles_stairs", TemplateStairsBlock::new, ORICHALCUM_TILES);
+	public static final VBEHalfSlabBlock ORICHALCUM_TILES_SLAB_HALF = make("orichalcum_tiles_slab_half", VBEHalfSlabBlock::new, ORICHALCUM_TILES);
+	public static final VBEFullSlabBlock ORICHALCUM_TILES_SLAB_FULL = makeNI("orichalcum_tiles_slab_full", VBEFullSlabBlock::new, ORICHALCUM_TILES);
 	
 	public static final Block NETHERRACK_FURNACE = make("netherrack_furnace", NetherrackFurnaceBlock::new);
 	public static final Block SPINNING_WHEEL = make("spinning_wheel", SpinningWheelBlock::new);
@@ -231,6 +232,8 @@ public class BNBBlocks {
 	public static final Block NETHERRACK_TILES_SLAB_HALF = make("netherrack_tiles_slab_half", VBEHalfSlabBlock::new, NETHERRACK_TILES);
 	public static final Block NETHERRACK_TILES_SLAB_FULL = makeNI("netherrack_tiles_slab_full", VBEFullSlabBlock::new, NETHERRACK_TILES);
 	
+	public static final Block NETHERRACK_ORICHALCUM_TILES = make("netherrack_orichalcum_tiles", NetherrackBricksBlock::new);
+	
 	private static <B extends Block> B make(String name, Function<Identifier, B> constructor) {
 		Identifier id = BNB.id(name);
 		B block = constructor.apply(id);
@@ -256,7 +259,7 @@ public class BNBBlocks {
 				if (block instanceof VBEHalfSlabBlock) {
 					Identifier sourceID = BlockRegistry.INSTANCE.getId(sourceBlock);
 					assert sourceID != null;
-					Datagen.makeSlabRecipe(name, sourceID, id);
+					Datagen.makeSlabRecipe(name.replace("_half", ""), sourceID, id);
 				}
 			}
 		}
