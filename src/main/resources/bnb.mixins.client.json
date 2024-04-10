@@ -13,6 +13,7 @@
 		"FurnaceScreenMixin",
 		"LevelRendererMixin",
 		"GameRendererMixin",
+		"SoundMapAccessor",
 		"SoundHelperMixin",
 		"FluidBlockMixin",
 		"MinecraftMixin",

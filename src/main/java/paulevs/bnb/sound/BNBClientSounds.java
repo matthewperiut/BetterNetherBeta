@@ -29,11 +29,12 @@ public class BNBClientSounds {
 	}
 	
 	private static final SoundEntry[] MUSIC = new SoundEntry[] {
-		getSound(BNB.id("music/faultlines-asher_fulero")),
+		/*getSound(BNB.id("music/faultlines-asher_fulero")),
 		getSound(BNB.id("music/lament_of_the_ancients-asher_fulero")),
 		getSound(BNB.id("music/sinister_cathedral-asher_fulero")),
 		getSound(BNB.id("music/an_excuse_to_do_less_not_more-patches")),
-		getSound(BNB.id("music/those_things_are_more_fun_with_other_people-patches"))
+		getSound(BNB.id("music/those_things_are_more_fun_with_other_people-patches")),*/
+		getSound(BNB.id("music/conner_crow_bnb_song_version1"))
 	};
 	
 	private static final byte[] MUSIC_INDEX_DATA = new byte[MUSIC.length];

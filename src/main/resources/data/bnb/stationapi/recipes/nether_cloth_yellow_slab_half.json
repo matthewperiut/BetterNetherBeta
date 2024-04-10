@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"XXX"
+	],
+	"key": {
+		"X": {
+			"item": "bnb:nether_cloth_yellow"
+		}
+	},
+	"result": {
+		"item": "bnb:nether_cloth_yellow_slab_half",
+		"count": 6
+	}
+}

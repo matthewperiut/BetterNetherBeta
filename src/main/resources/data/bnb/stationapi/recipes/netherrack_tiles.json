@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"XX",
+		"XX"
+	],
+	"key": {
+		"X": {
+			"item": "bnb:netherrack_bricks"
+		}
+	},
+	"result": {
+		"item": "bnb:netherrack_tiles",
+		"count": 4
+	}
+}

@@ -1,19 +1,25 @@
 package paulevs.bnb.block;
 
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.level.structure.Structure;
 import net.modificationstation.stationapi.api.block.BlockState;
+import net.modificationstation.stationapi.api.registry.BlockRegistry;
 import net.modificationstation.stationapi.api.template.block.TemplateStairsBlock;
 import net.modificationstation.stationapi.api.util.Identifier;
 import paulevs.bnb.BNB;
+import paulevs.bnb.Datagen;
 import paulevs.bnb.block.property.BNBBlockProperties;
 import paulevs.bnb.world.structure.BNBStructures;
 import paulevs.vbe.block.VBEFullSlabBlock;
 import paulevs.vbe.block.VBEHalfSlabBlock;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -21,6 +27,10 @@ import java.util.function.Supplier;
 @SuppressWarnings("unused")
 public class BNBBlocks {
 	public static final List<Block> BLOCKS_WITH_ITEMS = new ArrayList<>();
+	public static final Set<Block> UPDATE_TEXTURE = new HashSet<>();
+	
+	private static final List<VBEHalfSlabBlock> HALF_SLABS = new ArrayList<>();
+	private static final List<VBEFullSlabBlock> FULL_SLABS = new ArrayList<>();
 	
 	public static final NetherTerrainBlock MAROON_NYLIUM = make("maroon_nylium", NetherTerrainBlock::new);
 	public static final NetherTerrainBlock TURQUOISE_NYLIUM = make("turquoise_nylium", NetherTerrainBlock::new);
@@ -158,6 +168,69 @@ public class BNBBlocks {
 	public static final Block NETHER_CLOTH_ORANGE = make("nether_cloth_orange", NetherCloth::new);
 	public static final Block NETHER_CLOTH_WHITE = make("nether_cloth_white", NetherCloth::new);
 	
+	public static final Block NETHER_CLOTH_STAIRS = make("nether_cloth_stairs", TemplateStairsBlock::new, NETHER_CLOTH);
+	public static final Block NETHER_CLOTH_BLACK_STAIRS = make("nether_cloth_black_stairs", TemplateStairsBlock::new, NETHER_CLOTH_BLACK);
+	public static final Block NETHER_CLOTH_RED_STAIRS = make("nether_cloth_red_stairs", TemplateStairsBlock::new, NETHER_CLOTH_RED);
+	public static final Block NETHER_CLOTH_GREEN_STAIRS = make("nether_cloth_green_stairs", TemplateStairsBlock::new, NETHER_CLOTH_GREEN);
+	public static final Block NETHER_CLOTH_BROWN_STAIRS = make("nether_cloth_brown_stairs", TemplateStairsBlock::new, NETHER_CLOTH_BROWN);
+	public static final Block NETHER_CLOTH_BLUE_STAIRS = make("nether_cloth_blue_stairs", TemplateStairsBlock::new, NETHER_CLOTH_BLUE);
+	public static final Block NETHER_CLOTH_PURPLE_STAIRS = make("nether_cloth_purple_stairs", TemplateStairsBlock::new, NETHER_CLOTH_PURPLE);
+	public static final Block NETHER_CLOTH_CYAN_STAIRS = make("nether_cloth_cyan_stairs", TemplateStairsBlock::new, NETHER_CLOTH_CYAN);
+	public static final Block NETHER_CLOTH_LIGHT_GRAY_STAIRS = make("nether_cloth_light_gray_stairs", TemplateStairsBlock::new, NETHER_CLOTH_LIGHT_GRAY);
+	public static final Block NETHER_CLOTH_GRAY_STAIRS = make("nether_cloth_gray_stairs", TemplateStairsBlock::new, NETHER_CLOTH_GRAY);
+	public static final Block NETHER_CLOTH_PINK_STAIRS = make("nether_cloth_pink_stairs", TemplateStairsBlock::new, NETHER_CLOTH_PINK);
+	public static final Block NETHER_CLOTH_LIME_STAIRS = make("nether_cloth_lime_stairs", TemplateStairsBlock::new, NETHER_CLOTH_LIME);
+	public static final Block NETHER_CLOTH_YELLOW_STAIRS = make("nether_cloth_yellow_stairs", TemplateStairsBlock::new, NETHER_CLOTH_YELLOW);
+	public static final Block NETHER_CLOTH_LIGHT_BLUE_STAIRS = make("nether_cloth_light_blue_stairs", TemplateStairsBlock::new, NETHER_CLOTH_LIGHT_BLUE);
+	public static final Block NETHER_CLOTH_MAGENTA_STAIRS = make("nether_cloth_magenta_stairs", TemplateStairsBlock::new, NETHER_CLOTH_MAGENTA);
+	public static final Block NETHER_CLOTH_ORANGE_STAIRS = make("nether_cloth_orange_stairs", TemplateStairsBlock::new, NETHER_CLOTH_ORANGE);
+	public static final Block NETHER_CLOTH_WHITE_STAIRS = make("nether_cloth_white_stairs", TemplateStairsBlock::new, NETHER_CLOTH_WHITE);
+	
+	public static final Block NETHER_CLOTH_SLAB_HALF = make("nether_cloth_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH);
+	public static final Block NETHER_CLOTH_SLAB_FULL = makeNI("nether_cloth_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH);
+	public static final Block NETHER_CLOTH_BLACK_SLAB_HALF = make("nether_cloth_black_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_BLACK);
+	public static final Block NETHER_CLOTH_BLACK_SLAB_FULL = makeNI("nether_cloth_black_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_BLACK);
+	public static final Block NETHER_CLOTH_RED_SLAB_HALF = make("nether_cloth_red_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_RED);
+	public static final Block NETHER_CLOTH_RED_SLAB_FULL = makeNI("nether_cloth_red_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_RED);
+	public static final Block NETHER_CLOTH_GREEN_SLAB_HALF = make("nether_cloth_green_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_GREEN);
+	public static final Block NETHER_CLOTH_GREEN_SLAB_FULL = makeNI("nether_cloth_green_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_GREEN);
+	public static final Block NETHER_CLOTH_BROWN_SLAB_HALF = make("nether_cloth_brown_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_BROWN);
+	public static final Block NETHER_CLOTH_BROWN_SLAB_FULL = makeNI("nether_cloth_brown_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_BROWN);
+	public static final Block NETHER_CLOTH_BLUE_SLAB_HALF = make("nether_cloth_blue_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_BLUE);
+	public static final Block NETHER_CLOTH_BLUE_SLAB_FULL = makeNI("nether_cloth_blue_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_BLUE);
+	public static final Block NETHER_CLOTH_PURPLE_SLAB_HALF = make("nether_cloth_purple_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_PURPLE);
+	public static final Block NETHER_CLOTH_PURPLE_SLAB_FULL = makeNI("nether_cloth_purple_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_PURPLE);
+	public static final Block NETHER_CLOTH_CYAN_SLAB_HALF = make("nether_cloth_cyan_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_CYAN);
+	public static final Block NETHER_CLOTH_CYAN_SLAB_FULL = makeNI("nether_cloth_cyan_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_CYAN);
+	public static final Block NETHER_CLOTH_LIGHT_GRAY_SLAB_HALF = make("nether_cloth_light_gray_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_LIGHT_GRAY);
+	public static final Block NETHER_CLOTH_LIGHT_GRAY_SLAB_FULL = makeNI("nether_cloth_light_gray_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_LIGHT_GRAY);
+	public static final Block NETHER_CLOTH_GRAY_SLAB_HALF = make("nether_cloth_gray_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_GRAY);
+	public static final Block NETHER_CLOTH_GRAY_SLAB_FULL = makeNI("nether_cloth_gray_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_GRAY);
+	public static final Block NETHER_CLOTH_PINK_SLAB_HALF = make("nether_cloth_pink_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_PINK);
+	public static final Block NETHER_CLOTH_PINK_SLAB_FULL = makeNI("nether_cloth_pink_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_PINK);
+	public static final Block NETHER_CLOTH_LIME_SLAB_HALF = make("nether_cloth_lime_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_LIME);
+	public static final Block NETHER_CLOTH_LIME_SLAB_FULL = makeNI("nether_cloth_lime_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_LIME);
+	public static final Block NETHER_CLOTH_YELLOW_SLAB_HALF = make("nether_cloth_yellow_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_YELLOW);
+	public static final Block NETHER_CLOTH_YELLOW_SLAB_FULL = makeNI("nether_cloth_yellow_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_YELLOW);
+	public static final Block NETHER_CLOTH_LIGHT_BLUE_SLAB_HALF = make("nether_cloth_light_blue_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_LIGHT_BLUE);
+	public static final Block NETHER_CLOTH_LIGHT_BLUE_SLAB_FULL = makeNI("nether_cloth_light_blue_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_LIGHT_BLUE);
+	public static final Block NETHER_CLOTH_MAGENTA_SLAB_HALF = make("nether_cloth_magenta_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_MAGENTA);
+	public static final Block NETHER_CLOTH_MAGENTA_SLAB_FULL = makeNI("nether_cloth_magenta_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_MAGENTA);
+	public static final Block NETHER_CLOTH_ORANGE_SLAB_HALF = make("nether_cloth_orange_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_ORANGE);
+	public static final Block NETHER_CLOTH_ORANGE_SLAB_FULL = makeNI("nether_cloth_orange_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_ORANGE);
+	public static final Block NETHER_CLOTH_WHITE_SLAB_HALF = make("nether_cloth_white_slab_half", VBEHalfSlabBlock::new, NETHER_CLOTH_WHITE);
+	public static final Block NETHER_CLOTH_WHITE_SLAB_FULL = makeNI("nether_cloth_white_slab_full", VBEFullSlabBlock::new, NETHER_CLOTH_WHITE);
+	
+	public static final Block NETHERRACK_BRICKS = make("netherrack_bricks", NetherrackBricksBlock::new);
+	public static final Block NETHERRACK_LARGE_TILE = make("netherrack_large_tile", NetherrackBricksBlock::new);
+	public static final Block NETHERRACK_TILES = make("netherrack_tiles", NetherrackBricksBlock::new);
+	public static final Block NETHERRACK_BRICKS_STAIRS = make("netherrack_bricks_stairs", TemplateStairsBlock::new, NETHERRACK_BRICKS);
+	public static final Block NETHERRACK_TILES_STAIRS = make("netherrack_tiles_stairs", TemplateStairsBlock::new, NETHERRACK_TILES);
+	public static final Block NETHERRACK_BRICKS_SLAB_HALF = make("netherrack_bricks_slab_half", VBEHalfSlabBlock::new, NETHERRACK_BRICKS);
+	public static final Block NETHERRACK_BRICKS_SLAB_FULL = makeNI("netherrack_bricks_slab_full", VBEFullSlabBlock::new, NETHERRACK_BRICKS);
+	public static final Block NETHERRACK_TILES_SLAB_HALF = make("netherrack_tiles_slab_half", VBEHalfSlabBlock::new, NETHERRACK_TILES);
+	public static final Block NETHERRACK_TILES_SLAB_FULL = makeNI("netherrack_tiles_slab_full", VBEFullSlabBlock::new, NETHERRACK_TILES);
+	
 	private static <B extends Block> B make(String name, Function<Identifier, B> constructor) {
 		Identifier id = BNB.id(name);
 		B block = constructor.apply(id);
@@ -171,6 +244,22 @@ public class BNBBlocks {
 		B block = constructor.apply(id, sourceBlock);
 		block.setTranslationKey(id.toString());
 		BLOCKS_WITH_ITEMS.add(block);
+		if (block instanceof StairsBlock || block instanceof VBEHalfSlabBlock) {
+			UPDATE_TEXTURE.add(sourceBlock);
+			if (block instanceof VBEHalfSlabBlock slab) HALF_SLABS.add(slab);
+			if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
+				if (block instanceof StairsBlock) {
+					Identifier sourceID = BlockRegistry.INSTANCE.getId(sourceBlock);
+					assert sourceID != null;
+					Datagen.makeStairsRecipe(name, sourceID, id);
+				}
+				if (block instanceof VBEHalfSlabBlock) {
+					Identifier sourceID = BlockRegistry.INSTANCE.getId(sourceBlock);
+					assert sourceID != null;
+					Datagen.makeSlabRecipe(name, sourceID, id);
+				}
+			}
+		}
 		return block;
 	}
 	
@@ -208,6 +297,7 @@ public class BNBBlocks {
 		B block = constructor.apply(id, sourceBlock);
 		block.setTranslationKey(id.toString());
 		BlockItem.BLOCK_ITEMS.remove(block);
+		if (block instanceof VBEFullSlabBlock slab) FULL_SLABS.add(slab);
 		return block;
 	}
 	
@@ -216,14 +306,12 @@ public class BNBBlocks {
 	}
 	
 	public static void init() {
-		FALURIAN_SLAB_HALF.setFullBlock(FALURIAN_SLAB_FULL);
-		FALURIAN_SLAB_FULL.setHalfBlock(FALURIAN_SLAB_HALF);
-		PIROZEN_SLAB_HALF.setFullBlock(PIROZEN_SLAB_FULL);
-		PIROZEN_SLAB_FULL.setHalfBlock(PIROZEN_SLAB_HALF);
-		POISON_SLAB_HALF.setFullBlock(POISON_SLAB_FULL);
-		POISON_SLAB_FULL.setHalfBlock(POISON_SLAB_HALF);
-		ORICHALCUM_SLAB_HALF.setFullBlock(ORICHALCUM_SLAB_FULL);
-		ORICHALCUM_SLAB_FULL.setHalfBlock(ORICHALCUM_SLAB_HALF);
+		for (int i = 0; i < HALF_SLABS.size(); i++) {
+			VBEHalfSlabBlock halfSlab = HALF_SLABS.get(i);
+			VBEFullSlabBlock fullSlab = FULL_SLABS.get(i);
+			halfSlab.setFullBlock(fullSlab);
+			fullSlab.setHalfBlock(halfSlab);
+		}
 		
 		FALURIAN_LEAVES.setSapling(FALURIAN_SAPLING);
 		PIROZEN_LEAVES.setSapling(PIROZEN_SAPLING);

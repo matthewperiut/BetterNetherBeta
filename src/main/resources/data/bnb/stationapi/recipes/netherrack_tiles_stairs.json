@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"  X",
+		" XX",
+		"XXX"
+	],
+	"key": {
+		"X": {
+			"item": "bnb:netherrack_tiles"
+		}
+	},
+	"result": {
+		"item": "bnb:netherrack_tiles_stairs",
+		"count": 6
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"  X",
+		" XX",
+		"XXX"
+	],
+	"key": {
+		"X": {
+			"item": "bnb:pirozen_planks"
+		}
+	},
+	"result": {
+		"item": "bnb:pirozen_stairs",
+		"count": 6
+	}
+}

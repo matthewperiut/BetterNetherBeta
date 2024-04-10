@@ -4,12 +4,13 @@
 	"version": "${version}",
 
 	"name": "Better Nether Beta",
-	"description": "Enhancement for the Nether dimension",
+	"description": "Enhancement and new content for the Nether dimension",
 	"authors": [
-		"paulevs"
+		"paulevs",
+		"Connor Crow"
 	],
 	"contact": {
-		"homepage": "https://github.com/paulevsGitch/BetterNetherBeta/releases",
+		"homepage": "https://discord.gg/qxcP8EjkUC",
 		"sources": "https://github.com/paulevsGitch/BetterNetherBeta",
 		"issues": "https://github.com/paulevsGitch/BetterNetherBeta/issues"
 	},

@@ -2,8 +2,10 @@ package paulevs.bnb;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonWriter;
+import net.modificationstation.stationapi.api.util.Identifier;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -31,6 +33,56 @@ public class Datagen {
 		root = new JsonObject();
 		root.addProperty("parent", "bnb:block/" + name);
 		saveJson(root, new File("../src/main/resources/assets/bnb/stationapi/models/item/" + name + ".json"));
+	}
+	
+	public static void makeStairsRecipe(String name, Identifier item, Identifier result) {
+		JsonObject root = new JsonObject();
+		
+		root.addProperty("type", "minecraft:crafting_shaped");
+		
+		JsonArray pattern = new JsonArray();
+		pattern.add("  X");
+		pattern.add(" XX");
+		pattern.add("XXX");
+		root.add("pattern", pattern);
+		
+		JsonObject key = new JsonObject();
+		root.add("key", key);
+		
+		JsonObject material = new JsonObject();
+		material.addProperty("item", item.toString());
+		key.add("X", material);
+		
+		JsonObject res = new JsonObject();
+		res.addProperty("item", result.toString());
+		res.addProperty("count", 6);
+		root.add("result", res);
+		
+		saveJson(root, new File("../src/main/resources/data/bnb/stationapi/recipes/" + name + ".json"));
+	}
+	
+	public static void makeSlabRecipe(String name, Identifier item, Identifier result) {
+		JsonObject root = new JsonObject();
+		
+		root.addProperty("type", "minecraft:crafting_shaped");
+		
+		JsonArray pattern = new JsonArray();
+		pattern.add("XXX");
+		root.add("pattern", pattern);
+		
+		JsonObject key = new JsonObject();
+		root.add("key", key);
+		
+		JsonObject material = new JsonObject();
+		material.addProperty("item", item.toString());
+		key.add("X", material);
+		
+		JsonObject res = new JsonObject();
+		res.addProperty("item", result.toString());
+		res.addProperty("count", 6);
+		root.add("result", res);
+		
+		saveJson(root, new File("../src/main/resources/data/bnb/stationapi/recipes/" + name + ".json"));
 	}
 	
 	private static void saveJson(JsonObject obj, File out) {

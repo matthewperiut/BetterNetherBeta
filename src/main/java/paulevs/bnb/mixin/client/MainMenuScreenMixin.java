@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import paulevs.bnb.sound.BNBSoundManager;
-import paulevs.bnb.weather.BNBWeatherSounds;
+import paulevs.bnb.sound.BNBWeatherSounds;
 
 @Mixin(MainMenuScreen.class)
 public class MainMenuScreenMixin {

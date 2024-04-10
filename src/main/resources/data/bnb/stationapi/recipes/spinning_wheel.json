@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"BOB",
+		"XXX",
+		"I I"
+	],
+	"key": {
+		"B": { "item": "bnb:netherrack_brick" },
+		"X": { "item": "bnb:netherrack_bricks" },
+		"O": { "item": "bnb:orichalcum_block" },
+		"I": { "item": "bnb:orichalcum_ingot" }
+	},
+	"result": {
+		"item": "bnb:spinning_wheel"
+	}
+}

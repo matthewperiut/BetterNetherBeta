@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"XXX"
+	],
+	"key": {
+		"X": {
+			"item": "bnb:pirozen_planks"
+		}
+	},
+	"result": {
+		"item": "bnb:pirozen_slab_half",
+		"count": 6
+	}
+}

@@ -18,6 +18,7 @@ import net.modificationstation.stationapi.api.client.texture.atlas.ExpandableAtl
 import net.modificationstation.stationapi.api.event.registry.GuiHandlerRegistryEvent;
 import net.modificationstation.stationapi.api.registry.BlockRegistry;
 import net.modificationstation.stationapi.api.registry.ItemRegistry;
+import net.modificationstation.stationapi.api.registry.Registries;
 import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.math.Vec3f;
 import paulevs.bnb.BNB;
@@ -74,10 +75,12 @@ public class ClientListener {
 			LavaRenderer.STILL_TEXTURES[i] = blockAtlas.addTexture(id).index;
 		}
 		
-		BNBBlocks.FALURIAN_PLANKS.texture = blockAtlas.addTexture(BNB.id("block/falurian_planks")).index;
-		BNBBlocks.PIROZEN_PLANKS.texture = blockAtlas.addTexture(BNB.id("block/pirozen_planks")).index;
-		BNBBlocks.POISON_PLANKS.texture = blockAtlas.addTexture(BNB.id("block/poison_planks")).index;
-		BNBBlocks.ORICHALCUM_BLOCK.texture = blockAtlas.addTexture(BNB.id("block/orichalcum_block")).index;
+		BNBBlocks.UPDATE_TEXTURE.forEach(block -> {
+			Identifier id = BlockRegistry.INSTANCE.getId(block);
+			if (id != null) {
+				block.texture = blockAtlas.addTexture(BNB.id("block/" + id.path)).index;
+			}
+		});
 		
 		BNBAchievementPage.getInstance().updateTextures(blockAtlas);
 		BNBWeatherRenderer.updateTextures(BNBClient.getMinecraft().textureManager);
@@ -213,12 +216,12 @@ public class ClientListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);*/
 		
-		long t = System.currentTimeMillis();
+		/*long t = System.currentTimeMillis();
 		TerrainFeature feature = new StalactitesFeature();
 		feature.setSeed(2);
 		feature.debugImage();
 		t = System.currentTimeMillis() - t;
-		System.out.println("\n\nF: " + t + "\n\n");
+		System.out.println("\n\nF: " + t + "\n\n");*/
 		
 		/*NetherBiome[] biomes = new NetherBiome[] {
 			BNBBiomes.FALURIAN_FOREST,

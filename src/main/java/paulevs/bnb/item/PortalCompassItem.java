@@ -1,9 +1,12 @@
 package paulevs.bnb.item;
 
+import it.unimi.dsi.fastutil.objects.Reference2ObjectMap;
+import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resource.language.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.living.LivingEntity;
 import net.minecraft.entity.living.player.PlayerEntity;
@@ -13,12 +16,19 @@ import net.minecraft.level.chunk.Chunk;
 import net.minecraft.util.io.CompoundTag;
 import net.minecraft.util.maths.MathHelper;
 import net.modificationstation.stationapi.api.block.BlockState;
+import net.modificationstation.stationapi.api.client.item.CustomTooltipProvider;
+import net.modificationstation.stationapi.api.registry.DimensionContainer;
+import net.modificationstation.stationapi.api.registry.DimensionRegistry;
 import net.modificationstation.stationapi.api.template.item.TemplateItem;
 import net.modificationstation.stationapi.api.util.Identifier;
 import paulevs.bnb.BNBClient;
 import paulevs.bnb.rendering.CustomStackTexture;
 
-public class PortalCompassItem extends TemplateItem implements CustomStackTexture {
+import java.util.Optional;
+
+public class PortalCompassItem extends TemplateItem implements CustomStackTexture, CustomTooltipProvider {
+	private static final Reference2ObjectMap<Identifier, String> NAME_CACHE = new Reference2ObjectOpenHashMap<>();
+	private static final String[] TOOLTIP = new String[2];
 	public static final int[] TEXTURES = new int[64];
 	
 	public PortalCompassItem(Identifier identifier) {
@@ -101,5 +111,37 @@ public class PortalCompassItem extends TemplateItem implements CustomStackTextur
 			}
 		}
 		return TEXTURES[index];
+	}
+	
+	@Override
+	public String[] getTooltip(ItemStack stack, String originalTooltip) {
+		TOOLTIP[0] = getTranslatedName();
+		
+		CompoundTag nbt = stack.getStationNbt();
+		boolean linked = nbt.containsKey("bnb_center");
+		if (linked) {
+			int dim = nbt.getCompoundTag("bnb_center").getInt("dim");
+			Optional<DimensionContainer<?>> optional = DimensionRegistry.INSTANCE.getByLegacyId(dim);
+			if (optional.isPresent()) {
+				Identifier id = DimensionRegistry.INSTANCE.getId(optional.get());
+				if (id != null) {
+					TOOLTIP[1] = I18n.translate("tooltip.bnb:portal_compass_linked") + " " + NAME_CACHE.computeIfAbsent(id, k -> {
+						char[] name = id.path.toCharArray();
+						name[0] = Character.toUpperCase(name[0]);
+						for (int i = 1; i < name.length; i++) {
+							if (name[i] == '_') name[i] = ' ';
+							else if (name[i - 1] == ' ') {
+								name[i] = Character.toUpperCase(name[i]);
+							}
+						}
+						return new String(name);
+					});
+					return TOOLTIP;
+				}
+			}
+		}
+		
+		TOOLTIP[1] = I18n.translate("tooltip.bnb:portal_compass_not_linked");
+		return TOOLTIP;
 	}
 }

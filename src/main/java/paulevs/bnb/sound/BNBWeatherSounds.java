@@ -1,4 +1,4 @@
-package paulevs.bnb.weather;
+package paulevs.bnb.sound;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -7,6 +7,8 @@ import net.minecraft.entity.living.LivingEntity;
 import net.minecraft.level.Level;
 import net.minecraft.util.maths.MathHelper;
 import paulevs.bnb.rendering.BNBWeatherRenderer;
+import paulevs.bnb.weather.BNBWeatherManager;
+import paulevs.bnb.weather.WeatherType;
 import paulscode.sound.SoundSystem;
 
 import java.net.URL;
@@ -16,7 +18,6 @@ public class BNBWeatherSounds {
 	public static final SoundEntry RAIN = getSound("lava_rain");
 	private static final String RAIN_KEY = "bnb.weather.lava_rain";
 	
-	private static boolean underRoof = false;
 	private static SoundSystem soundSystem;
 	
 	public static SoundEntry getSound(String name) {
@@ -52,11 +53,8 @@ public class BNBWeatherSounds {
 		
 		int x = MathHelper.floor(entity.x);
 		int z = MathHelper.floor(entity.z);
-		boolean newRoof = entity.y + entity.height < BNBWeatherManager.getWeatherBottom(level, x, z);
-		if (newRoof != underRoof) {
-			soundSystem.setPitch(RAIN_KEY, newRoof ? 0.25F : 1.0F);
-			underRoof = newRoof;
-		}
+		boolean underRoof = entity.y + entity.height < BNBWeatherManager.getWeatherBottom(level, x, z);
+		soundSystem.setPitch(RAIN_KEY, underRoof ? 0.25F : 1.0F);
 		
 		soundSystem.setVolume(RAIN_KEY, volume);
 	}

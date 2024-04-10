@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"  X",
+		" XX",
+		"XXX"
+	],
+	"key": {
+		"X": {
+			"item": "bnb:nether_cloth_blue"
+		}
+	},
+	"result": {
+		"item": "bnb:nether_cloth_blue_stairs",
+		"count": 6
+	}
+}
