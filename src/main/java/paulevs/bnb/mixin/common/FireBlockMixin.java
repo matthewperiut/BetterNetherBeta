@@ -2,13 +2,17 @@ package paulevs.bnb.mixin.common;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.minecraft.block.Block;
 import net.minecraft.block.FireBlock;
 import net.minecraft.block.PortalBlock;
 import net.minecraft.entity.living.player.PlayerEntity;
 import net.minecraft.level.Level;
 import net.minecraft.util.maths.Box;
+import net.modificationstation.stationapi.api.block.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import paulevs.bnb.achievement.BNBAchievements;
 
 @Mixin(FireBlock.class)
@@ -27,5 +31,12 @@ public class FireBlockMixin {
 			});
 		}
 		return result;
+	}
+	
+	@Inject(method = "canPlaceAt", at = @At("HEAD"), cancellable = true)
+	private void bnb_disableNetherrackInfiniburn(Level level, int x, int y, int z, CallbackInfoReturnable<Boolean> info) {
+		if (level.getBlockState(x, y - 1, z).isOf(Block.NETHERRACK)) {
+			info.setReturnValue(false);
+		}
 	}
 }

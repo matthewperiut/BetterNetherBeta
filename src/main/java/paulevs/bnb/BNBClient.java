@@ -18,7 +18,7 @@ public class BNBClient {
 			if (id == null || !id.path.startsWith("nether_cloth_")) return;
 			Datagen.makeFullBlock(id.path);
 		});*/
-		Datagen.makeFullBlock("netherrack_orichalcum_tiles");
+		//Datagen.makeFullBlock("lavarrack");
 		/*Datagen.makeStairsRecipe(
 			"netherrack_tile_stairs",
 			BNB.id("netherrack_tile"),

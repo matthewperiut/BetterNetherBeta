@@ -2,11 +2,14 @@ package paulevs.bnb.block;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
+import net.minecraft.block.NetherrackBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.level.structure.Structure;
 import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.registry.BlockRegistry;
+import net.modificationstation.stationapi.api.template.block.TemplateBlock;
+import net.modificationstation.stationapi.api.template.block.TemplateNetherrackBlock;
 import net.modificationstation.stationapi.api.template.block.TemplateStairsBlock;
 import net.modificationstation.stationapi.api.util.Identifier;
 import paulevs.bnb.BNB;
@@ -233,6 +236,7 @@ public class BNBBlocks {
 	public static final Block NETHERRACK_TILES_SLAB_FULL = makeNI("netherrack_tiles_slab_full", VBEFullSlabBlock::new, NETHERRACK_TILES);
 	
 	public static final Block NETHERRACK_ORICHALCUM_TILES = make("netherrack_orichalcum_tiles", NetherrackBricksBlock::new);
+	public static final Block LAVARRACK = make("lavarrack", LavarrackBlock::new);
 	
 	private static <B extends Block> B make(String name, Function<Identifier, B> constructor) {
 		Identifier id = BNB.id(name);

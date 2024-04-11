@@ -21,6 +21,7 @@ public class NetherTerrainBlock extends TemplateBlock {
 	public NetherTerrainBlock(Identifier id, Material material) {
 		super(id, material);
 		setTicksRandomly(true);
+		setHardness(NETHERRACK.getHardness() * 1.5F);
 	}
 	
 	public NetherTerrainBlock(Identifier id) {

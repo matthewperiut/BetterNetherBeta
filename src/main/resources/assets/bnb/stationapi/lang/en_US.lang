@@ -196,6 +196,7 @@ tile.orichalcum_tiles_stairs.name=Orichalcum Tiles Stairs
 tile.orichalcum_tiles_slab_half.name=Orichalcum Tiles Slab
 tile.orichalcum_tiles_slab_full.name=Orichalcum Tiles Slab
 tile.netherrack_orichalcum_tiles.name=Netherrack-Orichalcum Tiles
+tile.lavarrack.name=Lavarrack
 
 item.fiber_helmet.name=Fiber Helmet
 item.fiber_chestplate.name=Fiber Chestplate
