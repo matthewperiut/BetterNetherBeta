@@ -1,7 +1,7 @@
 <table  align="center">
 	<tbody>
 		<tr>
-			<td width="280px" style="text-align: center;"><img src="https://github.com/paulevsGitch/BetterNetherBeta/blob/stapi-2.0/src/main/resources/assets/bnb/icon.png" alt=""/></td>		
+			<td width="280px" style="text-align: center;"><img src="https://github.com/paulevsGitch/BetterNetherBeta/blob/stapi-2.0/src/main/resources/assets/bnb/icon.png" alt="" style="width:240px"/></td>		
 			<td>
 				<h2 align="left">BetterNetherBeta</h2>
 				<p><b>for Minecraft Beta 1.7.3</b></p>
@@ -22,7 +22,7 @@ generator
 	</tbody>
 </table>
 
-<img src="https://github.com/paulevsGitch/BetterNetherBeta/blob/stapi-2.0/src/main/resources/assets/bnb/screenshot.png" alt=""/>
+<img src="https://github.com/paulevsGitch/BetterNetherBeta/blob/stapi-2.0/screenshot.png" alt=""/>
 
 ### Mod Content:
 - **Tall Nether:** Nether height was increased to 256 blocks and lava sea level was increased to 96 blocks.
