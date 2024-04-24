@@ -11,18 +11,15 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.level.Level;
 import net.minecraft.util.io.CompoundTag;
-import net.minecraft.util.maths.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.At.Shift;
-import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import paulevs.bnb.achievement.BNBAchievements;
 import paulevs.bnb.block.BNBBlocks;
-import paulevs.bnb.item.BNBItems;
+import paulevs.bnb.item.BNBItemTags;
 
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin extends Entity {
@@ -36,7 +33,7 @@ public abstract class ItemEntityMixin extends Entity {
 	
 	@Inject(method = "<init>(Lnet/minecraft/level/Level;DDDLnet/minecraft/item/ItemStack;)V", at = @At("TAIL"))
 	private void bnb_makeFireproofInit(Level level, double x, double y, double z, ItemStack stack, CallbackInfo info) {
-		if (stack != null && stack.getType() == BNBItems.OBSIDIAN_BOAT) {
+		if (stack != null && stack.isIn(BNBItemTags.NON_FLAMMABLE)) {
 			immuneToFire = true;
 			health = Integer.MAX_VALUE;
 		}
@@ -44,7 +41,7 @@ public abstract class ItemEntityMixin extends Entity {
 	
 	@Inject(method = "readCustomDataFromTag", at = @At("TAIL"))
 	private void bnb_makeFireproofReadData(CompoundTag tag, CallbackInfo info) {
-		if (stack != null && stack.getType() == BNBItems.OBSIDIAN_BOAT) {
+		if (stack != null && stack.isIn(BNBItemTags.NON_FLAMMABLE)) {
 			immuneToFire = true;
 			health = Integer.MAX_VALUE;
 		}
@@ -79,7 +76,8 @@ public abstract class ItemEntityMixin extends Entity {
 	private Material bnb_disableLavaVelocity(Level level, int x, int y, int z, Operation<Material> original) {
 		Material material = original.call(level, x, y, z);
 		if (immuneToFire && material == Material.LAVA) {
-			float dy = (float) ((y + 0.6F) - this.y);
+			float h = stack.getType() instanceof BlockItem ? 0.9F : 0.7F;
+			float dy = (float) ((y + h) - this.y);
 			if (level.getBlockState(x, y + 1, z).getMaterial() == Material.LAVA) {
 				dy = 1.0F;
 			}
@@ -90,9 +88,4 @@ public abstract class ItemEntityMixin extends Entity {
 		}
 		return material;
 	}
-	
-	/*@ModifyConstant(method = "tick", constant = @Constant(floatValue = 0.2F, ordinal = 0))
-	private float bnb_disableLavaVelocity(float constant) {
-		return 0.0F;
-	}*/
 }

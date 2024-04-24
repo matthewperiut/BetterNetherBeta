@@ -18,7 +18,6 @@ import net.modificationstation.stationapi.api.client.texture.atlas.ExpandableAtl
 import net.modificationstation.stationapi.api.event.registry.GuiHandlerRegistryEvent;
 import net.modificationstation.stationapi.api.registry.BlockRegistry;
 import net.modificationstation.stationapi.api.registry.ItemRegistry;
-import net.modificationstation.stationapi.api.registry.Registries;
 import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.math.Vec3f;
 import paulevs.bnb.BNB;
@@ -38,8 +37,6 @@ import paulevs.bnb.item.PortalCompassItem;
 import paulevs.bnb.rendering.BNBWeatherRenderer;
 import paulevs.bnb.rendering.LavaRenderer;
 import paulevs.bnb.rendering.OBJModel;
-import paulevs.bnb.world.generator.terrain.features.StalactitesFeature;
-import paulevs.bnb.world.generator.terrain.features.TerrainFeature;
 import uk.co.benjiweber.expressions.tuple.BiTuple;
 
 import java.io.BufferedReader;
