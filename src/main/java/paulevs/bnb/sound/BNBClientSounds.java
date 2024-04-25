@@ -60,6 +60,7 @@ public class BNBClientSounds {
 	}
 	
 	private static void shuffleMusic(Random random) {
+		if (MUSIC.length < 2) return;
 		for (byte i = 0; i < MUSIC.length; i++) {
 			byte i2 = (byte) random.nextInt(MUSIC.length);
 			byte value = MUSIC_INDEX_DATA[i];

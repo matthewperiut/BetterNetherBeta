@@ -2,6 +2,7 @@ package paulevs.bnb.world.structure;
 
 import paulevs.bnb.world.structure.placer.CeilingPlacer;
 import paulevs.bnb.world.structure.placer.FloorPlacer;
+import paulevs.bnb.world.structure.placer.FloorPlacerLimited;
 import paulevs.bnb.world.structure.placer.StructurePlacer;
 import paulevs.bnb.world.structure.placer.VolumetricPlacer;
 
@@ -43,4 +44,6 @@ public class BNBPlacers {
 	
 	public static final StructurePlacer ORICHALCUM_PLACER = new VolumetricPlacer(BNBStructures.ORICHALCUM, 1);
 	public static final StructurePlacer LAVA_STREAM_PLACER = new CeilingPlacer(BNBStructures.LAVA_STREAM, 1).setRandomDensityFunction(5, 15);
+	public static final StructurePlacer OBSIDIAN_BOLDER_PLACER = new FloorPlacer(BNBStructures.OBSIDIAN_BOLDER, 3).setNoiseDensityFunction(15);
+	public static final StructurePlacer LAVARRACK_BOLDER_PLACER = new FloorPlacerLimited(BNBStructures.LAVARRACK_BOLDER, 3, 0, 90).setNoiseDensityFunction(17);
 }

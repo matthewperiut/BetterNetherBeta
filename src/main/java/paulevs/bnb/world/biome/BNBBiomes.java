@@ -108,6 +108,7 @@ public class BNBBiomes {
 		.surfaceRule(SurfaceBuilder.start(Block.OBSIDIAN).replace(Block.NETHERRACK).ground(3).condition(SHORE_COND, 1).build())
 		.noDimensionFeatures()
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
+		.feature(BNBPlacers.OBSIDIAN_BOLDER_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
 		.build()).bnb_setBiomeAmbience(BNBSounds.LAVA_SEA_AMBIENCE);
 	
@@ -119,6 +120,7 @@ public class BNBBiomes {
 		.hostileEntity(GhastEntity.class, 1)
 		.hostileEntity(ZombiePigmanEntity.class, 10)
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
+		.feature(BNBPlacers.LAVARRACK_BOLDER_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
 		.build()).bnb_setBiomeAmbience(BNBSounds.LAVA_SEA_AMBIENCE);
 	

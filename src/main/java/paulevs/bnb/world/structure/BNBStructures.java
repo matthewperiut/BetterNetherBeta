@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.level.structure.Structure;
 import paulevs.bnb.block.BNBBlocks;
 import paulevs.bnb.block.MossBlock;
+import paulevs.bnb.world.structure.common.BoulderStructure;
 import paulevs.bnb.world.structure.common.CocoonStructure;
 import paulevs.bnb.world.structure.common.CrystalStructure;
 import paulevs.bnb.world.structure.common.FallenTreeStructure;
@@ -142,4 +143,6 @@ public class BNBStructures {
 	public static final Structure ORICHALCUM = new NetherOreStructure(BNBBlocks.ORICHALCUM_ORE, 2);
 	
 	public static final Structure LAVA_STREAM = new StreamStructure();
+	public static final Structure OBSIDIAN_BOLDER = new BoulderStructure(Block.OBSIDIAN.getDefaultState(), 1.5F, 4.5F);
+	public static final Structure LAVARRACK_BOLDER = new BoulderStructure(BNBBlocks.LAVARRACK.getDefaultState(), 1.5F, 3.0F);
 }
