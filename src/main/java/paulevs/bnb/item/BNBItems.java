@@ -28,6 +28,7 @@ public class BNBItems {
 	public static final List<Item> ITEMS = new ArrayList<>();
 	
 	private static final ToolMaterial ORICHALCUM = ToolMaterialFactory.create("bnb_orichalcum", 2, 750, 6.0F, 2);
+	private static final ToolMaterial OBSIDIAN = ToolMaterialFactory.create("bnb_obsidian", 1, 786, 4.0F, 1);
 	
 	public static final Item FALURIAN_TREE_PLACER = make(
 		"falurian_tree_placer", () -> BNBStructures.FALURIAN_TREE, StructurePlacerItem::new
@@ -66,6 +67,13 @@ public class BNBItems {
 	public static final Item ORICHALCUM_SHEARS = makeShears("orichalcum_shears", ORICHALCUM);
 	
 	public static final Item OBSIDIAN_BOAT = make("obsidian_boat", ObsidianBoatItem::new);
+	public static final Item OBSIDIAN_SHARD = make("obsidian_shard", TemplateItem::new);
+	
+	public static final Item OBSIDIAN_SWORD = makeTool("obsidian_sword", TemplateSwordItem::new, OBSIDIAN);
+	public static final Item OBSIDIAN_SHOVEL = makeTool("obsidian_shovel", TemplateShovelItem::new, OBSIDIAN);
+	public static final Item OBSIDIAN_PICKAXE = makeTool("obsidian_pickaxe", TemplatePickaxeItem::new, OBSIDIAN);
+	public static final Item OBSIDIAN_AXE = makeTool("obsidian_axe", TemplateAxeItem::new, OBSIDIAN);
+	public static final Item OBSIDIAN_HOE = makeTool("obsidian_hoe", TemplateHoeItem::new, OBSIDIAN);
 	
 	public static final Item NETHER_FIBER = make("nether_fiber", TemplateItem::new);
 	

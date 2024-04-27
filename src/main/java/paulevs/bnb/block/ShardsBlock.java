@@ -18,10 +18,14 @@ import paulevs.bnb.block.property.BNBBlockProperties;
 
 import java.util.Random;
 
-public class GlowstoneShards extends TemplateBlock {
-	public GlowstoneShards(Identifier id) {
-		super(id, Material.GLASS);
+public class ShardsBlock extends TemplateBlock {
+	public ShardsBlock(Identifier id) {
+		this(id, Material.GLASS);
 		this.setSounds(GLASS_SOUNDS);
+	}
+	
+	public ShardsBlock(Identifier id, Material material) {
+		super(id, material);
 	}
 	
 	@Override

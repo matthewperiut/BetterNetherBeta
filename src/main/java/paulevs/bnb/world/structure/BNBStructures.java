@@ -11,12 +11,14 @@ import paulevs.bnb.world.structure.common.FallenTreeStructure;
 import paulevs.bnb.world.structure.common.NetherLake;
 import paulevs.bnb.world.structure.common.NetherOreStructure;
 import paulevs.bnb.world.structure.common.PillarStructure;
+import paulevs.bnb.world.structure.common.ShardsBoulderStructure;
 import paulevs.bnb.world.structure.common.StreamStructure;
 import paulevs.bnb.world.structure.plant.BerriesVineStructure;
 import paulevs.bnb.world.structure.scatter.BlockMossScatterStructure;
 import paulevs.bnb.world.structure.scatter.DoublePlantScatterStructure;
 import paulevs.bnb.world.structure.scatter.MossScatterStructure;
 import paulevs.bnb.world.structure.scatter.SimpleScatterStructure;
+import paulevs.bnb.world.structure.scatter.SolidSupportScatterStructure;
 import paulevs.bnb.world.structure.tree.CommonLargeTreeStructure;
 import paulevs.bnb.world.structure.tree.CommonTreeStructure;
 
@@ -143,6 +145,9 @@ public class BNBStructures {
 	public static final Structure ORICHALCUM = new NetherOreStructure(BNBBlocks.ORICHALCUM_ORE, 2);
 	
 	public static final Structure LAVA_STREAM = new StreamStructure();
-	public static final Structure OBSIDIAN_BOLDER = new BoulderStructure(Block.OBSIDIAN.getDefaultState(), 1.5F, 4.5F);
+	public static final Structure OBSIDIAN_BOLDER = new ShardsBoulderStructure(
+		Block.OBSIDIAN.getDefaultState(), BNBBlocks.OBSIDIAN_SHARDS.getDefaultState(), 1.5F, 4.5F
+	);
 	public static final Structure LAVARRACK_BOLDER = new BoulderStructure(BNBBlocks.LAVARRACK.getDefaultState(), 1.5F, 3.0F);
+	public static final Structure OBSIDIAN_SHARDS = new SolidSupportScatterStructure(5, 7, BNBBlocks.OBSIDIAN_SHARDS);
 }

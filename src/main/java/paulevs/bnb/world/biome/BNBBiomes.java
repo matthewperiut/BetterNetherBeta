@@ -105,10 +105,11 @@ public class BNBBiomes {
 	public static final Biome OBSIDIAN_SHORE = addShore(BiomeBuilder
 		.start("bnb_obsidian_shore")
 		.fogColor(0xab1302)
-		.surfaceRule(SurfaceBuilder.start(Block.OBSIDIAN).replace(Block.NETHERRACK).ground(3).condition(SHORE_COND, 1).build())
+		.surfaceRule(SurfaceBuilder.start(Block.GRAVEL).replace(Block.NETHERRACK).ground(3).condition(SHORE_COND, 1).build())
 		.noDimensionFeatures()
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
 		.feature(BNBPlacers.OBSIDIAN_BOLDER_PLACER)
+		.feature(BNBPlacers.OBSIDIAN_SHARDS_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
 		.build()).bnb_setBiomeAmbience(BNBSounds.LAVA_SEA_AMBIENCE);
 	

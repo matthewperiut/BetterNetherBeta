@@ -134,7 +134,8 @@ public class BNBBlocks {
 	public static final Block PIROZEN_ROOTS = make("pirozen_roots", NetherRootsBlock::new);
 	public static final Block POISON_ROOTS = make("poison_roots", NetherRootsBlock::new);
 	
-	public static final GlowstoneShards GLOWSTONE_SHARDS = (GlowstoneShards) make("glowstone_shards", GlowstoneShards::new).setLightEmittance(1F);
+	public static final ShardsBlock GLOWSTONE_SHARDS = (ShardsBlock) make("glowstone_shards", ShardsBlock::new).setLightEmittance(1F);
+	public static final ShardsBlock OBSIDIAN_SHARDS = make("obsidian_shards", ObsidianShardsBlock::new);
 	
 	public static final SpiderNetBlock SPIDER_NET = make("spider_net", SpiderNetBlock::new);
 	public static final Block FALURIAN_SPIDER_COCOON = make("falurian_spider_cocoon", SpiderCocoonBlock::new);

@@ -7,7 +7,7 @@ import net.minecraft.util.maths.MathHelper;
 import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.util.math.Direction;
 import paulevs.bnb.block.BNBBlockTags;
-import paulevs.bnb.block.GlowstoneShards;
+import paulevs.bnb.block.ShardsBlock;
 import paulevs.bnb.block.property.BNBBlockProperties;
 
 import java.util.Random;
@@ -20,7 +20,7 @@ public class CrystalStructure extends Structure {
 	private final int height;
 	private final int radius;
 	
-	public CrystalStructure(Block fullBlock, GlowstoneShards shards, boolean ceiling, int height, int radius) {
+	public CrystalStructure(Block fullBlock, ShardsBlock shards, boolean ceiling, int height, int radius) {
 		this.fullBlock = fullBlock.getDefaultState();
 		this.direction = ceiling ? Direction.UP : Direction.DOWN;
 		this.shardsFront = shards.getDefaultState().with(BNBBlockProperties.DIRECTION, this.direction);

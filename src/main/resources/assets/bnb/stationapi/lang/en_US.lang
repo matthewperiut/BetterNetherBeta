@@ -73,7 +73,10 @@ tile.falurian_moss_block.name=Falurian Moss Block
 
 tile.falurian_vine.name=Falurian Vine
 item.falurian_vine_berries.name=Falurian Berries
+
 tile.glowstone_shards.name=Glowstone Shards
+tile.obsidian_shards.name=Obsidian Shards
+item.obsidian_shard.name=Obsidian Shard
 
 tile.spider_net.name=Spider Net
 
@@ -102,6 +105,12 @@ tile.netherrack_furnace.name=Netherrack Furnace
 tile.spinning_wheel.name=Spinning Wheel
 
 item.obsidian_boat.name=Obsidian Boat
+
+item.obsidian_sword.name=Obsidian Sword
+item.obsidian_shovel.name=Obsidian Shovel
+item.obsidian_pickaxe.name=Obsidian Pickaxe
+item.obsidian_axe.name=Obsidian Axe
+item.obsidian_hoe.name=Obsidian Hoe
 
 tab.creative_tab.name=Better Nether Beta
 gui.netherrack_furnace=Netherrack Furnace

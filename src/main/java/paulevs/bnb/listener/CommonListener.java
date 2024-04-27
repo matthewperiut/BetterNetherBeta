@@ -18,7 +18,7 @@ import paulevs.bnb.BNB;
 import paulevs.bnb.achievement.BNBAchievementPage;
 import paulevs.bnb.achievement.BNBAchievements;
 import paulevs.bnb.block.BNBBlocks;
-import paulevs.bnb.block.GlowstoneShards;
+import paulevs.bnb.block.ShardsBlock;
 import paulevs.bnb.block.entity.CocoonSpawnerBlockEntity;
 import paulevs.bnb.block.entity.NetherrackFurnaceBlockEntity;
 import paulevs.bnb.block.entity.SpinningWheelBlockEntity;
@@ -91,7 +91,7 @@ public class CommonListener {
 	
 	@EventListener
 	public void beforeItemPlace(BeforePlacedByItem event) {
-		if (!(event.block instanceof GlowstoneShards shards)) return;
+		if (!(event.block instanceof ShardsBlock shards)) return;
 		if (!shards.isSupport(event.world, event.x, event.y, event.z, event.side.getOpposite())) {
 			event.placeFunction = () -> false;
 		}
