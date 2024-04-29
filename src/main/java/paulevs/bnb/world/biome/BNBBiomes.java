@@ -108,6 +108,7 @@ public class BNBBiomes {
 		.surfaceRule(SurfaceBuilder.start(Block.GRAVEL).replace(Block.NETHERRACK).ground(3).condition(SHORE_COND, 1).build())
 		.noDimensionFeatures()
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
+		.feature(BNBPlacers.OBSIDIAN_GRAVEL_BLOB_PLACER)
 		.feature(BNBPlacers.OBSIDIAN_BOLDER_PLACER)
 		.feature(BNBPlacers.OBSIDIAN_SHARDS_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
@@ -123,6 +124,7 @@ public class BNBBiomes {
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
 		.feature(BNBPlacers.LAVARRACK_BOLDER_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
+		.feature(BNBPlacers.LAVA_STREAM_PLACER)
 		.build()).bnb_setBiomeAmbience(BNBSounds.LAVA_SEA_AMBIENCE);
 	
 	private static void add(TerrainRegion region, Biome biome) {

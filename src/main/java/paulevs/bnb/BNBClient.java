@@ -13,6 +13,7 @@ public class BNBClient {
 	}
 	
 	static {
+		Datagen.makeFullBlock("obsidian_gravel");
 		/*BNBBlocks.BLOCKS_WITH_ITEMS.forEach(block -> {
 			Identifier id = BlockRegistry.INSTANCE.getId(block);
 			if (id == null || !id.path.startsWith("nether_cloth_")) return;

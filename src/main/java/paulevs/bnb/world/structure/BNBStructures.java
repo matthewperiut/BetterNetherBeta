@@ -10,6 +10,7 @@ import paulevs.bnb.world.structure.common.CrystalStructure;
 import paulevs.bnb.world.structure.common.FallenTreeStructure;
 import paulevs.bnb.world.structure.common.NetherLake;
 import paulevs.bnb.world.structure.common.NetherOreStructure;
+import paulevs.bnb.world.structure.common.PatchBlobStructure;
 import paulevs.bnb.world.structure.common.PillarStructure;
 import paulevs.bnb.world.structure.common.ShardsBoulderStructure;
 import paulevs.bnb.world.structure.common.StreamStructure;
@@ -150,4 +151,7 @@ public class BNBStructures {
 	);
 	public static final Structure LAVARRACK_BOLDER = new BoulderStructure(BNBBlocks.LAVARRACK.getDefaultState(), 1.5F, 3.0F);
 	public static final Structure OBSIDIAN_SHARDS = new SolidSupportScatterStructure(5, 7, BNBBlocks.OBSIDIAN_SHARDS);
+	public static final Structure OBSIDIAN_GRAVEL_BLOB = new PatchBlobStructure(
+		BNBBlocks.OBSIDIAN_GRAVEL.getDefaultState(), 1.5F, 2.5F, Block.GRAVEL.getDefaultState()
+	);
 }

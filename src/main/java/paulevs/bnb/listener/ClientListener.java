@@ -24,6 +24,7 @@ import paulevs.bnb.BNB;
 import paulevs.bnb.BNBClient;
 import paulevs.bnb.achievement.BNBAchievementPage;
 import paulevs.bnb.block.BNBBlocks;
+import paulevs.bnb.block.ObsidianGravelBlock;
 import paulevs.bnb.block.SpinningWheelBlock;
 import paulevs.bnb.entity.CrimsonSpiderEntity;
 import paulevs.bnb.entity.ObsidianBoatEntity;
@@ -34,6 +35,7 @@ import paulevs.bnb.entity.renderer.ObsidianBoatRenderer;
 import paulevs.bnb.gui.container.SpinningWheelContainer;
 import paulevs.bnb.gui.screen.SpinningWheelScreen;
 import paulevs.bnb.item.PortalCompassItem;
+import paulevs.bnb.rendering.BNBConnectedTextures;
 import paulevs.bnb.rendering.BNBWeatherRenderer;
 import paulevs.bnb.rendering.LavaRenderer;
 import paulevs.bnb.rendering.OBJModel;
@@ -67,10 +69,12 @@ public class ClientListener {
 		Block.SOUL_SAND.texture = blockAtlas.addTexture(BNB.id("block/soul_sand")).index;
 		
 		LavaRenderer.flowTexture = blockAtlas.addTexture(BNB.id("block/lava_flow")).index;
-		for (int i = 0; i < 16; i++) {
+		for (byte i = 0; i < 16; i++) {
 			Identifier id = BNB.id("block/lava_still_" + i);
 			LavaRenderer.STILL_TEXTURES[i] = blockAtlas.addTexture(id).index;
 		}
+		
+		BNBConnectedTextures.add4SideTextures(BNBBlocks.OBSIDIAN_GRAVEL, BNB.id("block/obsidian_gravel_side"));
 		
 		BNBBlocks.UPDATE_TEXTURE.forEach(block -> {
 			Identifier id = BlockRegistry.INSTANCE.getId(block);

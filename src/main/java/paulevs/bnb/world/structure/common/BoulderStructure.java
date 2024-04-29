@@ -43,11 +43,16 @@ public class BoulderStructure extends Structure {
 					int z2 = dz * dz;
 					float rad = r + (NOISE.get(wx * 0.1, wy * 0.1, wz * 0.1) - 0.5F) * r * 1.5F;
 					if (x2 + y2 + z2 > rad * rad) continue;
+					if (!canReplace(level.getBlockState(wx, wy, wz))) continue;
 					level.setBlockState(wx, wy, wz, state);
 				}
 			}
 		}
 		
+		return true;
+	}
+	
+	protected boolean canReplace(BlockState state) {
 		return true;
 	}
 	

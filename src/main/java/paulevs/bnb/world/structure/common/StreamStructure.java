@@ -26,7 +26,7 @@ public class StreamStructure extends Structure {
 		
 		int ey;
 		
-		for (ey = y - 1; ey > level.getBottomY(); ey--) {
+		for (ey = y - 1; ey > 95; ey--) {
 			BlockState state = level.getBlockState(x, ey, z);
 			if (state.getMaterial() == Material.LAVA) {
 				ey++;

@@ -111,6 +111,7 @@ item.obsidian_shovel.name=Obsidian Shovel
 item.obsidian_pickaxe.name=Obsidian Pickaxe
 item.obsidian_axe.name=Obsidian Axe
 item.obsidian_hoe.name=Obsidian Hoe
+tile.obsidian_gravel.name=Obsidian Gravel
 
 tab.creative_tab.name=Better Nether Beta
 gui.netherrack_furnace=Netherrack Furnace
