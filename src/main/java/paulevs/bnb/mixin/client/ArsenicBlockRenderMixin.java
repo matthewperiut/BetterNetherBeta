@@ -20,6 +20,6 @@ public class ArsenicBlockRenderMixin {
 	
 	@Inject(method = "renderWorld", at = @At("TAIL"))
 	public void bnb_renderCTM(Block block, int x, int y, int z, CallbackInfoReturnable<Boolean> originalInfo, CallbackInfo info) {
-		BNBConnectedTextures.renderCTM(block, x, y, z, blockRendererAccessor.getBlockView(), blockRenderer);
+		BNBConnectedTextures.render(block, x, y, z, blockRendererAccessor.getBlockView(), blockRenderer);
 	}
 }

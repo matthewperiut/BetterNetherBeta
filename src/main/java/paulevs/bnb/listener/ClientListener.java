@@ -19,6 +19,7 @@ import net.modificationstation.stationapi.api.event.registry.GuiHandlerRegistryE
 import net.modificationstation.stationapi.api.registry.BlockRegistry;
 import net.modificationstation.stationapi.api.registry.ItemRegistry;
 import net.modificationstation.stationapi.api.util.Identifier;
+import net.modificationstation.stationapi.api.util.math.Direction;
 import net.modificationstation.stationapi.api.util.math.Vec3f;
 import paulevs.bnb.BNB;
 import paulevs.bnb.BNBClient;
@@ -74,7 +75,10 @@ public class ClientListener {
 			LavaRenderer.STILL_TEXTURES[i] = blockAtlas.addTexture(id).index;
 		}
 		
-		BNBConnectedTextures.add4SideTextures(BNBBlocks.OBSIDIAN_GRAVEL, BNB.id("block/obsidian_gravel_side"));
+		BNBConnectedTextures.add4SideTextures(BNBBlocks.OBSIDIAN_GRAVEL, BNB.id("block/obsidian_gravel_side"), Direction.values());
+		BNBConnectedTextures.add4SideTextures(BNBBlocks.MAROON_NYLIUM, BNB.id("block/maroon_nylium_side"), Direction.UP);
+		BNBConnectedTextures.add4SideTextures(BNBBlocks.TURQUOISE_NYLIUM, BNB.id("block/turquoise_nylium_side"), Direction.UP);
+		BNBConnectedTextures.add4SideTextures(BNBBlocks.POISON_NYLIUM, BNB.id("block/poison_nylium_side"), Direction.UP);
 		
 		BNBBlocks.UPDATE_TEXTURE.forEach(block -> {
 			Identifier id = BlockRegistry.INSTANCE.getId(block);
