@@ -68,6 +68,7 @@ public class ClientListener {
 		Block.NETHERRACK.texture = blockAtlas.addTexture(BNB.id("block/netherrack")).index;
 		Block.GLOWSTONE.texture = blockAtlas.addTexture(BNB.id("block/glowstone")).index;
 		Block.SOUL_SAND.texture = blockAtlas.addTexture(BNB.id("block/soul_sand")).index;
+		Block.GRAVEL.texture = blockAtlas.addTexture(BNB.id("block/gravel")).index;
 		
 		LavaRenderer.flowTexture = blockAtlas.addTexture(BNB.id("block/lava_flow")).index;
 		for (byte i = 0; i < 16; i++) {
@@ -75,7 +76,9 @@ public class ClientListener {
 			LavaRenderer.STILL_TEXTURES[i] = blockAtlas.addTexture(id).index;
 		}
 		
-		BNBConnectedTextures.add4SideTextures(BNBBlocks.OBSIDIAN_GRAVEL, BNB.id("block/obsidian_gravel_side"), Direction.values());
+		Direction[] direction = Direction.values();
+		BNBConnectedTextures.add4SideTextures(BNBBlocks.OBSIDIAN_GRAVEL, BNB.id("block/obsidian_gravel_side"), direction);
+		BNBConnectedTextures.add4SideTextures(Block.GRAVEL, BNB.id("block/gravel_side"), direction);
 		BNBConnectedTextures.add4SideTextures(BNBBlocks.MAROON_NYLIUM, BNB.id("block/maroon_nylium_side"), Direction.UP);
 		BNBConnectedTextures.add4SideTextures(BNBBlocks.TURQUOISE_NYLIUM, BNB.id("block/turquoise_nylium_side"), Direction.UP);
 		BNBConnectedTextures.add4SideTextures(BNBBlocks.POISON_NYLIUM, BNB.id("block/poison_nylium_side"), Direction.UP);

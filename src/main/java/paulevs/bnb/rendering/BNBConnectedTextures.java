@@ -124,7 +124,7 @@ public class BNBConnectedTextures {
 				if (a && order > sideOrder) {
 					sideBlock = blockStateView.getBlockState(x + 1, py, pz).getBlock();
 					if (!sideBlock.isFullOpaque() || !sideBlock.isFullCube()) {
-						float light = block.getBrightness(blockView, x + 1, py, pz);
+						float light = block.getBrightness(blockView, x + 1, py, pz) * 0.6F;
 						Tessellator.INSTANCE.color(light, light, light, 1.0F);
 						blockRenderer.renderSouthFace(
 							block,
@@ -143,7 +143,7 @@ public class BNBConnectedTextures {
 				if (b && order > sideOrder) {
 					sideBlock = blockStateView.getBlockState(x - 1, py, pz).getBlock();
 					if (!sideBlock.isFullOpaque() || !sideBlock.isFullCube()) {
-						float light = block.getBrightness(blockView, x - 1, py, pz);
+						float light = block.getBrightness(blockView, x - 1, py, pz) * 0.6F;
 						Tessellator.INSTANCE.color(light, light, light, 1.0F);
 						blockRenderer.renderNorthFace(
 							block,
@@ -175,7 +175,7 @@ public class BNBConnectedTextures {
 				if (a && order > sideOrder) {
 					sideBlock = blockStateView.getBlockState(px, py, z + 1).getBlock();
 					if (!sideBlock.isFullOpaque() || !sideBlock.isFullCube()) {
-						float light = block.getBrightness(blockView, px, py, z + 1);
+						float light = block.getBrightness(blockView, px, py, z + 1) * 0.8F;
 						Tessellator.INSTANCE.color(light, light, light, 1.0F);
 						blockRenderer.renderWestFace(
 							block,
@@ -194,7 +194,7 @@ public class BNBConnectedTextures {
 				if (b && order > sideOrder) {
 					sideBlock = blockStateView.getBlockState(px, py, z - 1).getBlock();
 					if (!sideBlock.isFullOpaque() || !sideBlock.isFullCube()) {
-						float light = block.getBrightness(blockView, px, py, z - 1);
+						float light = block.getBrightness(blockView, px, py, z - 1) * 0.8F;
 						Tessellator.INSTANCE.color(light, light, light, 1.0F);
 						blockRenderer.renderEastFace(
 							block,
