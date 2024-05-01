@@ -40,6 +40,11 @@ import paulevs.bnb.rendering.BNBConnectedTextures;
 import paulevs.bnb.rendering.BNBWeatherRenderer;
 import paulevs.bnb.rendering.LavaRenderer;
 import paulevs.bnb.rendering.OBJModel;
+import paulevs.bnb.world.generator.terrain.features.StalactitesFeature;
+import paulevs.bnb.world.generator.terrain.features.StraightThinPillarsFeature;
+import paulevs.bnb.world.generator.terrain.features.TerrainFeature;
+import paulevs.bnb.world.generator.terrain.features.ThinPillarsFeature;
+import paulevs.bnb.world.generator.terrain.features.legacy.SmallPillarsFeature;
 import uk.co.benjiweber.expressions.tuple.BiTuple;
 
 import java.io.BufferedReader;
@@ -225,7 +230,7 @@ public class ClientListener {
 		frame.setVisible(true);*/
 		
 		/*long t = System.currentTimeMillis();
-		TerrainFeature feature = new StalactitesFeature();
+		TerrainFeature feature = new StraightThinPillarsFeature();
 		feature.setSeed(2);
 		feature.debugImage();
 		t = System.currentTimeMillis() - t;

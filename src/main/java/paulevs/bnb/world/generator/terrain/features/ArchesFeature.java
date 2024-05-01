@@ -64,7 +64,7 @@ public class ArchesFeature extends TerrainFeature {
 		random.setSeed(seed);
 		
 		float radiusBig = MathHelper.lerp(random.nextFloat(), 0.1F, 0.75F);
-		float radiusSmall = MathHelper.lerp(random.nextFloat(), radiusBig * 0.05F, radiusBig * 0.2F);
+		float radiusSmall = MathHelper.lerp(random.nextFloat(), radiusBig * 0.13F, radiusBig * 0.25F);
 		float angle = random.nextFloat() * 6.283F;
 		
 		relativePos.y -= (random.nextFloat() * 20 + 96) * 0.03;

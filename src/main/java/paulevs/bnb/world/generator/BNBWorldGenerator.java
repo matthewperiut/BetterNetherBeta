@@ -20,6 +20,7 @@ import paulevs.bnb.world.generator.terrain.TerrainRegion;
 import paulevs.bnb.world.generator.terrain.features.ArchesFeature;
 import paulevs.bnb.world.generator.terrain.features.ArchipelagoFeature;
 import paulevs.bnb.world.generator.terrain.features.BigPillarsFeature;
+import paulevs.bnb.world.generator.terrain.features.StraightThinPillarsFeature;
 import paulevs.bnb.world.generator.terrain.features.CubesFeature;
 import paulevs.bnb.world.generator.terrain.features.FlatCliffFeature;
 import paulevs.bnb.world.generator.terrain.features.FlatHillsFeature;
@@ -238,6 +239,7 @@ public class BNBWorldGenerator {
 		ChunkTerrainMap.addCommonFeature(BigPillarsFeature::new);
 		ChunkTerrainMap.addCommonFeature(ThinPillarsFeature::new);
 		ChunkTerrainMap.addCommonFeature(StalactitesFeature::new);
+		ChunkTerrainMap.addCommonFeature(StraightThinPillarsFeature::new);
 		
 		mapCopies = ThreadLocal.withInitial(() -> {
 			TerrainMap map = new TerrainMap();
