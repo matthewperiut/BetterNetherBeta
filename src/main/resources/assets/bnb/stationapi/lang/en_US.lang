@@ -78,6 +78,13 @@ tile.glowstone_shards.name=Glowstone Shards
 tile.obsidian_shards.name=Obsidian Shards
 item.obsidian_shard.name=Obsidian Shard
 
+tile.obsidian_tile.name=Obsidian Tile
+tile.obsidian_tiles.name=Obsidian Tiles
+tile.obsidian_bricks.name=Obsidian Bricks
+tile.obsidian_tiles_stairs.name=Obsidian Tiles Stairs
+tile.obsidian_tiles_slab_half.name=Obsidian Tiles Slab
+tile.obsidian_tiles_slab_full.name=Obsidian Tiles Slab
+
 tile.spider_net.name=Spider Net
 
 tile.orichalcum_ore.name=Orichalcum Ore

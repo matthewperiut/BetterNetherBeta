@@ -67,7 +67,7 @@ public class BNBConnectedTextures {
 				if (sideBlock == block || !sideBlock.isFullOpaque() || !sideBlock.isFullCube()) continue;
 				
 				TextureData sideData = TEXTURES.get(sideBlock);
-				int sideOrder = sideData == null ? -1 : sideData.order;
+				int sideOrder = sideData == null ? -1 : sideData.hasSide(Direction.UP) ? sideData.order : -1;
 				
 				if (a && order > sideOrder) {
 					sideBlock = blockStateView.getBlockState(px, y + 1, pz).getBlock();
@@ -82,6 +82,10 @@ public class BNBConnectedTextures {
 							textures[(i + 2) & 3]
 						);
 					}
+				}
+				
+				if (sideData != null) {
+					sideOrder = sideData.hasSide(Direction.DOWN) ? sideData.order : -1;
 				}
 				
 				if (b && order > sideOrder) {
@@ -115,7 +119,7 @@ public class BNBConnectedTextures {
 				if (sideBlock == block || !sideBlock.isFullOpaque() || !sideBlock.isFullCube()) continue;
 				
 				TextureData sideData = TEXTURES.get(sideBlock);
-				int sideOrder = sideData == null ? -1 : sideData.order;
+				int sideOrder = sideData == null ? -1 : sideData.hasSide(Direction.SOUTH) ? sideData.order : -1;
 				
 				if (a && order > sideOrder) {
 					sideBlock = blockStateView.getBlockState(x + 1, py, pz).getBlock();
@@ -130,6 +134,10 @@ public class BNBConnectedTextures {
 							textures[i]
 						);
 					}
+				}
+				
+				if (sideData != null) {
+					sideOrder = sideData.hasSide(Direction.NORTH) ? sideData.order : -1;
 				}
 				
 				if (b && order > sideOrder) {
@@ -162,7 +170,7 @@ public class BNBConnectedTextures {
 				if (sideBlock == block || !sideBlock.isFullOpaque() || !sideBlock.isFullCube()) continue;
 				
 				TextureData sideData = TEXTURES.get(sideBlock);
-				int sideOrder = sideData == null ? -1 : sideData.order;
+				int sideOrder = sideData == null ? -1 : sideData.hasSide(Direction.WEST) ? sideData.order : -1;
 				
 				if (a && order > sideOrder) {
 					sideBlock = blockStateView.getBlockState(px, py, z + 1).getBlock();
@@ -177,6 +185,10 @@ public class BNBConnectedTextures {
 							textures[(-i) & 3]
 						);
 					}
+				}
+				
+				if (sideData != null) {
+					sideOrder = sideData.hasSide(Direction.EAST) ? sideData.order : -1;
 				}
 				
 				if (b && order > sideOrder) {

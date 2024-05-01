@@ -1,0 +1,14 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"XX",
+		"XX"
+	],
+	"key": {
+		"X": { "item": "bnb:obsidian_tile" }
+	},
+	"result": {
+		"item": "bnb:obsidian_tiles",
+		"count": 4
+	}
+}

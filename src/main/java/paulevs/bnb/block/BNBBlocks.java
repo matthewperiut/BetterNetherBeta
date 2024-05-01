@@ -138,6 +138,13 @@ public class BNBBlocks {
 	public static final ShardsBlock OBSIDIAN_SHARDS = make("obsidian_shards", ObsidianShardsBlock::new);
 	public static final Block OBSIDIAN_GRAVEL = make("obsidian_gravel", ObsidianGravelBlock::new);
 	
+	public static final Block OBSIDIAN_TILE = make("obsidian_tile", BNBObsidianBlock::new);
+	public static final Block OBSIDIAN_TILES = make("obsidian_tiles", BNBObsidianBlock::new);
+	public static final Block OBSIDIAN_BRICKS = make("obsidian_bricks", BNBObsidianBlock::new);
+	public static final Block OBSIDIAN_TILES_STAIRS = make("obsidian_tiles_stairs", TemplateStairsBlock::new, OBSIDIAN_TILES);
+	public static final Block OBSIDIAN_TILES_SLAB_HALF = make("obsidian_tiles_slab_half", VBEHalfSlabBlock::new, OBSIDIAN_TILES);
+	public static final Block OBSIDIAN_TILES_SLAB_FULL = makeNI("obsidian_tiles_slab_full", VBEFullSlabBlock::new, OBSIDIAN_TILES);
+	
 	public static final SpiderNetBlock SPIDER_NET = make("spider_net", SpiderNetBlock::new);
 	public static final Block FALURIAN_SPIDER_COCOON = make("falurian_spider_cocoon", SpiderCocoonBlock::new);
 	public static final Block PIROZEN_SPIDER_COCOON = make("pirozen_spider_cocoon", SpiderCocoonBlock::new);
