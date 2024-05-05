@@ -34,6 +34,11 @@ public class BNBPlacers {
 	public static final StructurePlacer PIROZEN_SPIDER_COCOON = new FloorPlacer(BNBStructures.PIROZEN_SPIDER_COCOON, 1).setRandomNoiseDensityFunction(1, 5);
 	public static final StructurePlacer LARGE_PIROZEN_TREE_PLACER = new FloorPlacer(BNBStructures.LARGE_PIROZEN_TREE, 1).setRandomDensityFunction(3, 15);
 	public static final StructurePlacer FALLEN_PIROZEN_TREE_PLACER = new FloorPlacer(BNBStructures.FALLEN_PIROZEN_TREE, 1).setRandomDensityFunction(4, 7);
+	public static final StructurePlacer PIROZEN_VINE_SHORT_PLACER = new CeilingPlacer(BNBStructures.PIROZEN_VINE_SHORT, 10).setNoiseDensityFunction(8);
+	public static final StructurePlacer PIROZEN_VINE_LONG_PLACER = new CeilingPlacer(BNBStructures.PIROZEN_VINE_LONG, 5).setNoiseDensityFunction(9);
+	public static final StructurePlacer PIROZEN_MOSS_PLACER = new VolumetricPlacer(BNBStructures.PIROZEN_MOSS, 4).setNoiseDensityFunction(5);
+	public static final StructurePlacer PIROZEN_MOSS_BLOCK_PLACER = new VolumetricPlacer(BNBStructures.PIROZEN_MOSS_BLOCK, 3).setNoiseDensityFunction(6);
+	public static final StructurePlacer PIROZEN_MOSS_CEILING_PLACER = new CeilingPlacer(BNBStructures.PIROZEN_MOSS_BLOCK, 5).setNoiseDensityFunction(7);
 	
 	public static final StructurePlacer POISON_TREE_PLACER = new FloorPlacer(BNBStructures.POISON_TREE, 2).setNoiseDensityFunction(0);
 	public static final StructurePlacer POISON_BUSH_PLACER = new FloorPlacer(BNBStructures.POISON_TREE_BUSH, 3).setNoiseDensityFunction(1);

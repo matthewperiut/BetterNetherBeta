@@ -15,6 +15,7 @@ import paulevs.bnb.world.structure.common.PillarStructure;
 import paulevs.bnb.world.structure.common.ShardsBoulderStructure;
 import paulevs.bnb.world.structure.common.StreamStructure;
 import paulevs.bnb.world.structure.plant.BerriesVineStructure;
+import paulevs.bnb.world.structure.plant.VineStructure;
 import paulevs.bnb.world.structure.scatter.BlockMossScatterStructure;
 import paulevs.bnb.world.structure.scatter.DoublePlantScatterStructure;
 import paulevs.bnb.world.structure.scatter.MossScatterStructure;
@@ -41,6 +42,15 @@ public class BNBStructures {
 		BNBBlocks.FALURIAN_MOSS_BLOCK,
 		(MossBlock) BNBBlocks.FALURIAN_MOSS
 	);
+	public static final Structure PIROZEN_MOSS = new MossScatterStructure(
+		3, 0.4F,
+		(MossBlock) BNBBlocks.PIROZEN_MOSS
+	);
+	public static final Structure PIROZEN_MOSS_BLOCK = new BlockMossScatterStructure(
+		3, 0.75F,
+		BNBBlocks.PIROZEN_MOSS_BLOCK,
+		(MossBlock) BNBBlocks.PIROZEN_MOSS
+	);
 	
 	public static final Structure FALURIAN_VINE_SHORT = new BerriesVineStructure(
 		BNBBlocks.FALURIAN_VINE,
@@ -50,6 +60,9 @@ public class BNBStructures {
 		BNBBlocks.FALURIAN_VINE,
 		9, 32
 	);
+	
+	public static final Structure PIROZEN_VINE_SHORT = new VineStructure(BNBBlocks.PIROZEN_VINE, 3, 9);
+	public static final Structure PIROZEN_VINE_LONG = new VineStructure(BNBBlocks.PIROZEN_VINE, 9, 32);
 	
 	public static final Structure FALURIAN_TREE = new CommonTreeStructure(
 		BNBBlocks.FALURIAN_LOG,

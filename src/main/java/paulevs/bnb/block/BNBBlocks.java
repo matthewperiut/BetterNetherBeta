@@ -126,10 +126,15 @@ public class BNBBlocks {
 	public static final Block FALURIAN_MOSS = make("falurian_moss", MossBlock::new);
 	public static final Block FALURIAN_MOSS_BLOCK = make("falurian_moss_block", NetherMossBlock::new);
 	
+	public static final Block PIROZEN_MOSS = make("pirozen_moss", MossBlock::new);
+	public static final Block PIROZEN_MOSS_BLOCK = make("pirozen_moss_block", NetherMossBlock::new);
+	
 	public static final BNBCollectableVineBlock FALURIAN_VINE = (BNBCollectableVineBlock) make(
 		"falurian_vine",
 		BNBCollectableVineBlock::new
 	).setLuminance(BNBBlocks::getVineLight);
+	
+	public static final BNBVineBlock PIROZEN_VINE = make("pirozen_vine", BNBVineBlock::new);
 	
 	public static final Block PIROZEN_ROOTS = make("pirozen_roots", NetherRootsBlock::new);
 	public static final Block POISON_ROOTS = make("poison_roots", NetherRootsBlock::new);

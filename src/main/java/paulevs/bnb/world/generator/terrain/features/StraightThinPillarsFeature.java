@@ -21,7 +21,7 @@ public class StraightThinPillarsFeature extends TerrainFeature {
 	@Override
 	public float getDensity(int x, int y, int z) {
 		float density = pillars.get(x * 0.004, y * 0.004, z * 0.004);
-		if (density < 0.125F || density > 0.5F) return density;
+		if (density < 0.13F || density > 0.5F) return density;
 		float grad = Math.abs(gradient(y, 96, 256, -1.0F, 1.0F));
 		density += grad * grad * grad * 0.02F;
 		density += noise.get(x * 0.03, y * 0.03, z * 0.03) * 0.01F;

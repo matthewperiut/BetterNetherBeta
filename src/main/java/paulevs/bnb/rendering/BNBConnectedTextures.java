@@ -77,7 +77,7 @@ public class BNBConnectedTextures {
 						blockRenderer.renderTopFace(
 							block,
 							px - dir.getOffsetX() * DELTA_SIDE,
-							y + DELTA_HEIGHT + i * DELTA_OFFSET,
+							y + DELTA_HEIGHT + (i & 1) * DELTA_OFFSET,
 							pz - dir.getOffsetZ() * DELTA_SIDE,
 							textures[(i + 2) & 3]
 						);
@@ -91,13 +91,13 @@ public class BNBConnectedTextures {
 				if (b && order > sideOrder) {
 					sideBlock = blockStateView.getBlockState(px, y - 1, pz).getBlock();
 					if (!sideBlock.isFullOpaque() || !sideBlock.isFullCube()) {
-						float light = block.getBrightness(blockView, px, y - 1, pz);
+						float light = block.getBrightness(blockView, px, y - 1, pz) * 0.5F;
 						Tessellator.INSTANCE.color(light, light, light, 1.0F);
 						
 						blockRenderer.renderBottomFace(
 							block,
 							px - dir.getOffsetX() * DELTA_SIDE,
-							y - DELTA_HEIGHT + i * DELTA_OFFSET,
+							y - DELTA_HEIGHT + (i & 1) * DELTA_OFFSET,
 							pz - dir.getOffsetZ() * DELTA_SIDE,
 							textures[(i + 2) & 3]
 						);
@@ -128,7 +128,7 @@ public class BNBConnectedTextures {
 						Tessellator.INSTANCE.color(light, light, light, 1.0F);
 						blockRenderer.renderSouthFace(
 							block,
-							x + DELTA_HEIGHT + i * DELTA_OFFSET,
+							x + DELTA_HEIGHT + (i & 1) * DELTA_OFFSET,
 							py - dir.getOffsetY() * DELTA_SIDE,
 							pz - dir.getOffsetZ() * DELTA_SIDE,
 							textures[i]
@@ -147,7 +147,7 @@ public class BNBConnectedTextures {
 						Tessellator.INSTANCE.color(light, light, light, 1.0F);
 						blockRenderer.renderNorthFace(
 							block,
-							x - DELTA_HEIGHT + i * DELTA_OFFSET,
+							x - DELTA_HEIGHT + (i & 1) * DELTA_OFFSET,
 							py - dir.getOffsetY() * DELTA_SIDE,
 							pz - dir.getOffsetZ() * DELTA_SIDE,
 							textures[(-i) & 3]
@@ -181,7 +181,7 @@ public class BNBConnectedTextures {
 							block,
 							px - dir.getOffsetX() * DELTA_SIDE,
 							py - dir.getOffsetY() * DELTA_SIDE,
-							z + DELTA_HEIGHT + i * DELTA_OFFSET,
+							z + DELTA_HEIGHT + (i & 1) * DELTA_OFFSET,
 							textures[(-i) & 3]
 						);
 					}
@@ -200,7 +200,7 @@ public class BNBConnectedTextures {
 							block,
 							px - dir.getOffsetX() * DELTA_SIDE,
 							py - dir.getOffsetY() * DELTA_SIDE,
-							z - DELTA_HEIGHT + i * DELTA_OFFSET,
+							z - DELTA_HEIGHT + (i & 1) * DELTA_OFFSET,
 							textures[i]
 						);
 					}

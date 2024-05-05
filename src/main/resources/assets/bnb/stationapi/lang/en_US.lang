@@ -73,6 +73,9 @@ tile.falurian_moss_block.name=Falurian Moss Block
 
 tile.falurian_vine.name=Falurian Vine
 item.falurian_vine_berries.name=Falurian Berries
+tile.pirozen_vine.name=Pirozen Vine
+tile.pirozen_moss.name=Pirozen Moss
+tile.pirozen_moss_block.name=Pirozen Moss Block
 
 tile.glowstone_shards.name=Glowstone Shards
 tile.obsidian_shards.name=Obsidian Shards

@@ -73,6 +73,10 @@ public class BNBBiomes {
 		.feature(BNBPlacers.PIROZEN_BUSH_PLACER)
 		.feature(BNBPlacers.PIROZEN_SPIDER_COCOON)
 		.feature(BNBPlacers.PIROZEN_ROOTS_PLACER)
+		.feature(BNBPlacers.PIROZEN_VINE_SHORT_PLACER)
+		.feature(BNBPlacers.PIROZEN_VINE_LONG_PLACER)
+		.feature(BNBPlacers.PIROZEN_MOSS_BLOCK_PLACER)
+		.feature(BNBPlacers.PIROZEN_MOSS_PLACER)
 		.build()).bnb_setBiomeAmbience(BNBSounds.NETHER_FOREST_AMBIENCE);
 	
 	public static final Biome POISON_FOREST = addLand(BiomeBuilder

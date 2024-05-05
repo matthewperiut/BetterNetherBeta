@@ -82,6 +82,7 @@ public class ClientListener {
 		}
 		
 		Direction[] direction = Direction.values();
+		BNBConnectedTextures.add4SideTextures(BNBBlocks.PIROZEN_MOSS_BLOCK, BNB.id("block/pirozen_moss_side"), direction);
 		BNBConnectedTextures.add4SideTextures(BNBBlocks.OBSIDIAN_GRAVEL, BNB.id("block/obsidian_gravel_side"), direction);
 		BNBConnectedTextures.add4SideTextures(Block.GRAVEL, BNB.id("block/gravel_side"), direction);
 		BNBConnectedTextures.add4SideTextures(BNBBlocks.MAROON_NYLIUM, BNB.id("block/maroon_nylium_side"), Direction.UP);
