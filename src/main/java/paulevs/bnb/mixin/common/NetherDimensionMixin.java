@@ -4,7 +4,7 @@ import net.minecraft.level.biome.Biome;
 import net.minecraft.level.dimension.Dimension;
 import net.minecraft.level.dimension.NetherDimension;
 import net.modificationstation.stationapi.api.util.math.MathHelper;
-import net.modificationstation.stationapi.impl.world.StationDimension;
+import net.modificationstation.stationapi.api.world.dimension.StationDimension;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -16,15 +16,9 @@ import java.util.Collection;
 @Mixin(NetherDimension.class)
 public class NetherDimensionMixin extends Dimension implements StationDimension {
 	@Override
-	public short getDefaultWorldHeight() {
-		return 256;
-	}
-	
-	// Unlock when new API
-	/*@Override
 	public int getHeight() {
 		return 256;
-	}*/
+	}
 	
 	@Inject(method = "pregenLight", at = @At("HEAD"), cancellable = true)
 	private void bnb_pregenLight(CallbackInfo info) {

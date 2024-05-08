@@ -6,5 +6,5 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(BlockRenderer.class)
 public interface BlockRendererAccessor {
-	@Accessor("shadeTopFace") void bnb_setSmoothShading(boolean value);
+	@Accessor("faceSmoothShade") void bnb_setSmoothShading(boolean value);
 }

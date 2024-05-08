@@ -1,6 +1,6 @@
 package paulevs.bnb.world.generator.terrain.features;
 
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
 import paulevs.bnb.noise.VoronoiNoise;
@@ -25,7 +25,7 @@ public class StalactitesFeature extends TerrainFeature {
 		float h = 256 - 100 * height;
 		if (y < h) return 0;
 		
-		float spikes = MathHelper.cos(this.bigSpikesCeiling.get(x * 0.1, z * 0.1) * PI_HALF) * 0.5F + 0.5F;
+		float spikes = MCMath.cos(this.bigSpikesCeiling.get(x * 0.1, z * 0.1) * PI_HALF) * 0.5F + 0.5F;
 		spikes = spikes * spikes * spikes;
 		spikes += gradient(y, h, 256, -1.0F, 0.1F);
 		float density = spikes;
@@ -33,7 +33,7 @@ public class StalactitesFeature extends TerrainFeature {
 		h = 256 - 50 * height;
 		if (y < h) return density;
 		
-		spikes = MathHelper.cos(this.smallSpikesCeiling.get(x * 0.3, z * 0.3) * PI_HALF) * 0.5F + 0.5F;
+		spikes = MCMath.cos(this.smallSpikesCeiling.get(x * 0.3, z * 0.3) * PI_HALF) * 0.5F + 0.5F;
 		spikes = spikes * spikes * spikes;
 		spikes += gradient(y, h, 256, -1.0F, 0.1F);
 		density = Math.max(density, spikes);

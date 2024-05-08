@@ -1,6 +1,6 @@
 package paulevs.bnb.world.generator.terrain.features;
 
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import net.minecraft.util.maths.Vec3D;
 import net.modificationstation.stationapi.api.util.Identifier;
 import paulevs.bnb.BNB;
@@ -45,8 +45,8 @@ public class LandPillarsFeature extends TerrainFeature {
 	}
 	
 	private float getPillar(int seed, Vec3D localPos, Vec3D worldPos) {
-		int px = MathHelper.floor(worldPos.x / 0.03);
-		int pz = MathHelper.floor(worldPos.z / 0.03);
+		int px = MCMath.floor(worldPos.x / 0.03);
+		int pz = MCMath.floor(worldPos.z / 0.03);
 		if (map == null) map = BNBWorldGenerator.getMapCopy();
 		if (map != null) {
 			if (
@@ -62,7 +62,7 @@ public class LandPillarsFeature extends TerrainFeature {
 		
 		float height = (100 + random.nextFloat() * 80) * 0.03F;
 		float tip = height + (10 + random.nextFloat() * 10) * 0.03F;
-		float dist = 0.7F - MathHelper.sqrt(localPos.x * localPos.x + localPos.z * localPos.z);
+		float dist = 0.7F - MCMath.sqrt(localPos.x * localPos.x + localPos.z * localPos.z);
 		
 		float support = gradient((float) localPos.y, 100 * 0.03F, height, -1.0F, 1.0F);
 		float top = gradient((float) localPos.y, height, tip, 0.0F, 1.0F);

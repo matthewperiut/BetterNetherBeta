@@ -56,7 +56,8 @@ public class NetherTerrainBlock extends TemplateBlock {
 		int px = x + dir.getOffsetX();
 		int pz = z + dir.getOffsetX();
 		
-		if (level.getBiomeSource().getBiome(px, pz) != targetBiome) return;
+		// getBiomeSource
+		if (level.method_1781().getBiome(px, pz) != targetBiome) return;
 		if (!level.getBlockState(px, y, pz).isOf(NETHERRACK)) return;
 		above = level.getBlockState(px, y + 1, pz);
 		if (blocksGrow(above)) return;

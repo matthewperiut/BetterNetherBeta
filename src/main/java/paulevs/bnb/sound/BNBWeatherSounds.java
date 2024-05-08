@@ -5,7 +5,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.sound.SoundEntry;
 import net.minecraft.entity.living.LivingEntity;
 import net.minecraft.level.Level;
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import paulevs.bnb.rendering.BNBWeatherRenderer;
 import paulevs.bnb.weather.BNBWeatherManager;
 import paulevs.bnb.weather.WeatherType;
@@ -51,8 +51,8 @@ public class BNBWeatherSounds {
 			soundSystem.play(RAIN_KEY);
 		}
 		
-		int x = MathHelper.floor(entity.x);
-		int z = MathHelper.floor(entity.z);
+		int x = MCMath.floor(entity.x);
+		int z = MCMath.floor(entity.z);
 		boolean underRoof = entity.y + entity.height < BNBWeatherManager.getWeatherBottom(level, x, z);
 		soundSystem.setPitch(RAIN_KEY, underRoof ? 0.25F : 1.0F);
 		
@@ -60,8 +60,8 @@ public class BNBWeatherSounds {
 	}
 	
 	private static float getWeatherVolume(Level level, LivingEntity entity) {
-		int ix = MathHelper.floor(entity.x);
-		int iz = MathHelper.floor(entity.z);
+		int ix = MCMath.floor(entity.x);
+		int iz = MCMath.floor(entity.z);
 		
 		double entityY = entity.y + entity.height;
 		float volume = 0.0F;

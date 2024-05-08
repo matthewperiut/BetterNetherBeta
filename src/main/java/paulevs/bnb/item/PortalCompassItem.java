@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.level.Level;
 import net.minecraft.level.chunk.Chunk;
 import net.minecraft.util.io.CompoundTag;
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.client.item.CustomTooltipProvider;
 import net.modificationstation.stationapi.api.registry.DimensionContainer;
@@ -65,8 +65,8 @@ public class PortalCompassItem extends TemplateItem implements CustomStackTextur
 		
 		if (!level.isRemote) {
 			float angle = (float) -Math.toRadians(player.yaw);
-			float offsetX = MathHelper.sin(angle);
-			float offsetZ = MathHelper.cos(angle);
+			float offsetX = MCMath.sin(angle);
+			float offsetZ = MCMath.cos(angle);
 			float a = -offsetZ;
 			float b = offsetX;
 			offsetX = offsetX * 0.25F + a * 0.25F;

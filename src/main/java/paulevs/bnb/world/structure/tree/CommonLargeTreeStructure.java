@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.level.Level;
 import net.minecraft.level.structure.Structure;
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.util.math.Direction;
 import paulevs.bnb.block.BNBBlockTags;
@@ -188,13 +188,13 @@ public class CommonLargeTreeStructure extends Structure {
 	}
 	
 	private void growCap(Level level, Random random, int x, int y, int z, float radius, float height) {
-		float sqrt = MathHelper.sqrt(radius);
-		byte minXZ = (byte) MathHelper.floor(-sqrt);
-		byte maxXZ = (byte) MathHelper.floor(sqrt + 2);
+		float sqrt = MCMath.sqrt(radius);
+		byte minXZ = (byte) MCMath.floor(-sqrt);
+		byte maxXZ = (byte) MCMath.floor(sqrt + 2);
 		
-		sqrt = MathHelper.sqrt(height);
-		byte minY = (byte) MathHelper.floor(-sqrt);
-		byte maxY = (byte) MathHelper.floor(sqrt + 2);
+		sqrt = MCMath.sqrt(height);
+		byte minY = (byte) MCMath.floor(-sqrt);
+		byte maxY = (byte) MCMath.floor(sqrt + 2);
 		
 		float aspect = radius / height;
 		float angle = random.nextFloat() * (float) Math.PI * 2;
@@ -207,7 +207,7 @@ public class CommonLargeTreeStructure extends Structure {
 			for (byte dz = minXZ; dz < maxXZ; dz++) {
 				wz = z + dz;
 				pz = dz * dz;
-				float distance = MathHelper.sqrt(px + pz) * 0.3F;
+				float distance = MCMath.sqrt(px + pz) * 0.3F;
 				float noise = (float) Math.sin(Math.atan2(dx, dz) + angle) * distance * 0.5F + distance;
 				noise *= this.noise;
 				for (byte dy = minY; dy < maxY; dy++) {

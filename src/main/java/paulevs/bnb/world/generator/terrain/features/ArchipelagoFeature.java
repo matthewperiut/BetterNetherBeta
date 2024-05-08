@@ -1,6 +1,6 @@
 package paulevs.bnb.world.generator.terrain.features;
 
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
 import paulevs.bnb.noise.SphericalVoronoiNoise;
@@ -25,7 +25,7 @@ public class ArchipelagoFeature extends TerrainFeature {
 		if (y < 150) {
 			density = gradient(y, 70, 110, 1.0F, -1.0F);
 			
-			float power = MathHelper.cos(islandsPower.get(x * 0.005 * 3.0, z * 0.005 * 3.0) * PI_HALF) * 0.5F + 0.5F;
+			float power = MCMath.cos(islandsPower.get(x * 0.005 * 3.0, z * 0.005 * 3.0) * PI_HALF) * 0.5F + 0.5F;
 			power = power * power * power;
 			
 			density += bigIslands.get(x * 0.02 * 3.0, z * 0.02 * 3.0) * power;
@@ -35,11 +35,11 @@ public class ArchipelagoFeature extends TerrainFeature {
 		if (y > 150) {
 			density = gradient(y, 230, 256, -1.0F, 1.0F);
 			
-			float spikes = MathHelper.cos(ceilingSpikes.get(x * 0.02 * 3.0, z * 0.02 * 3.0) * PI_HALF) * 0.5F + 0.5F;
+			float spikes = MCMath.cos(ceilingSpikes.get(x * 0.02 * 3.0, z * 0.02 * 3.0) * PI_HALF) * 0.5F + 0.5F;
 			spikes = spikes * spikes * spikes;
 			density += spikes;
 			
-			float power = MathHelper.cos(islandsPower.get(x * 0.005 * 3.0, z * 0.005 * 3.0) * PI_HALF) * 0.5F + 0.5F;
+			float power = MCMath.cos(islandsPower.get(x * 0.005 * 3.0, z * 0.005 * 3.0) * PI_HALF) * 0.5F + 0.5F;
 			power = power * power * power;
 			density += power * spikes * gradient(y, 200, 250, 0.0F, 1.0F);
 		}

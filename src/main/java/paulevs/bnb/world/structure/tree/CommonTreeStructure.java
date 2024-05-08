@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.level.Level;
 import net.minecraft.level.structure.Structure;
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.util.math.Direction;
 import paulevs.bnb.block.BNBBlockTags;
@@ -118,13 +118,13 @@ public class CommonTreeStructure extends Structure {
 	}
 	
 	private void growCap(Level level, Random random, int x, int y, int z, float radius, float height) {
-		float sqrt = MathHelper.sqrt(radius);
-		byte minXZ = (byte) MathHelper.floor(-sqrt);
-		byte maxXZ = (byte) MathHelper.floor(sqrt + 2);
+		float sqrt = MCMath.sqrt(radius);
+		byte minXZ = (byte) MCMath.floor(-sqrt);
+		byte maxXZ = (byte) MCMath.floor(sqrt + 2);
 		
-		sqrt = MathHelper.sqrt(height);
-		byte minY = (byte) MathHelper.floor(-sqrt);
-		byte maxY = (byte) MathHelper.floor(sqrt + 2);
+		sqrt = MCMath.sqrt(height);
+		byte minY = (byte) MCMath.floor(-sqrt);
+		byte maxY = (byte) MCMath.floor(sqrt + 2);
 		
 		float aspect = radius / height;
 		float angle = random.nextFloat() * (float) Math.PI * 2;
@@ -137,7 +137,7 @@ public class CommonTreeStructure extends Structure {
 			for (byte dz = minXZ; dz < maxXZ; dz++) {
 				wz = z + dz;
 				pz = dz * dz;
-				float distance = MathHelper.sqrt(px + pz) * 0.3F;
+				float distance = MCMath.sqrt(px + pz) * 0.3F;
 				float noise = (float) Math.sin(Math.atan2(dx, dz) + angle) * distance * 0.5F + distance;
 				noise *= this.noise;
 				for (byte dy = minY; dy < maxY; dy++) {
@@ -183,35 +183,6 @@ public class CommonTreeStructure extends Structure {
 		BlockState lamp = BNBBlocks.TREE_LANTERN.getDefaultState();
 		if (canReplace(level.getBlockState(x, y, z))) level.setBlockState(x, y, z, lamp);
 		if (random.nextBoolean() && canReplace(level.getBlockState(x, --y, z))) level.setBlockState(x, y, z, lamp);
-	}
-	
-	private void growVines(Level level, Random random, int x, int y, int z, float radius) {
-		float sqrt = MathHelper.sqrt(radius);
-		byte minXZ = (byte) MathHelper.floor(-sqrt);
-		byte maxXZ = (byte) MathHelper.floor(sqrt + 2);
-		
-		int wx, wy, wz;
-		float px, pz;
-		
-		for (byte dx = minXZ; dx < maxXZ; dx++) {
-			wx = x + dx;
-			px = dx * dx;
-			for (byte dz = minXZ; dz < maxXZ; dz++) {
-				wz = z + dz;
-				pz = dz * dz;
-				if (px + pz > radius) continue;
-				
-				wy = y;
-				BlockState state = level.getBlockState(wx, wy, wz);
-				if (state != leaves) continue;
-				
-				while (state == leaves) state = level.getBlockState(wx, --wy, wz);
-				if (!canReplace(state)) continue;
-				
-				int length = random.nextInt(3) + 2;
-				placeVine(level, wx, wy, wz, length);
-			}
-		}
 	}
 	
 	private void placeVine(Level level, int x, int y, int z, int length) {

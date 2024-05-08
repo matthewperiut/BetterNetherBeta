@@ -5,8 +5,8 @@ import it.unimi.dsi.fastutil.objects.Reference2FloatOpenHashMap;
 import net.minecraft.client.options.GameOptions;
 import net.minecraft.client.sound.SoundEntry;
 import net.minecraft.entity.living.player.PlayerEntity;
-import net.minecraft.level.gen.BiomeSource;
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.level.biome.BiomeSource;
+import net.minecraft.util.maths.MCMath;
 import net.modificationstation.stationapi.api.util.Identifier;
 import paulscode.sound.SoundSystem;
 
@@ -65,8 +65,8 @@ public class BNBSoundManager {
 	public static void playAmbience(PlayerEntity player, BiomeSource biomeSource) {
 		if (!inTheNether) return;
 		
-		int x1 = MathHelper.floor(player.x / 16.0);
-		int z1 = MathHelper.floor(player.z / 16.0);
+		int x1 = MCMath.floor(player.x / 16.0);
+		int z1 = MCMath.floor(player.z / 16.0);
 		float dx = (float) (player.x / 16.0 - x1);
 		float dz = (float) (player.z / 16.0 - z1);
 		x1 <<= 4;

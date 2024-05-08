@@ -1,6 +1,6 @@
 package paulevs.bnb.world.generator.terrain.features;
 
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
 import paulevs.bnb.noise.VoronoiNoise;
@@ -25,7 +25,7 @@ public class BridgesFeature extends TerrainFeature {
 		
 		float height = 112;// + noise.get(x * 0.01, z * 0.01) * 5.0F;
 		float depth = gradient(y, height - 10, height + 10, -1.0F, 1.0F);
-		depth = MathHelper.sqrt(1 - depth * depth);
+		depth = MCMath.sqrt(1 - depth * depth);
 		return density + depth * 2.5F;//depth * 20.5F * bridges;
 	}
 	

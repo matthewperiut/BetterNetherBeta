@@ -1,5 +1,6 @@
 package paulevs.bnb.world.generator.terrain.features;
 
+import net.minecraft.util.maths.MCMath;
 import net.minecraft.util.maths.Vec3D;
 import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.math.MathHelper;
@@ -56,8 +57,8 @@ public class CubesFeature extends TerrainFeature {
 	}
 	
 	private float getCubesFloor(int seed, Vec3D relativePos, Vec3D worldPos) {
-		int px = net.minecraft.util.maths.MathHelper.floor(worldPos.x / 0.03);
-		int pz = net.minecraft.util.maths.MathHelper.floor(worldPos.z / 0.03);
+		int px = MCMath.floor(worldPos.x / 0.03);
+		int pz = MCMath.floor(worldPos.z / 0.03);
 		if (map != null && map.getData(px, pz) != FEATURE_ID) {
 			return 0;
 		}
@@ -86,8 +87,8 @@ public class CubesFeature extends TerrainFeature {
 	}
 	
 	private float getCubesCeiling(int seed, Vec3D relativePos, Vec3D worldPos) {
-		int px = net.minecraft.util.maths.MathHelper.floor(worldPos.x / 0.03);
-		int pz = net.minecraft.util.maths.MathHelper.floor(worldPos.z / 0.03);
+		int px = MCMath.floor(worldPos.x / 0.03);
+		int pz = MCMath.floor(worldPos.z / 0.03);
 		if (map != null && map.getData(px, pz) != FEATURE_ID) {
 			return 0;
 		}

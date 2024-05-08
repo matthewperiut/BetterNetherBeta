@@ -1,6 +1,7 @@
 package paulevs.bnb.noise;
 
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
+import net.modificationstation.stationapi.api.util.math.MathHelper;
 
 import java.util.Arrays;
 
@@ -16,20 +17,20 @@ public class VoronoiNoise extends FloatNoise {
 	public float getF1F3(double x, double y, double z) {
 		get(x, y, z, buffer);
 		Arrays.sort(buffer);
-		return MathHelper.sqrt(buffer[0] / buffer[2]);
+		return MCMath.sqrt(buffer[0] / buffer[2]);
 	}
 	
 	public float getF1F2(double x, double y) {
 		get(x, y, buffer);
 		Arrays.sort(buffer, 0, 9);
-		return MathHelper.sqrt(buffer[0] / buffer[1]);
+		return MCMath.sqrt(buffer[0] / buffer[1]);
 	}
 	
 	@Override
 	public float get(double x, double y, double z) {
-		int x1 = MathHelper.floor(x);
-		int y1 = MathHelper.floor(y);
-		int z1 = MathHelper.floor(z);
+		int x1 = MCMath.floor(x);
+		int y1 = MCMath.floor(y);
+		int z1 = MCMath.floor(z);
 		
 		float sdx = (float) (x - x1);
 		float sdy = (float) (y - y1);
@@ -49,14 +50,14 @@ public class VoronoiNoise extends FloatNoise {
 			}
 		}
 		
-		distance = MathHelper.sqrt(distance);
-		return net.modificationstation.stationapi.api.util.math.MathHelper.clamp(distance, 0, 1);
+		distance = MCMath.sqrt(distance);
+		return MathHelper.clamp(distance, 0, 1);
 	}
 	
 	public void get(double x, double y, double z, float[] buffer) {
-		int x1 = MathHelper.floor(x);
-		int y1 = MathHelper.floor(y);
-		int z1 = MathHelper.floor(z);
+		int x1 = MCMath.floor(x);
+		int y1 = MCMath.floor(y);
+		int z1 = MCMath.floor(z);
 		
 		float sdx = (float) (x - x1);
 		float sdy = (float) (y - y1);
@@ -78,8 +79,8 @@ public class VoronoiNoise extends FloatNoise {
 	
 	@Override
 	public float get(double x, double y) {
-		int x1 = MathHelper.floor(x);
-		int y1 = MathHelper.floor(y);
+		int x1 = MCMath.floor(x);
+		int y1 = MCMath.floor(y);
 		
 		float sdx = (float) (x - x1);
 		float sdy = (float) (y - y1);
@@ -97,13 +98,13 @@ public class VoronoiNoise extends FloatNoise {
 			}
 		}
 		
-		distance = MathHelper.sqrt(distance);
-		return net.modificationstation.stationapi.api.util.math.MathHelper.clamp(distance, 0, 1);
+		distance = MCMath.sqrt(distance);
+		return MathHelper.clamp(distance, 0, 1);
 	}
 	
 	public void get(double x, double y, float[] buffer) {
-		int x1 = MathHelper.floor(x);
-		int y1 = MathHelper.floor(y);
+		int x1 = MCMath.floor(x);
+		int y1 = MCMath.floor(y);
 		
 		float sdx = (float) (x - x1);
 		float sdy = (float) (y - y1);
@@ -120,8 +121,8 @@ public class VoronoiNoise extends FloatNoise {
 	}
 	
 	public float getID(double x, double y) {
-		int x1 = MathHelper.floor(x);
-		int y1 = MathHelper.floor(y);
+		int x1 = MCMath.floor(x);
+		int y1 = MCMath.floor(y);
 		
 		float sdx = (float) (x - x1);
 		float sdy = (float) (y - y1);

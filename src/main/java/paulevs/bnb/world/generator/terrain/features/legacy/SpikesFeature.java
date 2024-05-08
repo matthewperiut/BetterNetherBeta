@@ -1,6 +1,6 @@
 package paulevs.bnb.world.generator.terrain.features.legacy;
 
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
 import paulevs.bnb.noise.VoronoiNoise;
@@ -30,12 +30,12 @@ public class SpikesFeature extends TerrainFeature {
 		spikes = spikes + gradient(y, 0, 300, 0.005F, -1.0F);
 		density = Math.max(density, spikes);
 		
-		spikes = MathHelper.cos(this.bigSpikesFloor.get(x * 0.1, z * 0.1) * PI_HALF) * 0.5F + 0.5F;
+		spikes = MCMath.cos(this.bigSpikesFloor.get(x * 0.1, z * 0.1) * PI_HALF) * 0.5F + 0.5F;
 		spikes = spikes * spikes * spikes;
 		spikes += gradient(y, 0, 200 * height, 0.1F, -1.0F);
 		density = Math.max(density, spikes);
 		
-		spikes = MathHelper.cos(this.smallSpikesFloor.get(x * 0.3, z * 0.3) * PI_HALF) * 0.5F + 0.5F;
+		spikes = MCMath.cos(this.smallSpikesFloor.get(x * 0.3, z * 0.3) * PI_HALF) * 0.5F + 0.5F;
 		spikes = spikes * spikes * spikes;
 		spikes += gradient(y, 0, 150 * height, 0.1F, -1.0F);
 		density = Math.max(density, spikes);
@@ -46,12 +46,12 @@ public class SpikesFeature extends TerrainFeature {
 		spikes = spikes + gradient(y, -44, 256, -1.0F, 0.005F);
 		density = Math.max(density, spikes);
 		
-		spikes = MathHelper.cos(this.bigSpikesCeiling.get(x * 0.1, z * 0.1) * PI_HALF) * 0.5F + 0.5F;
+		spikes = MCMath.cos(this.bigSpikesCeiling.get(x * 0.1, z * 0.1) * PI_HALF) * 0.5F + 0.5F;
 		spikes = spikes * spikes * spikes;
 		spikes += gradient(y, 256 - 200 * height, 256, -1.0F, 0.1F);
 		density = Math.max(density, spikes);
 		
-		spikes = MathHelper.cos(this.smallSpikesCeiling.get(x * 0.3, z * 0.3) * PI_HALF) * 0.5F + 0.5F;
+		spikes = MCMath.cos(this.smallSpikesCeiling.get(x * 0.3, z * 0.3) * PI_HALF) * 0.5F + 0.5F;
 		spikes = spikes * spikes * spikes;
 		spikes += gradient(y, 256 - 150 * height, 256, -1.0F, 0.1F);
 		density = Math.max(density, spikes);

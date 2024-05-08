@@ -1,6 +1,6 @@
 package paulevs.bnb.world.generator.terrain.features.legacy;
 
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
 import paulevs.bnb.noise.VoronoiNoise;
@@ -68,7 +68,7 @@ public class PancakesFeature extends TerrainFeature {
 		height = count * 25.4F;
 		
 		float density = gradient(y, 0, height, 0.0F, 1.0F);
-		float sin = MathHelper.sin(density * count * PI);
+		float sin = MCMath.sin(density * count * PI);
 		sin = (float) Math.pow(sin, 8);
 		density *= density;
 		float cellSize = 0.8F - cells.get(x * 0.01F + dx, z * 0.01F + dz);
@@ -86,12 +86,12 @@ public class PancakesFeature extends TerrainFeature {
 		
 		density -= gradient(y, height, height + 20, 0, 10.0F);
 		
-		float ceil = MathHelper.cos(ceilingSpikes.get(x * 0.02, z * 0.02) * PI_HALF) * 0.5F + 0.5F;
+		float ceil = MCMath.cos(ceilingSpikes.get(x * 0.02, z * 0.02) * PI_HALF) * 0.5F + 0.5F;
 		ceil = ceil * ceil * ceil;
 		ceil += gradient(y, 200, 256, -1.0F, 0.5F);
 		density = Math.max(density, ceil);
 		
-		float floor = MathHelper.cos(floorSpikes.get(x * 0.02, z * 0.02) * PI_HALF) * 0.5F + 0.5F;
+		float floor = MCMath.cos(floorSpikes.get(x * 0.02, z * 0.02) * PI_HALF) * 0.5F + 0.5F;
 		floor = floor * floor * floor;
 		floor += gradient(y, 0, 60, 1.0F, -1.0F);
 		density = smoothMax(density, floor, 0.5F);

@@ -8,9 +8,10 @@ import net.minecraft.client.texture.TextureManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.living.LivingEntity;
 import net.minecraft.level.Level;
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import net.minecraft.util.maths.Vec2I;
 import net.minecraft.util.maths.Vec3D;
+import net.modificationstation.stationapi.api.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 import paulevs.bnb.weather.BNBWeatherManager;
 import paulevs.bnb.weather.WeatherType;
@@ -88,9 +89,9 @@ public class BNBWeatherRenderer {
 	public static void updateFog(float[] fogColor) {
 		if (isCurrentWeather(WeatherType.LAVA_RAIN)) {
 			float alpha = getIntensity(WeatherType.LAVA_RAIN);
-			fogColor[0] = net.modificationstation.stationapi.api.util.math.MathHelper.lerp(alpha, fogColor[0], 0.5F);
-			fogColor[1] = net.modificationstation.stationapi.api.util.math.MathHelper.lerp(alpha, fogColor[1], 0.01F);
-			fogColor[2] = net.modificationstation.stationapi.api.util.math.MathHelper.lerp(alpha, fogColor[2], 0.0F);
+			fogColor[0] = MathHelper.lerp(alpha, fogColor[0], 0.5F);
+			fogColor[1] = MathHelper.lerp(alpha, fogColor[1], 0.01F);
+			fogColor[2] = MathHelper.lerp(alpha, fogColor[2], 0.0F);
 		}
 		
 		int r = (int) (fogColor[0] * 255);
@@ -109,7 +110,7 @@ public class BNBWeatherRenderer {
 	
 	public static float getFogDensity() {
 		if (prevWeather == null) return 1.0F;
-		return net.modificationstation.stationapi.api.util.math.MathHelper.lerp(
+		return MathHelper.lerp(
 			weatherDelta,
 			prevWeather.fogIntensity,
 			weather.fogIntensity
@@ -158,12 +159,12 @@ public class BNBWeatherRenderer {
 		
 		float smokeTime = ((int) (minecraft.level.getLevelTime() % 24000) + delta) / 24000.0F * 30.0F * PI2;
 		
-		double ex = net.modificationstation.stationapi.api.util.math.MathHelper.lerp(delta, entity.prevRenderX, entity.x);
-		double ey = net.modificationstation.stationapi.api.util.math.MathHelper.lerp(delta, entity.prevRenderY, entity.y);
-		double ez = net.modificationstation.stationapi.api.util.math.MathHelper.lerp(delta, entity.prevRenderZ, entity.z);
+		double ex = MathHelper.lerp(delta, entity.prevRenderX, entity.x);
+		double ey = MathHelper.lerp(delta, entity.prevRenderY, entity.y);
+		double ez = MathHelper.lerp(delta, entity.prevRenderZ, entity.z);
 		
-		int cx = MathHelper.floor(entity.x / 32.0);
-		int cz = MathHelper.floor(entity.z / 32.0);
+		int cx = MCMath.floor(entity.x / 32.0);
+		int cz = MCMath.floor(entity.z / 32.0);
 		
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, smokeTexture1);
 		int lastTerxture = smokeTexture1;
@@ -195,7 +196,7 @@ public class BNBWeatherRenderer {
 			float l = fx * fx + fz * fz;
 			float alpha;
 			if (l > 0) {
-				l = MathHelper.sqrt(l) / 0.5F;
+				l = MCMath.sqrt(l) / 0.5F;
 				fx /= l;
 				fz /= l;
 				float v = fx;
@@ -212,7 +213,7 @@ public class BNBWeatherRenderer {
 			
 			int randomIndex = ((sx & 15) << 4 | (sz & 15)) * 7;
 			int texture = SMOKE_RANDOM[randomIndex++] < 1.0F ? smokeTexture1 : smokeTexture2;
-			float offsetY = MathHelper.sin(SMOKE_RANDOM[randomIndex++] + smokeTime) * 32.0F;
+			float offsetY = MCMath.sin(SMOKE_RANDOM[randomIndex++] + smokeTime) * 32.0F;
 			float offsetX = SMOKE_RANDOM[randomIndex++];
 			float offsetZ = SMOKE_RANDOM[randomIndex++];
 			float scaleH = SMOKE_RANDOM[randomIndex++];
@@ -255,13 +256,13 @@ public class BNBWeatherRenderer {
 	
 	private static void renderRain(Minecraft minecraft, float delta) {
 		LivingEntity entity = minecraft.viewEntity;
-		double x = net.modificationstation.stationapi.api.util.math.MathHelper.lerp(delta, entity.prevRenderX, entity.x);
-		double y = net.modificationstation.stationapi.api.util.math.MathHelper.lerp(delta, entity.prevRenderY, entity.y);
-		double z = net.modificationstation.stationapi.api.util.math.MathHelper.lerp(delta, entity.prevRenderZ, entity.z);
+		double x = MathHelper.lerp(delta, entity.prevRenderX, entity.x);
+		double y = MathHelper.lerp(delta, entity.prevRenderY, entity.y);
+		double z = MathHelper.lerp(delta, entity.prevRenderZ, entity.z);
 		
-		int ix = MathHelper.floor(entity.x);
-		int iy = MathHelper.floor(entity.y);
-		int iz = MathHelper.floor(entity.z);
+		int ix = MCMath.floor(entity.x);
+		int iy = MCMath.floor(entity.y);
+		int iz = MCMath.floor(entity.z);
 		
 		int radius = minecraft.options.fancyGraphics ? 10 : 5;
 		int radiusCenter = radius / 2 - 1;
@@ -335,7 +336,7 @@ public class BNBWeatherRenderer {
 		float dz = (float) (pos.z - (z + 0.5));
 		float l = dx * dx + dz * dz;
 		if (l > 0) {
-			l = MathHelper.sqrt(l) / 0.5F;
+			l = MCMath.sqrt(l) / 0.5F;
 			dx /= l;
 			dz /= l;
 			float v = dx;
@@ -379,7 +380,7 @@ public class BNBWeatherRenderer {
 		float dz = (float) (pos.z - (z + 0.5));
 		float l = dx * dx + dz * dz;
 		if (l > 0) {
-			l = MathHelper.sqrt(l) / 0.5F;
+			l = MCMath.sqrt(l) / 0.5F;
 			dx /= l;
 			dz /= l;
 			float v = dx;
@@ -411,13 +412,13 @@ public class BNBWeatherRenderer {
 		float pitch = entity.prevPitch + (entity.pitch - entity.prevPitch);
 		
 		yaw = -yaw * TO_RADIANS - (float) Math.PI;
-		float cosYaw = MathHelper.cos(yaw);
-		float sinYaw = MathHelper.sin(yaw);
-		float cosPitch = -MathHelper.cos(-pitch * TO_RADIANS);
+		float cosYaw = MCMath.cos(yaw);
+		float sinYaw = MCMath.sin(yaw);
+		float cosPitch = -MCMath.cos(-pitch * TO_RADIANS);
 		
 		return Vec3D.getFromCacheAndSet(
 			sinYaw * cosPitch,
-			(MathHelper.sin(-pitch * ((float) Math.PI / 180))),
+			(MCMath.sin(-pitch * ((float) Math.PI / 180))),
 			cosYaw * cosPitch
 		);
 	}

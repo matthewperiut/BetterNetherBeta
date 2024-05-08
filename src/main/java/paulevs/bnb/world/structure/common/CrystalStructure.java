@@ -3,7 +3,7 @@ package paulevs.bnb.world.structure.common;
 import net.minecraft.block.Block;
 import net.minecraft.level.Level;
 import net.minecraft.level.structure.Structure;
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.util.math.Direction;
 import paulevs.bnb.block.BNBBlockTags;
@@ -34,15 +34,15 @@ public class CrystalStructure extends Structure {
 		if (!level.getBlockState(x, y + direction.getOffsetY(), z).isIn(BNBBlockTags.NETHERRACK_TERRAIN)) return false;
 		
 		float scale = random.nextFloat() * 0.25F + 0.75F;
-		int radius = MathHelper.floor(this.radius * scale + 0.5F);
+		int radius = MCMath.floor(this.radius * scale + 0.5F);
 		int sign = direction == Direction.UP ? -1 : 1;
 		
 		for (int dx = -radius; dx <= radius; dx++) {
 			int px = x + dx;
 			for (int dz = -radius; dz <= radius; dz++) {
 				int pz = z + dz;
-				float distance = 1 - MathHelper.sqrt(dx * dx + dz * dz) / radius;
-				int height = MathHelper.floor(this.height * scale * distance - random.nextFloat() * 2F + 1F);
+				float distance = 1 - MCMath.sqrt(dx * dx + dz * dz) / radius;
+				int height = MCMath.floor(this.height * scale * distance - random.nextFloat() * 2F + 1F);
 				
 				if (height < 1) {
 					if (height > -2 && random.nextInt(3) == 0) {

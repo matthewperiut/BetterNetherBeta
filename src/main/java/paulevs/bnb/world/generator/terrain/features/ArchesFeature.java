@@ -1,5 +1,6 @@
 package paulevs.bnb.world.generator.terrain.features;
 
+import net.minecraft.util.maths.MCMath;
 import net.minecraft.util.maths.Vec3D;
 import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.math.MathHelper;
@@ -54,8 +55,8 @@ public class ArchesFeature extends TerrainFeature {
 	}
 	
 	private float getArches(int seed, Vec3D relativePos, Vec3D worldPos) {
-		int px = net.minecraft.util.maths.MathHelper.floor(worldPos.x / 0.03);
-		int pz = net.minecraft.util.maths.MathHelper.floor(worldPos.z / 0.03);
+		int px = MCMath.floor(worldPos.x / 0.03);
+		int pz = MCMath.floor(worldPos.z / 0.03);
 		if (map == null) map = BNBWorldGenerator.getMapCopy();
 		if (map != null && map.getData(px, pz) != FEATURE_ID) {
 			return 0;
@@ -90,9 +91,9 @@ public class ArchesFeature extends TerrainFeature {
 	}
 	
 	float torus(float x, float y, float z, float radiusBig, float radiusSmall) {
-		float l = net.minecraft.util.maths.MathHelper.sqrt(x * x + y * y);
+		float l = MCMath.sqrt(x * x + y * y);
 		l = l - radiusBig;
-		l = net.minecraft.util.maths.MathHelper.sqrt(l * l + z * z);
+		l = MCMath.sqrt(l * l + z * z);
 		return l - radiusSmall;
 	}
 	

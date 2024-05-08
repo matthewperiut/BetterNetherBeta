@@ -1,6 +1,6 @@
 package paulevs.bnb.world.generator.terrain.features.legacy;
 
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import net.minecraft.util.maths.Vec3D;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
@@ -58,13 +58,13 @@ public class SmallPillarsFeature extends TerrainFeature {
 		float density;
 		if (y > 0) {
 			y *= 2;
-			density = radius - (MathHelper.sqrt(x * x + z * z + y * y));
+			density = radius - (MCMath.sqrt(x * x + z * z + y * y));
 		}
 		else {
-			density = radius - MathHelper.sqrt(x * x + z * z) + y;
+			density = radius - MCMath.sqrt(x * x + z * z) + y;
 		}
 		
-		float support = y > 0 ? 0 : radius * 0.9F - (MathHelper.sqrt(x * x + z * z));
+		float support = y > 0 ? 0 : radius * 0.9F - (MCMath.sqrt(x * x + z * z));
 		density = smoothMax(density, support, 1F);
 		
 		density += noise;

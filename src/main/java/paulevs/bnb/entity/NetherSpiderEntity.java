@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.living.monster.SpiderEntity;
 import net.minecraft.entity.living.player.PlayerEntity;
 import net.minecraft.level.Level;
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import net.modificationstation.stationapi.api.network.packet.MessagePacket;
 import net.modificationstation.stationapi.api.server.entity.MobSpawnDataProvider;
 import paulevs.vbe.utils.CreativeUtil;
@@ -41,7 +41,7 @@ public abstract class NetherSpiderEntity extends SpiderEntity implements MobSpaw
 		else if (onGround) {
 			float dx = (float) (target.x - x);
 			float dz = (float) (target.z - z);
-			float dist = MathHelper.sqrt(dx * dx + dz * dz);
+			float dist = MCMath.sqrt(dx * dx + dz * dz);
 			velocityX = dx / dist * 0.4F + velocityX * 0.2F;
 			velocityZ = dz / dist * 0.4F + velocityZ * 0.2F;
 			velocityY = 0.15F;

@@ -4,7 +4,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.texture.TextureManager;
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import net.modificationstation.stationapi.impl.worldgen.FogRendererImpl;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
@@ -54,13 +54,13 @@ public class BNBSkyRenderer {
 		tessellator.start();
 		
 		final int count = 16;
-		float sin1 = MathHelper.sin(0) * 100;
-		float cos1 = MathHelper.cos(0) * 100;
+		float sin1 = MCMath.sin(0) * 100;
+		float cos1 = MCMath.cos(0) * 100;
 		
 		for (byte i = 1; i <= count; i++) {
 			float angle = (float) i / count * pi2;
-			float sin2 = MathHelper.sin(angle) * 100;
-			float cos2 = MathHelper.cos(angle) * 100;
+			float sin2 = MCMath.sin(angle) * 100;
+			float cos2 = MCMath.cos(angle) * 100;
 			
 			tessellator.vertex(sin1, -50, cos1, 0, 0);
 			tessellator.vertex(sin1,  50, cos1, 0, 1);

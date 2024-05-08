@@ -1,5 +1,6 @@
 package paulevs.bnb.noise;
 
+import net.minecraft.util.maths.MCMath;
 import net.modificationstation.stationapi.api.util.math.MathHelper;
 
 public class PerlinNoise extends FloatNoise {
@@ -114,8 +115,8 @@ public class PerlinNoise extends FloatNoise {
 	
 	private void fillVector(float[] vector, int x, int y) {
 		float angle = wrap(hash(x, seed, y), 3607) / 1803.5F * (float) Math.PI;
-		vector[0] = net.minecraft.util.maths.MathHelper.sin(angle);
-		vector[1] = net.minecraft.util.maths.MathHelper.cos(angle);
+		vector[0] = MCMath.sin(angle);
+		vector[1] = MCMath.cos(angle);
 	}
 	
 	private float smoothStep(float x) {

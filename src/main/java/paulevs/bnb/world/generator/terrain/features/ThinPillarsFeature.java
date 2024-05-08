@@ -1,6 +1,6 @@
 package paulevs.bnb.world.generator.terrain.features;
 
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import net.minecraft.util.maths.Vec3D;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
@@ -37,8 +37,8 @@ public class ThinPillarsFeature extends TerrainFeature {
 	}
 	
 	private float getPillar(int seed, Vec3D relativePos, Vec3D worldPos) {
-		int wx = MathHelper.floor(worldPos.x / 0.004);
-		int wz = MathHelper.floor(worldPos.z / 0.004);
+		int wx = MCMath.floor(worldPos.x / 0.004);
+		int wz = MCMath.floor(worldPos.z / 0.004);
 		if (map == null) map = BNBWorldGenerator.getMapCopy();
 		TerrainRegion region = map == null ? TerrainRegion.PLAINS : map.getRegion(wx, wz);
 		if (region == TerrainRegion.OCEAN_NORMAL || region == TerrainRegion.OCEAN_MOUNTAINS) return 0;
@@ -46,6 +46,6 @@ public class ThinPillarsFeature extends TerrainFeature {
 		if (region == TerrainRegion.BRIDGES) return 0;
 		float dx = (float) relativePos.x;
 		float dz = (float) relativePos.z;
-		return 0.4F - MathHelper.sqrt(dx * dx + dz * dz);
+		return 0.4F - MCMath.sqrt(dx * dx + dz * dz);
 	}
 }

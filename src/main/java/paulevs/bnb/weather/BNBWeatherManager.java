@@ -10,7 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.living.player.PlayerEntity;
 import net.minecraft.level.Level;
 import net.minecraft.level.chunk.Chunk;
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.network.packet.PacketHelper;
 import paulevs.bnb.BNB;
@@ -133,8 +133,8 @@ public class BNBWeatherManager {
 					if (obj instanceof PlayerEntity player) {
 						if (CreativeUtil.isCreative(player)) continue;
 					}
-					x = MathHelper.floor(entity.x) & 15;
-					z = MathHelper.floor(entity.z) & 15;
+					x = MCMath.floor(entity.x) & 15;
+					z = MCMath.floor(entity.z) & 15;
 					int y = getWeatherBottom(level, chunk, x, z);
 					if (y > entity.y + entity.height) continue;
 					accessor.bnb_setOnFire();

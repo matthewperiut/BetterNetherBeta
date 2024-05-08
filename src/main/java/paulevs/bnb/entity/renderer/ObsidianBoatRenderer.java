@@ -2,7 +2,7 @@ package paulevs.bnb.entity.renderer;
 
 import net.minecraft.client.render.entity.BoatRenderer;
 import net.minecraft.entity.vehicle.BoatEntity;
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import org.lwjgl.opengl.GL11;
 
 public class ObsidianBoatRenderer extends BoatRenderer {
@@ -20,7 +20,7 @@ public class ObsidianBoatRenderer extends BoatRenderer {
 		float f3 = Math.max((float) entity.damage - h, 0.0F);
 		
 		if (f2 > 0.0F) {
-			GL11.glRotatef(MathHelper.sin(f2) * f2 * f3 / 10.0F * (float) entity.damageAngle, 1.0F, 0.0F, 0.0F);
+			GL11.glRotatef(MCMath.sin(f2) * f2 * f3 / 10.0F * (float) entity.damageAngle, 1.0F, 0.0F, 0.0F);
 		}
 		
 		GL11.glScalef(-1.0F, -1.0F, 1.0f);

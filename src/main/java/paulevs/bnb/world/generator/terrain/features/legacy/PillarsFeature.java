@@ -1,6 +1,6 @@
 package paulevs.bnb.world.generator.terrain.features.legacy;
 
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
 import paulevs.bnb.noise.VoronoiNoise;
@@ -24,15 +24,15 @@ public class PillarsFeature extends TerrainFeature {
 		
 		if (y < maxHeight && noiseValue < 0.002F) return 100.0F;
 		
-		float size = MathHelper.cos(height * 1 - 0.5F);
+		float size = MCMath.cos(height * 1 - 0.5F);
 		float movedY = y - maxHeight;
 		float density = Math.max(gradient(movedY, -100, 0, 1.0F, 0.0F), gradient(movedY, 0, 5, 0.0F, 1.0F));
 		if (y > maxHeight) {
 			density = 1.0F - density * density;
-			density = MathHelper.sqrt(density);
+			density = MCMath.sqrt(density);
 		}
 		else {
-			density = 1.0F - MathHelper.sqrt(density);
+			density = 1.0F - MCMath.sqrt(density);
 		}
 		
 		density *= 0.8F * size - noiseValue;
@@ -62,7 +62,7 @@ public class PillarsFeature extends TerrainFeature {
 		ceil += noise * noise * noise;
 		density = Math.max(density, ceil);
 		
-		float spikes = MathHelper.cos(this.spikes.get(x * 0.1, z * 0.1) * PI_HALF) * 0.5F + 0.5F;
+		float spikes = MCMath.cos(this.spikes.get(x * 0.1, z * 0.1) * PI_HALF) * 0.5F + 0.5F;
 		spikes = spikes * spikes * spikes;
 		spikes *= gradient(y, 0, 150, 1.0F, 0.0F);
 		spikes *= 1.0F - noiseValue;

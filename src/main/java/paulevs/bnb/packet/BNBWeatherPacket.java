@@ -2,8 +2,8 @@ package paulevs.bnb.packet;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.network.PacketHandler;
 import net.minecraft.packet.AbstractPacket;
+import net.minecraft.packet.PacketHandler;
 import net.modificationstation.stationapi.api.network.packet.IdentifiablePacket;
 import net.modificationstation.stationapi.api.util.Identifier;
 import paulevs.bnb.BNB;

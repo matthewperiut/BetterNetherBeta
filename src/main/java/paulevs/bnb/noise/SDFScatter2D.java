@@ -1,6 +1,6 @@
 package paulevs.bnb.noise;
 
-import net.minecraft.util.maths.MathHelper;
+import net.minecraft.util.maths.MCMath;
 import net.minecraft.util.maths.Vec3D;
 
 public class SDFScatter2D extends FloatNoise {
@@ -20,8 +20,8 @@ public class SDFScatter2D extends FloatNoise {
 	
 	@Override
 	public float get(double x, double y, double z) {
-		int x1 = MathHelper.floor(x);
-		int z1 = MathHelper.floor(z);
+		int x1 = MCMath.floor(x);
+		int z1 = MCMath.floor(z);
 		
 		float sdx = (float) (x - x1);
 		float sdz = (float) (z - z1);

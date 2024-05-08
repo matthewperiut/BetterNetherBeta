@@ -1,8 +1,8 @@
 package paulevs.bnb.world.generator.biome;
 
 import net.minecraft.level.biome.Biome;
+import net.minecraft.level.biome.BiomeSource;
 import net.minecraft.level.dimension.DimensionData;
-import net.minecraft.level.gen.BiomeSource;
 import net.modificationstation.stationapi.api.util.math.MathHelper;
 import paulevs.bnb.world.biome.BNBBiomes;
 

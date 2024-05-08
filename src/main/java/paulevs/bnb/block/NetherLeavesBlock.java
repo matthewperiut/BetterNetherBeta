@@ -27,7 +27,7 @@ public class NetherLeavesBlock extends VBELeavesBlock {
 	@Override
 	@Environment(value= EnvType.CLIENT)
 	public boolean isSideRendered(BlockView view, int x, int y, int z, int side) {
-		return !view.isFullOpaque(x, y, z);
+		return !view.method_1783(x, y, z); // isFullOpaque
 	}
 	
 	@Override

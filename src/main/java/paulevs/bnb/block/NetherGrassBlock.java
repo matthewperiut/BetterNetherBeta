@@ -2,7 +2,7 @@ package paulevs.bnb.block;
 
 import net.minecraft.entity.living.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShearsItem;
+import net.minecraft.item.tool.ShearsItem;
 import net.minecraft.level.Level;
 import net.modificationstation.stationapi.api.util.Identifier;
 import paulevs.vbe.utils.CreativeUtil;
