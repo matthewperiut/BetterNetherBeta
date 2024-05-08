@@ -121,7 +121,7 @@ public class BNBItems {
 	private static Item make(String name, Function<Identifier, Item> constructor) {
 		Identifier id = BNB.id(name);
 		Item item = constructor.apply(id);
-		item.setTranslationKey(id.toString());
+		item.setTranslationKey(id);
 		ITEMS.add(item);
 		return item;
 	}
@@ -129,7 +129,7 @@ public class BNBItems {
 	private static Item make(String name, Supplier<Structure> structure, BiFunction<Identifier, Supplier<Structure>, Item> constructor) {
 		Identifier id = BNB.id(name);
 		Item item = constructor.apply(id, structure);
-		item.setTranslationKey(id.toString());
+		item.setTranslationKey(id);
 		ITEMS.add(item);
 		return item;
 	}

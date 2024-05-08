@@ -38,13 +38,13 @@ public class BNBAchievements {
 	};
 	
 	private static Achievement make(String name, Block icon, int x, int y, Achievement parent) {
-		Achievement achievement = new Achievement(achievementID++, "bnb:" + name, x, y, icon, parent);
+		Achievement achievement = new Achievement(achievementID++, "bnb." + name, x, y, icon, parent);
 		ACHIEVEMENTS.add(achievement);
 		return achievement;
 	}
 	
 	private static Achievement make(String name, Item icon, int x, int y, Achievement parent) {
-		Achievement achievement = new Achievement(achievementID++, "bnb:" + name, x, y, icon, parent);
+		Achievement achievement = new Achievement(achievementID++, "bnb." + name, x, y, icon, parent);
 		ACHIEVEMENTS.add(achievement);
 		return achievement;
 	}

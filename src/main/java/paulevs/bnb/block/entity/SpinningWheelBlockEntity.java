@@ -16,7 +16,7 @@ public class SpinningWheelBlockEntity extends BlockEntity {
 	private int process;
 	
 	public String getInventoryName() {
-		return I18n.translate("gui.bnb:spinning_wheel");
+		return I18n.translate("gui.bnb.spinning_wheel");
 	}
 	
 	@Override

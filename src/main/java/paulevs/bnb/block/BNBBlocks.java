@@ -252,7 +252,7 @@ public class BNBBlocks {
 	private static <B extends Block> B make(String name, Function<Identifier, B> constructor) {
 		Identifier id = BNB.id(name);
 		B block = constructor.apply(id);
-		block.setTranslationKey(id.toString());
+		block.setTranslationKey(id);
 		BLOCKS_WITH_ITEMS.add(block);
 		return block;
 	}
@@ -260,7 +260,7 @@ public class BNBBlocks {
 	private static <B extends Block> B make(String name, BiFunction<Identifier, Block, B> constructor, Block sourceBlock) {
 		Identifier id = BNB.id(name);
 		B block = constructor.apply(id, sourceBlock);
-		block.setTranslationKey(id.toString());
+		block.setTranslationKey(id);
 		BLOCKS_WITH_ITEMS.add(block);
 		if (block instanceof StairsBlock || block instanceof VBEHalfSlabBlock) {
 			UPDATE_TEXTURE.add(sourceBlock);
@@ -284,7 +284,7 @@ public class BNBBlocks {
 	private static <B extends Block> B make(String name, BiFunction<Identifier, Supplier<Structure>, B> constructor, Supplier<Structure> structure) {
 		Identifier id = BNB.id(name);
 		B block = constructor.apply(id, structure);
-		block.setTranslationKey(id.toString());
+		block.setTranslationKey(id);
 		BLOCKS_WITH_ITEMS.add(block);
 		return block;
 	}
@@ -297,7 +297,7 @@ public class BNBBlocks {
 	) {
 		Identifier id = BNB.id(name);
 		TreeSaplingBlock block = new TreeSaplingBlock(id, normalTree, bigTreeShape, bigTree);
-		block.setTranslationKey(id.toString());
+		block.setTranslationKey(id);
 		BLOCKS_WITH_ITEMS.add(block);
 		return block;
 	}
@@ -305,7 +305,7 @@ public class BNBBlocks {
 	private static <B extends Block> B makeNI(String name, Function<Identifier, B> constructor) {
 		Identifier id = BNB.id(name);
 		B block = constructor.apply(id);
-		block.setTranslationKey(id.toString());
+		block.setTranslationKey(id);
 		BlockItem.BLOCK_ITEMS.remove(block);
 		return block;
 	}
@@ -313,7 +313,7 @@ public class BNBBlocks {
 	private static <B extends Block> B makeNI(String name, BiFunction<Identifier, Block, B> constructor, Block sourceBlock) {
 		Identifier id = BNB.id(name);
 		B block = constructor.apply(id, sourceBlock);
-		block.setTranslationKey(id.toString());
+		block.setTranslationKey(id);
 		BlockItem.BLOCK_ITEMS.remove(block);
 		if (block instanceof VBEFullSlabBlock slab) FULL_SLABS.add(slab);
 		return block;
