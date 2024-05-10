@@ -68,14 +68,15 @@ tile.bnb.falurian_roots.name=Falurian Roots
 tile.bnb.fireweed.name=Fireweed
 tile.bnb.lantern_grass.name=Lantern Grass
 tile.bnb.nether_daisy.name=Nether Daisy
-tile.bnb.falurian_moss.name=Falurian Moss
 tile.bnb.falurian_moss_block.name=Falurian Moss Block
 
 tile.bnb.falurian_vine.name=Falurian Vine
 item.bnb.falurian_vine_berries.name=Falurian Berries
 tile.bnb.pirozen_vine.name=Pirozen Vine
-tile.bnb.pirozen_moss.name=Pirozen Moss
 tile.bnb.pirozen_moss_block.name=Pirozen Moss Block
+
+tile.bnb.falurian_moss_cover.name=Falurian Moss Cover
+tile.bnb.pirozen_moss_cover.name=Pirozen Moss Cover
 
 tile.bnb.glowstone_shards.name=Glowstone Shards
 tile.bnb.obsidian_shards.name=Obsidian Shards

@@ -7,16 +7,16 @@ import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.util.math.Direction;
 import net.modificationstation.stationapi.api.util.math.MutableBlockPos;
 import paulevs.bnb.block.BNBBlockTags;
-import paulevs.bnb.block.MossBlock;
+import paulevs.bnb.block.MossBlockCover;
 
 import java.util.Random;
 
 public class BlockMossScatterStructure extends VolumeScatterStructure {
 	private final MutableBlockPos bp = new MutableBlockPos();
 	private final BlockState mossBlock;
-	private final MossBlock moss;
+	private final MossBlockCover moss;
 	
-	public BlockMossScatterStructure(int radius, float density, Block mossBlock, MossBlock moss) {
+	public BlockMossScatterStructure(int radius, float density, Block mossBlock, MossBlockCover moss) {
 		super(radius, density);
 		this.mossBlock = mossBlock.getDefaultState();
 		this.moss = moss;

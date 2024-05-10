@@ -116,17 +116,17 @@ public class BNBBlocks {
 	public static final Block PALE_TREE_WEEPING_VINE = make("pale_tree_weeping_vine", BNBVineBlock::new);
 	public static final Block EMBER_TREE_WEEPING_VINE = make("ember_tree_weeping_vine", BNBVineBlock::new);
 	
-	public static final Block FLAME_BULBS = make("flame_bulbs", NetherGrassBlock::new);
+	public static final Block FLAME_BULBS = make("flame_bulbs", NetherFloorPlantBlock::new);
 	public static final Block FLAME_BULBS_TALL = make("flame_bulbs_tall", DoubleGrassPlantBlock::new);
 	public static final Block FALURIAN_ROOTS = make("falurian_roots", NetherRootsBlock::new);
 	public static final Block NETHER_DAISY = make("nether_daisy", NetherFloorPlantBlock::new).setLightEmittance(0.5F);
 	public static final Block FIREWEED = make("fireweed", DoubleFloorPlantBlock::new).setLightEmittance(0.5F);
 	public static final Block LANTERN_GRASS = make("lantern_grass", DoubleFloorPlantBlock::new).setLightEmittance(0.75F);
 	
-	public static final Block FALURIAN_MOSS = make("falurian_moss", MossBlock::new);
+	public static final Block FALURIAN_MOSS = make("falurian_moss_cover", MossBlockCover::new);
 	public static final Block FALURIAN_MOSS_BLOCK = make("falurian_moss_block", NetherMossBlock::new);
 	
-	public static final Block PIROZEN_MOSS = make("pirozen_moss", MossBlock::new);
+	public static final Block PIROZEN_MOSS = make("pirozen_moss_cover", MossBlockCover::new);
 	public static final Block PIROZEN_MOSS_BLOCK = make("pirozen_moss_block", NetherMossBlock::new);
 	
 	public static final BNBCollectableVineBlock FALURIAN_VINE = (BNBCollectableVineBlock) make(

@@ -12,6 +12,7 @@ import net.minecraft.client.resource.language.I18n;
 import net.modificationstation.stationapi.api.client.event.render.entity.EntityRendererRegisterEvent;
 import net.modificationstation.stationapi.api.client.event.render.model.LoadUnbakedModelEvent;
 import net.modificationstation.stationapi.api.client.event.texture.TextureRegisterEvent;
+import net.modificationstation.stationapi.api.client.render.model.UnbakedModel;
 import net.modificationstation.stationapi.api.client.texture.SpriteIdentifier;
 import net.modificationstation.stationapi.api.client.texture.atlas.Atlases;
 import net.modificationstation.stationapi.api.client.texture.atlas.ExpandableAtlas;
@@ -76,6 +77,7 @@ public class ClientListener {
 		}
 		
 		Direction[] direction = Direction.values();
+		BNBConnectedTextures.add4SideTextures(BNBBlocks.FALURIAN_MOSS_BLOCK, BNB.id("block/falurian_moss_side"), direction);
 		BNBConnectedTextures.add4SideTextures(BNBBlocks.PIROZEN_MOSS_BLOCK, BNB.id("block/pirozen_moss_side"), direction);
 		BNBConnectedTextures.add4SideTextures(BNBBlocks.OBSIDIAN_GRAVEL, BNB.id("block/obsidian_gravel_side"), direction);
 		BNBConnectedTextures.add4SideTextures(Block.GRAVEL, BNB.id("block/gravel_side"), direction);
@@ -107,6 +109,10 @@ public class ClientListener {
 	public void onModelLoad(LoadUnbakedModelEvent event) throws IOException {
 		if (event.identifier.namespace != BNB.NAMESPACE) return;
 		if (!event.identifier.path.startsWith("block/")) return;
+		
+		if (event.identifier.path.contains("moss_cover")) {
+			UnbakedModel model = event.model;
+		}
 		
 		InputStream stream = getAsStream(event.identifier);
 		if (stream == null) return;
@@ -273,7 +279,6 @@ public class ClientListener {
 			if (id == null || id.namespace != BNB.NAMESPACE) return;
 			String name = I18n.translate(block.getTranslatedName());
 			if (name.startsWith("tile.")) {
-				builder.append(name.replace("bnb:", ""));
 				builder.append("=");
 				builder.append(fastTranslate(name));
 				builder.append("\n");
@@ -290,7 +295,6 @@ public class ClientListener {
 			if (id == null || id.namespace != BNB.NAMESPACE) return;
 			String name = I18n.translate(item.getTranslatedName());
 			if (name.startsWith("item.")) {
-				builder.append(name.replace("bnb:", ""));
 				builder.append("=");
 				builder.append(fastTranslate(name));
 				builder.append("\n");
@@ -301,7 +305,7 @@ public class ClientListener {
 	}
 	
 	private String fastTranslate(String name) {
-		int index1 = name.indexOf(":") + 1;
+		int index1 = name.indexOf(".", name.indexOf(".") + 1) + 1;
 		int index2 = name.indexOf(".", index1);
 		char[] data = name.substring(index1, index2).toCharArray();
 		data[0] = Character.toUpperCase(data[0]);

@@ -16,8 +16,8 @@ import paulevs.bnb.block.property.BNBBlockMaterials;
 import paulevs.bnb.block.property.BNBBlockProperties;
 import paulevs.bnb.sound.BNBSounds;
 
-public class MossBlock extends BNBPlantBlock {
-	public MossBlock(Identifier id) {
+public class MossBlockCover extends BNBPlantBlock {
+	public MossBlockCover(Identifier id) {
 		super(id, BNBBlockMaterials.NETHER_PLANT);
 		setSounds(BNBSounds.MOSS_BLOCK);
 		BlockState state = getDefaultState();
@@ -107,6 +107,7 @@ public class MossBlock extends BNBPlantBlock {
 	}
 	
 	private boolean isSupport(BlockState state) {
+		if (state.isOf(GLASS) || state.isOf(GLOWSTONE)) return true;
 		return (state.getMaterial() == Material.LEAVES || state.isOpaque()) && state.getBlock().isFullCube();
 	}
 	

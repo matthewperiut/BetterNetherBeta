@@ -3,7 +3,7 @@ package paulevs.bnb.world.structure;
 import net.minecraft.block.Block;
 import net.minecraft.level.structure.Structure;
 import paulevs.bnb.block.BNBBlocks;
-import paulevs.bnb.block.MossBlock;
+import paulevs.bnb.block.MossBlockCover;
 import paulevs.bnb.world.structure.common.BoulderStructure;
 import paulevs.bnb.world.structure.common.CocoonStructure;
 import paulevs.bnb.world.structure.common.CrystalStructure;
@@ -35,21 +35,21 @@ public class BNBStructures {
 	public static final Structure LANTERN_GRASS = new DoublePlantScatterStructure(2, 4, BNBBlocks.LANTERN_GRASS);
 	public static final Structure FALURIAN_MOSS = new MossScatterStructure(
 		3, 0.4F,
-		(MossBlock) BNBBlocks.FALURIAN_MOSS
+		(MossBlockCover) BNBBlocks.FALURIAN_MOSS
 	);
 	public static final Structure FALURIAN_MOSS_BLOCK = new BlockMossScatterStructure(
 		3, 0.75F,
 		BNBBlocks.FALURIAN_MOSS_BLOCK,
-		(MossBlock) BNBBlocks.FALURIAN_MOSS
+		(MossBlockCover) BNBBlocks.FALURIAN_MOSS
 	);
 	public static final Structure PIROZEN_MOSS = new MossScatterStructure(
 		3, 0.4F,
-		(MossBlock) BNBBlocks.PIROZEN_MOSS
+		(MossBlockCover) BNBBlocks.PIROZEN_MOSS
 	);
 	public static final Structure PIROZEN_MOSS_BLOCK = new BlockMossScatterStructure(
 		3, 0.75F,
 		BNBBlocks.PIROZEN_MOSS_BLOCK,
-		(MossBlock) BNBBlocks.PIROZEN_MOSS
+		(MossBlockCover) BNBBlocks.PIROZEN_MOSS
 	);
 	
 	public static final Structure FALURIAN_VINE_SHORT = new BerriesVineStructure(

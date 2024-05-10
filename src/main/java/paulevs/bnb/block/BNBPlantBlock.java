@@ -1,18 +1,23 @@
 package paulevs.bnb.block;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.living.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.tool.ShearsItem;
 import net.minecraft.level.Level;
 import net.minecraft.util.maths.Box;
 import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.block.States;
 import net.modificationstation.stationapi.api.template.block.TemplateBlock;
 import net.modificationstation.stationapi.api.util.Identifier;
+import paulevs.vbe.utils.CreativeUtil;
 
 import java.util.Random;
 
 public abstract class BNBPlantBlock extends TemplateBlock {
 	public BNBPlantBlock(Identifier id, Material material) {
 		super(id, material);
+		NO_AMBIENT_OCCLUSION[this.id] = true;
 		disableNotifyOnMetaDataChange();
 		setSounds(GRASS_SOUNDS);
 		disableStat();
@@ -55,6 +60,15 @@ public abstract class BNBPlantBlock extends TemplateBlock {
 	@Override
 	public boolean isFullCube() {
 		return false;
+	}
+	
+	@Override
+	public void afterBreak(Level level, PlayerEntity player, int x, int y, int z, int meta) {
+		if (level.isRemote) super.afterBreak(level, player, x, y, z, meta);
+		ItemStack heldItem = player.getHeldItem();
+		if (heldItem == null || !(heldItem.getType() instanceof ShearsItem)) return;
+		drop(level, x, y, z, new ItemStack(this));
+		if (!CreativeUtil.isCreative(player)) heldItem.applyDamage(1, player);
 	}
 	
 	protected abstract boolean canStay(Level level, int x, int y, int z);

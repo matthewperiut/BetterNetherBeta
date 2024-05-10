@@ -1,0 +1,6 @@
+{
+	"parent": "bnb:block/moss_cover",
+	"textures": {
+		"cover": "bnb:block/pirozen_moss_cover"
+	}
+}
