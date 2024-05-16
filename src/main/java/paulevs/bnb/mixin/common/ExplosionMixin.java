@@ -14,12 +14,12 @@ import paulevs.bnb.world.BNBExplosion;
 @Mixin(Explosion.class)
 public class ExplosionMixin {
 	@Unique boolean bnb_isBlockSafe;
-	@Inject(method = "kaboomPhase2", at = @At("HEAD"))
+	@Inject(method = "phase2", at = @At("HEAD"))
 	private void bnb_checkBlockRemove(boolean par1, CallbackInfo info) {
 		bnb_isBlockSafe = BNBExplosion.isBlockSafe();
 	}
 	
-	@WrapOperation(method = "kaboomPhase2", at = @At(value = "INVOKE", target = "Lnet/minecraft/level/Level;getBlockId(III)I"))
+	@WrapOperation(method = "phase2", at = @At(value = "INVOKE", target = "Lnet/minecraft/level/Level;getBlockID(III)I"))
 	private int bnb_disableBlockRemove(Level level, int x, int y, int z, Operation<Integer> original) {
 		return bnb_isBlockSafe ? -1 : original.call(level, x, y, z);
 	}
