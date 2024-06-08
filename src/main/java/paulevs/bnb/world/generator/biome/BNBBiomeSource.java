@@ -14,7 +14,7 @@ public class BNBBiomeSource extends BiomeSource {
 	private final BiomeMap map;
 	
 	public BNBBiomeSource(long seed, DimensionData data) {
-		map = new BiomeMap(BNBBiomes.BIOME_BY_TERRAIN);
+		map = new BiomeMap();
 		random.setSeed(seed);
 		map.setData(data, random.nextInt());
 		temperatureNoises = new double[256];

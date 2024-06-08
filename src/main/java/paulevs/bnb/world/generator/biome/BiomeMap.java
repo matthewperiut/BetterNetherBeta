@@ -5,28 +5,35 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.level.biome.Biome;
 import net.minecraft.level.dimension.DimensionData;
 import net.modificationstation.stationapi.api.util.Identifier;
+import paulevs.bnb.noise.PerlinNoise;
 import paulevs.bnb.noise.VoronoiNoise;
+import paulevs.bnb.world.biome.BNBBiomes;
+import paulevs.bnb.world.biome.BiomeArea;
 import paulevs.bnb.world.generator.BNBWorldGenerator;
 import paulevs.bnb.world.generator.map.DataMap;
 import paulevs.bnb.world.generator.terrain.TerrainMap;
 import paulevs.bnb.world.generator.terrain.TerrainRegion;
 import paulevs.bnb.world.generator.terrain.features.OceanPillarsFeature;
 
-import java.util.EnumMap;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.image.BufferedImage;
 import java.util.List;
+import java.util.Map;
 
 public class BiomeMap extends DataMap<Biome> {
 	private final Object2ObjectMap<String, Biome> nameToBiome = new Object2ObjectOpenHashMap<>();
-	private final EnumMap<TerrainRegion, List<Biome>> biomes;
 	private final VoronoiNoise cellNoise = new VoronoiNoise();
+	private final PerlinNoise soulBiomeNoise = new PerlinNoise();
+	private final PerlinNoise densityBiomeNoise = new PerlinNoise();
 	private TerrainMap map;
 	
-	public BiomeMap(EnumMap<TerrainRegion, List<Biome>> biomes) {
+	public BiomeMap() {
 		super("bnb_biomes");
-		this.biomes = biomes;
-		biomes.values().forEach(list -> list.forEach(
+		BNBBiomes.BIOME_BY_TERRAIN.values().forEach(map -> map.values().forEach(list -> list.forEach(
 			biome -> nameToBiome.put(biome.name, biome)
-		));
+		)));
 	}
 	
 	@Override
@@ -48,7 +55,12 @@ public class BiomeMap extends DataMap<Biome> {
 				region = TerrainRegion.MOUNTAINS;
 			}
 		}
-		List<Biome> biomes = this.biomes.get(region);
+		Map<BiomeArea, List<Biome>> areaMap = BNBBiomes.BIOME_BY_TERRAIN.get(region);
+		if (areaMap == null || areaMap.isEmpty()) return Biome.NETHER;
+		float soul = soulBiomeNoise.get(x * 0.05, z * 0.05);
+		float density = densityBiomeNoise.get(x * 0.1, z * 0.1);
+		BiomeArea area = BiomeArea.getArea(soul, density);
+		List<Biome> biomes = areaMap.get(area);
 		if (biomes == null || biomes.isEmpty()) return Biome.NETHER;
 		double px = x * 0.05 + distortionX.get(x * 0.1, z * 0.1);
 		double pz = z * 0.05 + distortionZ.get(x * 0.1, z * 0.1);
@@ -60,6 +72,26 @@ public class BiomeMap extends DataMap<Biome> {
 	public void setData(DimensionData data, int seed) {
 		super.setData(data, seed);
 		cellNoise.setSeed(random.nextInt());
+		soulBiomeNoise.setSeed(random.nextInt());
+		densityBiomeNoise.setSeed(random.nextInt());
 		map = BNBWorldGenerator.getMapCopy();
+		
+		BufferedImage buffer = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
+		
+		for (int x = 0; x < 512; x++) {
+			for (int z = 0; z < 512; z++) {
+				Biome biome = getData(x << 2, z << 2);
+				int color = biome.getFogColor().getColor(null, 0, 0) | 255 << 24;
+				buffer.setRGB(x, z, color);
+			}
+		}
+		
+		JFrame frame = new JFrame();
+		frame.add(new JLabel(new ImageIcon(buffer)));
+		frame.setResizable(false);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 	}
 }

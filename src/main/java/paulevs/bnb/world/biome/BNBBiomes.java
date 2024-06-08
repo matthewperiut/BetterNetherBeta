@@ -16,13 +16,14 @@ import paulevs.bnb.world.generator.terrain.TerrainRegion;
 import paulevs.bnb.world.structure.BNBPlacers;
 import paulevs.bnb.world.structure.BNBStructures;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
 @SuppressWarnings("unused")
 public class BNBBiomes {
-	public static final EnumMap<TerrainRegion, List<Biome>> BIOME_BY_TERRAIN = new EnumMap<>(TerrainRegion.class);
+	public static final EnumMap<TerrainRegion, EnumMap<BiomeArea, List<Biome>>> BIOME_BY_TERRAIN = new EnumMap<>(TerrainRegion.class);
 	public static final List<Biome> BIOMES = new ArrayList<>();
 	
 	private static final FractalNoise SHORE_NOISE = new FractalNoise(PerlinNoise::new);
@@ -54,8 +55,31 @@ public class BNBBiomes {
 		.feature(BNBPlacers.FALURIAN_VINE_LONG_PLACER)
 		.feature(BNBPlacers.FALURIAN_MOSS_BLOCK_PLACER)
 		.feature(BNBPlacers.FALURIAN_MOSS_PLACER)
-		.build()).bnb_setBiomeAmbience(BNBSounds.NETHER_FOREST_AMBIENCE);
+		.build(), BiomeArea.NETHERRACK_LUSH).bnb_setBiomeAmbience(BNBSounds.NETHER_FOREST_AMBIENCE);
 	
+	public static final Biome FALURIAN_GRASSLAND = addLand(BiomeBuilder
+		.start("bnb_falurian_grassland")
+		.fogColor(0x951922)
+		.surfaceRule(SurfaceBuilder.start(BNBBlocks.MAROON_NYLIUM).replace(Block.NETHERRACK).ground(1).build())
+		.noDimensionFeatures()
+		.feature(BNBPlacers.ORICHALCUM_PLACER)
+		.feature(BNBPlacers.LAVA_LAKE_PLACER)
+		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_FLOOR_PLACER)
+		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
+		.feature(BNBPlacers.FALURIAN_BUSH_PLACER)
+		.feature(BNBPlacers.FALURIAN_SPIDER_COCOON)
+		.feature(BNBPlacers.FIREWEED_STRUCTURE_PLACER)
+		.feature(BNBPlacers.NETHER_DAISY_PLACER)
+		.feature(BNBPlacers.FALURIAN_ROOTS_PLACER)
+		.feature(BNBPlacers.LANTERN_GRASS_PLACER)
+		.feature(BNBPlacers.FLAME_BULBS_TALL_PLACER)
+		.feature(BNBPlacers.FLAME_BULBS_PLACER)
+		.feature(BNBPlacers.FALURIAN_MOSS_CEILING_PLACER)
+		.feature(BNBPlacers.FALURIAN_VINE_SHORT_PLACER)
+		.feature(BNBPlacers.FALURIAN_VINE_LONG_PLACER)
+		.feature(BNBPlacers.FALURIAN_MOSS_BLOCK_PLACER)
+		.feature(BNBPlacers.FALURIAN_MOSS_PLACER)
+		.build(), BiomeArea.NETHERRACK_MEDIUM).bnb_setBiomeAmbience(BNBSounds.NETHER_FOREST_AMBIENCE);
 	
 	public static final Biome PIROZEN_FOREST = addLand(BiomeBuilder
 		.start("bnb_pirozen_forest")
@@ -63,7 +87,6 @@ public class BNBBiomes {
 		.surfaceRule(SurfaceBuilder.start(BNBBlocks.TURQUOISE_NYLIUM).replace(Block.NETHERRACK).ground(1).build())
 		.noDimensionFeatures()
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
-		//.feature(BNBPlacers.LAVA_STREAM_PLACER)
 		.feature(BNBPlacers.LAVA_LAKE_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_FLOOR_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
@@ -77,7 +100,25 @@ public class BNBBiomes {
 		.feature(BNBPlacers.PIROZEN_VINE_LONG_PLACER)
 		.feature(BNBPlacers.PIROZEN_MOSS_BLOCK_PLACER)
 		.feature(BNBPlacers.PIROZEN_MOSS_PLACER)
-		.build()).bnb_setBiomeAmbience(BNBSounds.NETHER_FOREST_AMBIENCE);
+		.build(), BiomeArea.NETHERRACK_LUSH).bnb_setBiomeAmbience(BNBSounds.NETHER_FOREST_AMBIENCE);
+	
+	public static final Biome PIROZEN_GRASSLAND = addLand(BiomeBuilder
+		.start("bnb_pirozen_grassland")
+		.fogColor(0x119b85)
+		.surfaceRule(SurfaceBuilder.start(BNBBlocks.TURQUOISE_NYLIUM).replace(Block.NETHERRACK).ground(1).build())
+		.noDimensionFeatures()
+		.feature(BNBPlacers.ORICHALCUM_PLACER)
+		.feature(BNBPlacers.LAVA_LAKE_PLACER)
+		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_FLOOR_PLACER)
+		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
+		.feature(BNBPlacers.LARGE_PIROZEN_TREE_PLACER)
+		.feature(BNBPlacers.PIROZEN_SPIDER_COCOON)
+		.feature(BNBPlacers.PIROZEN_ROOTS_PLACER)
+		.feature(BNBPlacers.PIROZEN_VINE_SHORT_PLACER)
+		.feature(BNBPlacers.PIROZEN_VINE_LONG_PLACER)
+		.feature(BNBPlacers.PIROZEN_MOSS_BLOCK_PLACER)
+		.feature(BNBPlacers.PIROZEN_MOSS_PLACER)
+		.build(), BiomeArea.NETHERRACK_MEDIUM).bnb_setBiomeAmbience(BNBSounds.NETHER_FOREST_AMBIENCE);
 	
 	public static final Biome POISON_FOREST = addLand(BiomeBuilder
 		.start("bnb_poison_forest")
@@ -85,7 +126,6 @@ public class BNBBiomes {
 		.surfaceRule(SurfaceBuilder.start(BNBBlocks.POISON_NYLIUM).replace(Block.NETHERRACK).ground(1).build())
 		.noDimensionFeatures()
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
-		//.feature(BNBPlacers.LAVA_STREAM_PLACER)
 		.feature(BNBPlacers.LAVA_LAKE_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_FLOOR_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
@@ -95,7 +135,21 @@ public class BNBBiomes {
 		.feature(BNBPlacers.POISON_BUSH_PLACER)
 		.feature(BNBPlacers.POISON_SPIDER_COCOON)
 		.feature(BNBPlacers.POISON_ROOTS_PLACER)
-		.build()).bnb_setBiomeAmbience(BNBSounds.NETHER_FOREST_AMBIENCE);
+		.build(), BiomeArea.NETHERRACK_LUSH).bnb_setBiomeAmbience(BNBSounds.NETHER_FOREST_AMBIENCE);
+	
+	public static final Biome POISON_GRASSLAND = addLand(BiomeBuilder
+		.start("bnb_poison_grassland")
+		.fogColor(0x7db33d)
+		.surfaceRule(SurfaceBuilder.start(BNBBlocks.POISON_NYLIUM).replace(Block.NETHERRACK).ground(1).build())
+		.noDimensionFeatures()
+		.feature(BNBPlacers.ORICHALCUM_PLACER)
+		.feature(BNBPlacers.LAVA_LAKE_PLACER)
+		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_FLOOR_PLACER)
+		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
+		.feature(BNBPlacers.POISON_BUSH_PLACER)
+		.feature(BNBPlacers.POISON_SPIDER_COCOON)
+		.feature(BNBPlacers.POISON_ROOTS_PLACER)
+		.build(), BiomeArea.NETHERRACK_MEDIUM).bnb_setBiomeAmbience(BNBSounds.NETHER_FOREST_AMBIENCE);
 	
 	public static final Biome GRAVEL_SHORE = addShore(BiomeBuilder
 		.start("bnb_gravel_shore")
@@ -104,7 +158,7 @@ public class BNBBiomes {
 		.noDimensionFeatures()
 		.feature(BNBPlacers.ORICHALCUM_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
-		.build()).bnb_setBiomeAmbience(BNBSounds.LAVA_SEA_AMBIENCE);
+		.build(), BiomeArea.VALUES).bnb_setBiomeAmbience(BNBSounds.LAVA_SEA_AMBIENCE);
 	
 	public static final Biome OBSIDIAN_SHORE = addShore(BiomeBuilder
 		.start("bnb_obsidian_shore")
@@ -116,7 +170,7 @@ public class BNBBiomes {
 		.feature(BNBPlacers.OBSIDIAN_BOLDER_PLACER)
 		.feature(BNBPlacers.OBSIDIAN_SHARDS_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
-		.build()).bnb_setBiomeAmbience(BNBSounds.LAVA_SEA_AMBIENCE);
+		.build(), BiomeArea.VALUES).bnb_setBiomeAmbience(BNBSounds.LAVA_SEA_AMBIENCE);
 	
 	public static final Biome LAVA_OCEAN = addOcean(BiomeBuilder
 		.start("bnb_lava_ocean")
@@ -129,32 +183,62 @@ public class BNBBiomes {
 		.feature(BNBPlacers.LAVARRACK_BOLDER_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER)
 		.feature(BNBPlacers.LAVA_STREAM_PLACER)
-		.build()).bnb_setBiomeAmbience(BNBSounds.LAVA_SEA_AMBIENCE);
+		.build(), BiomeArea.VALUES).bnb_setBiomeAmbience(BNBSounds.LAVA_SEA_AMBIENCE);
 	
-	private static void add(TerrainRegion region, Biome biome) {
-		BIOME_BY_TERRAIN.computeIfAbsent(region, k -> new ArrayList<>()).add(biome);
+	public static final Biome LUSH_SOUL_BIOME = addLand(BiomeBuilder
+		.start("bnb_lush_soul_biome")
+		.fogColor(Color.CYAN.getRGB())
+		.surfaceRule(SurfaceBuilder.start(Block.SOUL_SAND).replace(Block.NETHERRACK).ground(3).build())
+		.noDimensionFeatures()
+		.build(), BiomeArea.SOUL_LUSH);
+	
+	public static final Biome MEDIUM_SOUL_BIOME = addLand(BiomeBuilder
+		.start("bnb_medium_soul_biome")
+		.fogColor(Color.CYAN.darker().getRGB())
+		.surfaceRule(SurfaceBuilder.start(Block.SOUL_SAND).replace(Block.NETHERRACK).ground(3).build())
+		.noDimensionFeatures()
+		.build(), BiomeArea.SOUL_MEDIUM);
+	
+	public static final Biome BARREN_SOUL_BIOME = addLand(BiomeBuilder
+		.start("bnb_barren_soul_biome")
+		.fogColor(Color.CYAN.darker().darker().getRGB())
+		.surfaceRule(SurfaceBuilder.start(Block.SOUL_SAND).replace(Block.NETHERRACK).ground(3).build())
+		.noDimensionFeatures()
+		.build(), BiomeArea.SOUL_BARREN);
+	
+	private static void add(TerrainRegion region, BiomeArea area, Biome biome) {
+		BIOME_BY_TERRAIN
+			.computeIfAbsent(region, k -> new EnumMap<>(BiomeArea.class))
+			.computeIfAbsent(area, k -> new ArrayList<>())
+			.add(biome);
 	}
 	
-	private static Biome addLand(Biome biome) {
+	private static Biome addLand(Biome biome, BiomeArea... areas) {
 		BIOMES.add(biome);
-		add(TerrainRegion.PLAINS, biome);
-		add(TerrainRegion.HILLS, biome);
-		add(TerrainRegion.MOUNTAINS, biome);
-		add(TerrainRegion.BRIDGES, biome);
-		add(TerrainRegion.SHORE_MOUNTAINS, biome);
+		for (BiomeArea area : areas) {
+			add(TerrainRegion.PLAINS, area, biome);
+			add(TerrainRegion.HILLS, area, biome);
+			add(TerrainRegion.MOUNTAINS, area, biome);
+			add(TerrainRegion.BRIDGES, area, biome);
+			add(TerrainRegion.SHORE_MOUNTAINS, area, biome);
+		}
 		return biome;
 	}
 	
-	private static Biome addShore(Biome biome) {
+	private static Biome addShore(Biome biome, BiomeArea... areas) {
 		BIOMES.add(biome);
-		add(TerrainRegion.SHORE_NORMAL, biome);
+		for (BiomeArea area : areas) {
+			add(TerrainRegion.SHORE_NORMAL, area, biome);
+		}
 		return biome;
 	}
 	
-	private static Biome addOcean(Biome biome) {
+	private static Biome addOcean(Biome biome, BiomeArea... areas) {
 		BIOMES.add(biome);
-		add(TerrainRegion.OCEAN_NORMAL, biome);
-		add(TerrainRegion.OCEAN_MOUNTAINS, biome);
+		for (BiomeArea area : areas) {
+			add(TerrainRegion.OCEAN_NORMAL, area, biome);
+			add(TerrainRegion.OCEAN_MOUNTAINS, area, biome);
+		}
 		return biome;
 	}
 	
