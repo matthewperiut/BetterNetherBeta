@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"": [
+			{ "model": "bnb:block/jalumine_leaves" },
+			{ "model": "bnb:block/jalumine_leaves_flowers_1" },
+			{ "model": "bnb:block/jalumine_leaves_flowers_2" },
+			{ "model": "bnb:block/jalumine_leaves_flowers_3" }
+		]
+	}
+}

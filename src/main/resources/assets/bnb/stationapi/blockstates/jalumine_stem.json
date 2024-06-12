@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"axis=x": [
+			{ "model": "bnb:block/jalumine_stem", "x": 90, "y": 90 },
+			{ "model": "bnb:block/jalumine_stem_veins", "x": 90, "y": 90 }
+		],
+		"axis=y": [
+			{ "model": "bnb:block/jalumine_stem" },
+			{ "model": "bnb:block/jalumine_stem_veins" }
+		],
+		"axis=z": [
+			{ "model": "bnb:block/jalumine_stem", "x": 90 },
+			{ "model": "bnb:block/jalumine_stem_veins", "x": 90 }
+		]
+	}
+}

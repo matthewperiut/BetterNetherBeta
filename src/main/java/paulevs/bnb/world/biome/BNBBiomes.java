@@ -77,8 +77,6 @@ public class BNBBiomes {
 		.feature(BNBPlacers.FALURIAN_MOSS_CEILING_PLACER)
 		.feature(BNBPlacers.FALURIAN_VINE_SHORT_PLACER)
 		.feature(BNBPlacers.FALURIAN_VINE_LONG_PLACER)
-		.feature(BNBPlacers.FALURIAN_MOSS_BLOCK_PLACER)
-		.feature(BNBPlacers.FALURIAN_MOSS_PLACER)
 		.build(), BiomeArea.NETHERRACK_MEDIUM).bnb_setBiomeAmbience(BNBSounds.NETHER_FOREST_AMBIENCE);
 	
 	public static final Biome PIROZEN_FOREST = addLand(BiomeBuilder
@@ -116,8 +114,6 @@ public class BNBBiomes {
 		.feature(BNBPlacers.PIROZEN_ROOTS_PLACER)
 		.feature(BNBPlacers.PIROZEN_VINE_SHORT_PLACER)
 		.feature(BNBPlacers.PIROZEN_VINE_LONG_PLACER)
-		.feature(BNBPlacers.PIROZEN_MOSS_BLOCK_PLACER)
-		.feature(BNBPlacers.PIROZEN_MOSS_PLACER)
 		.build(), BiomeArea.NETHERRACK_MEDIUM).bnb_setBiomeAmbience(BNBSounds.NETHER_FOREST_AMBIENCE);
 	
 	public static final Biome POISON_FOREST = addLand(BiomeBuilder
@@ -188,14 +184,31 @@ public class BNBBiomes {
 	public static final Biome LUSH_SOUL_BIOME = addLand(BiomeBuilder
 		.start("bnb_lush_soul_biome")
 		.fogColor(Color.CYAN.getRGB())
+		.surfaceRule(SurfaceBuilder.start(BNBBlocks.SOUL_NYLIUM).replace(Block.NETHERRACK).ground(1).build())
 		.surfaceRule(SurfaceBuilder.start(Block.SOUL_SAND).replace(Block.NETHERRACK).ground(3).build())
+		.surfaceRule(SurfaceBuilder.start(BNBBlocks.SOUL_SANDSTONE).replace(Block.NETHERRACK).ground(10).build())
 		.noDimensionFeatures()
+		.build(), BiomeArea.SOUL_LUSH);
+	
+	public static final Biome GLOWSTONE_FOREST = addLand(BiomeBuilder
+		.start("bnb_glowstone_forest")
+		.fogColor(0x4A306B)
+		.surfaceRule(SurfaceBuilder.start(BNBBlocks.SOUL_SOIL).replace(Block.NETHERRACK).ground(3).build())
+		.surfaceRule(SurfaceBuilder.start(BNBBlocks.SOUL_SANDSTONE).replace(Block.NETHERRACK).ground(10).build())
+		.noDimensionFeatures()
+		.feature(BNBPlacers.ORICHALCUM_PLACER)
+		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_FLOOR_PLACER_FREQUENT)
+		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER_FREQUENT)
+		.feature(BNBPlacers.JALUMINE_TREE_PLACER)
+		.feature(BNBPlacers.GLOWSTONE_SHARDS_PLACER)
 		.build(), BiomeArea.SOUL_LUSH);
 	
 	public static final Biome MEDIUM_SOUL_BIOME = addLand(BiomeBuilder
 		.start("bnb_medium_soul_biome")
 		.fogColor(Color.CYAN.darker().getRGB())
+		.surfaceRule(SurfaceBuilder.start(BNBBlocks.SOUL_NYLIUM).replace(Block.NETHERRACK).ground(1).build())
 		.surfaceRule(SurfaceBuilder.start(Block.SOUL_SAND).replace(Block.NETHERRACK).ground(3).build())
+		.surfaceRule(SurfaceBuilder.start(BNBBlocks.SOUL_SANDSTONE).replace(Block.NETHERRACK).ground(10).build())
 		.noDimensionFeatures()
 		.build(), BiomeArea.SOUL_MEDIUM);
 	
@@ -203,6 +216,7 @@ public class BNBBiomes {
 		.start("bnb_barren_soul_biome")
 		.fogColor(Color.CYAN.darker().darker().getRGB())
 		.surfaceRule(SurfaceBuilder.start(Block.SOUL_SAND).replace(Block.NETHERRACK).ground(3).build())
+		.surfaceRule(SurfaceBuilder.start(BNBBlocks.SOUL_SANDSTONE).replace(Block.NETHERRACK).ground(10).build())
 		.noDimensionFeatures()
 		.build(), BiomeArea.SOUL_BARREN);
 	

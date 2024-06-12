@@ -19,6 +19,6 @@ public class BNBCeilPlantBlock extends BNBPlantBlock {
 	
 	protected boolean isCeil(BlockState state) {
 		Block block = state.getBlock();
-		return (block.isFullCube() && block.isFullOpaque()) || block instanceof NetherLeavesBlock;
+		return (block.isFullCube() && block.isFullOpaque()) || block instanceof BNBLeavesBlock;
 	}
 }

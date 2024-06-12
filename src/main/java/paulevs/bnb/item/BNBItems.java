@@ -39,6 +39,9 @@ public class BNBItems {
 	public static final Item POISON_TREE_PLACER = make(
 		"poison_tree_placer", () -> BNBStructures.POISON_TREE, StructurePlacerItem::new
 	);
+	public static final Item JALUMINE_TREE_PLACER = make(
+		"jalumine_tree_placer", () -> BNBStructures.JALUMINE_TREE, StructurePlacerItem::new
+	);
 	
 	public static final Item LARGE_FALURIAN_TREE_PLACER = make(
 		"large_falurian_tree_placer", () -> BNBStructures.LARGE_FALURIAN_TREE, StructurePlacerItem::new

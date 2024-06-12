@@ -1,0 +1,7 @@
+{
+	"parent": "bnb:block/emissive_cube_all",
+	"textures": {
+		"all": "bnb:block/jalumine_leaves",
+		"all_e": "bnb:block/jalumine_flowers_4"
+	}
+}

@@ -3,7 +3,7 @@ package paulevs.bnb.world.structure;
 import net.minecraft.block.Block;
 import net.minecraft.level.structure.Structure;
 import paulevs.bnb.block.BNBBlocks;
-import paulevs.bnb.block.MossBlockCover;
+import paulevs.bnb.block.CoverMossBlock;
 import paulevs.bnb.world.structure.common.BoulderStructure;
 import paulevs.bnb.world.structure.common.CocoonStructure;
 import paulevs.bnb.world.structure.common.CrystalStructure;
@@ -23,6 +23,7 @@ import paulevs.bnb.world.structure.scatter.SimpleScatterStructure;
 import paulevs.bnb.world.structure.scatter.SolidSupportScatterStructure;
 import paulevs.bnb.world.structure.tree.CommonLargeTreeStructure;
 import paulevs.bnb.world.structure.tree.CommonTreeStructure;
+import paulevs.bnb.world.structure.tree.JalumineTreeStructure;
 
 public class BNBStructures {
 	public static final Structure FLAME_BULBS = new SimpleScatterStructure(3, 15, BNBBlocks.FLAME_BULBS);
@@ -35,21 +36,21 @@ public class BNBStructures {
 	public static final Structure LANTERN_GRASS = new DoublePlantScatterStructure(2, 4, BNBBlocks.LANTERN_GRASS);
 	public static final Structure FALURIAN_MOSS = new MossScatterStructure(
 		3, 0.4F,
-		(MossBlockCover) BNBBlocks.FALURIAN_MOSS
+		(CoverMossBlock) BNBBlocks.FALURIAN_MOSS
 	);
 	public static final Structure FALURIAN_MOSS_BLOCK = new BlockMossScatterStructure(
 		3, 0.75F,
 		BNBBlocks.FALURIAN_MOSS_BLOCK,
-		(MossBlockCover) BNBBlocks.FALURIAN_MOSS
+		(CoverMossBlock) BNBBlocks.FALURIAN_MOSS
 	);
 	public static final Structure PIROZEN_MOSS = new MossScatterStructure(
 		3, 0.4F,
-		(MossBlockCover) BNBBlocks.PIROZEN_MOSS
+		(CoverMossBlock) BNBBlocks.PIROZEN_MOSS
 	);
 	public static final Structure PIROZEN_MOSS_BLOCK = new BlockMossScatterStructure(
 		3, 0.75F,
 		BNBBlocks.PIROZEN_MOSS_BLOCK,
-		(MossBlockCover) BNBBlocks.PIROZEN_MOSS
+		(CoverMossBlock) BNBBlocks.PIROZEN_MOSS
 	);
 	
 	public static final Structure FALURIAN_VINE_SHORT = new BerriesVineStructure(
@@ -126,6 +127,9 @@ public class BNBStructures {
 		0.25F
 	);
 	
+	//JalumineTreeStructure
+	public static final Structure JALUMINE_TREE = new JalumineTreeStructure();
+	
 	public static final Structure FALURIAN_TREE_BUSH = new PillarStructure()
 		.addSection(BNBBlocks.FALURIAN_STEM.getDefaultState(), 1, 2)
 		.addSection(BNBBlocks.FALURIAN_LEAVES.getDefaultState(), 2, 3);
@@ -164,6 +168,7 @@ public class BNBStructures {
 	);
 	public static final Structure LAVARRACK_BOLDER = new BoulderStructure(BNBBlocks.LAVARRACK.getDefaultState(), 1.5F, 3.0F);
 	public static final Structure OBSIDIAN_SHARDS = new SolidSupportScatterStructure(5, 7, BNBBlocks.OBSIDIAN_SHARDS);
+	public static final Structure GLOWSTONE_SHARDS = new SolidSupportScatterStructure(5, 7, BNBBlocks.GLOWSTONE_SHARDS);
 	public static final Structure OBSIDIAN_GRAVEL_BLOB = new PatchBlobStructure(
 		BNBBlocks.OBSIDIAN_GRAVEL.getDefaultState(), 1.5F, 2.5F, Block.GRAVEL.getDefaultState()
 	);

@@ -219,6 +219,29 @@ tile.bnb.orichalcum_tiles_slab_full.name=Orichalcum Tiles Slab
 tile.bnb.netherrack_orichalcum_tiles.name=Netherrack-Orichalcum Tiles
 tile.bnb.lavarrack.name=Lavarrack
 
+tile.bnb.soul_sandstone.name=Soul Sandstone
+tile.bnb.soul_sandstone_bricks.name=Soul Sandstone Bricks
+tile.bnb.soul_sandstone_tiles.name=Soul Sandstone Tiles
+tile.bnb.soul_sandstone_bricks_stairs.name=Soul Sandstone Bricks Stairs
+tile.bnb.soul_sandstone_tiles_stairs.name=Soul Sandstone Tiles Stairs
+tile.bnb.soul_sandstone_bricks_slab_half.name=Soul Sandstone Bricks Slab
+tile.bnb.soul_sandstone_bricks_slab_full.name=Soul Sandstone Bricks Slab
+tile.bnb.soul_sandstone_tiles_slab_half.name=Soul Sandstone Tiles Slab
+tile.bnb.soul_sandstone_tiles_slab_full.name=Soul Sandstone Tiles Slab
+tile.bnb.soul_sandstone_stairs.name=Soul Sandstone Stairs
+tile.bnb.soul_sandstone_slab_half.name=Soul Sandstone Slab
+tile.bnb.soul_sandstone_slab_full.name=Soul Sandstone Slab
+
+tile.bnb.jalumine_leaves.name=Jalumine Leaves
+tile.bnb.jalumine_flower.name=Jalumine Flower
+tile.bnb.jalumine_stem.name=Jalumine Stem
+tile.bnb.jalumine_branch.name=Jalumine Branch
+tile.bnb.jalumine_planks.name=Jalumine Planks
+tile.bnb.jalumine_stairs.name=Jalumine Stairs
+tile.bnb.jalumine_slab_half.name=Jalumine Slab
+tile.bnb.jalumine_slab_full.name=Jalumine Slab
+tile.bnb.jalumine_fence.name=Jalumine Fence
+
 item.bnb.fiber_helmet.name=Fiber Helmet
 item.bnb.fiber_chestplate.name=Fiber Chestplate
 item.bnb.fiber_leggings.name=Fiber Leggings

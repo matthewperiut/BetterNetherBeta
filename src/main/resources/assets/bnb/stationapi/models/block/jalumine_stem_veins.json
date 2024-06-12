@@ -1,0 +1,7 @@
+{
+	"parent": "bnb:block/emissive_stem",
+	"textures": {
+		"all": "bnb:block/jalumine_stem_veins",
+		"all_e": "bnb:block/jalumine_stem_veins_e"
+	}
+}

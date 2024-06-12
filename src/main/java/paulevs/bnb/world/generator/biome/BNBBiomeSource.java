@@ -4,7 +4,6 @@ import net.minecraft.level.biome.Biome;
 import net.minecraft.level.biome.BiomeSource;
 import net.minecraft.level.dimension.DimensionData;
 import net.modificationstation.stationapi.api.util.math.MathHelper;
-import paulevs.bnb.world.biome.BNBBiomes;
 
 import java.util.Arrays;
 import java.util.Random;

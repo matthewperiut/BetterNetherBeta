@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"  X",
+		" XX",
+		"XXX"
+	],
+	"key": {
+		"X": {
+			"item": "bnb:jalumine_planks"
+		}
+	},
+	"result": {
+		"item": "bnb:jalumine_stairs",
+		"count": 6
+	}
+}

@@ -14,6 +14,7 @@
 		"CraftingResultMixin",
 		"FlattenedChunkMixin",
 		"FireballEntityMixin",
+		"StairsBlockAccessor",
 		"FurnaceOutputMixin",
 		"PlayerEntityMixin",
 		"GhastEntityMixin",

@@ -9,7 +9,6 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.Block;
 import net.minecraft.client.resource.language.I18n;
-import net.minecraft.level.biome.Biome;
 import net.modificationstation.stationapi.api.client.event.render.entity.EntityRendererRegisterEvent;
 import net.modificationstation.stationapi.api.client.event.render.model.LoadUnbakedModelEvent;
 import net.modificationstation.stationapi.api.client.event.texture.TextureRegisterEvent;
@@ -27,6 +26,7 @@ import paulevs.bnb.BNB;
 import paulevs.bnb.BNBClient;
 import paulevs.bnb.achievement.BNBAchievementPage;
 import paulevs.bnb.block.BNBBlocks;
+import paulevs.bnb.block.SoulSandstoneTexturedBlock;
 import paulevs.bnb.block.SpinningWheelBlock;
 import paulevs.bnb.entity.CrimsonSpiderEntity;
 import paulevs.bnb.entity.ObsidianBoatEntity;
@@ -41,15 +41,8 @@ import paulevs.bnb.rendering.BNBConnectedTextures;
 import paulevs.bnb.rendering.BNBWeatherRenderer;
 import paulevs.bnb.rendering.LavaRenderer;
 import paulevs.bnb.rendering.OBJModel;
-import paulevs.bnb.world.biome.BNBBiomes;
-import paulevs.bnb.world.generator.BNBWorldGenerator;
-import paulevs.bnb.world.generator.biome.BiomeMap;
 import uk.co.benjiweber.expressions.tuple.BiTuple;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -71,7 +64,7 @@ public class ClientListener {
 	
 	@EventListener
 	public void onTextureRegister(TextureRegisterEvent event) {
-		ExpandableAtlas blockAtlas = Atlases.getTerrain();
+		final ExpandableAtlas blockAtlas = Atlases.getTerrain();
 		
 		Block.NETHERRACK.texture = blockAtlas.addTexture(BNB.id("block/netherrack")).index;
 		Block.GLOWSTONE.texture = blockAtlas.addTexture(BNB.id("block/glowstone")).index;
@@ -84,6 +77,10 @@ public class ClientListener {
 			LavaRenderer.STILL_TEXTURES[i] = blockAtlas.addTexture(id).index;
 		}
 		
+		SoulSandstoneTexturedBlock.TEXTURES[0] = blockAtlas.addTexture(BNB.id("block/soul_sandstone_top")).index;
+		SoulSandstoneTexturedBlock.TEXTURES[1] = blockAtlas.addTexture(BNB.id("block/soul_sandstone_bottom")).index;
+		SoulSandstoneTexturedBlock.TEXTURES[2] = blockAtlas.addTexture(BNB.id("block/soul_sandstone_side")).index;
+		
 		Direction[] direction = Direction.values();
 		BNBConnectedTextures.add4SideTextures(BNBBlocks.FALURIAN_MOSS_BLOCK, BNB.id("block/falurian_moss_side"), direction);
 		BNBConnectedTextures.add4SideTextures(BNBBlocks.PIROZEN_MOSS_BLOCK, BNB.id("block/pirozen_moss_side"), direction);
@@ -93,12 +90,14 @@ public class ClientListener {
 		BNBConnectedTextures.add4SideTextures(BNBBlocks.TURQUOISE_NYLIUM, BNB.id("block/turquoise_nylium_side"), Direction.UP);
 		BNBConnectedTextures.add4SideTextures(BNBBlocks.POISON_NYLIUM, BNB.id("block/poison_nylium_side"), Direction.UP);
 		
-		BNBBlocks.UPDATE_TEXTURE.forEach(block -> {
+		BNBBlocks.UPDATE_TEXTURE_SINGLE.forEach(block -> {
 			Identifier id = BlockRegistry.INSTANCE.getId(block);
 			if (id != null) {
 				block.texture = blockAtlas.addTexture(BNB.id("block/" + id.path)).index;
 			}
 		});
+		
+		BNBBlocks.UPDATE_TEXTURE_INTERFACE.forEach(update -> update.updateTextures(blockAtlas));
 		
 		BNBAchievementPage.getInstance().updateTextures(blockAtlas);
 		BNBWeatherRenderer.updateTextures(BNBClient.getMinecraft().textureManager);
@@ -287,6 +286,7 @@ public class ClientListener {
 			if (id == null || id.namespace != BNB.NAMESPACE) return;
 			String name = I18n.translate(block.getTranslatedName());
 			if (name.startsWith("tile.")) {
+				builder.append(name);
 				builder.append("=");
 				builder.append(fastTranslate(name));
 				builder.append("\n");
@@ -303,6 +303,7 @@ public class ClientListener {
 			if (id == null || id.namespace != BNB.NAMESPACE) return;
 			String name = I18n.translate(item.getTranslatedName());
 			if (name.startsWith("item.")) {
+				builder.append(name);
 				builder.append("=");
 				builder.append(fastTranslate(name));
 				builder.append("\n");
@@ -323,6 +324,10 @@ public class ClientListener {
 				data[i + 1] = Character.toUpperCase(data[i + 1]);
 			}
 		}
-		return new String(data);
+		String result = new String(data);
+		if (result.endsWith(" Half") || result.endsWith(" Full")) {
+			result = result.substring(0, result.lastIndexOf(' '));
+		}
+		return result;
 	}
 }

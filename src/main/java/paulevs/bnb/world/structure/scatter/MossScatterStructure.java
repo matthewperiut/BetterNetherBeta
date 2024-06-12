@@ -3,15 +3,15 @@ package paulevs.bnb.world.structure.scatter;
 import net.minecraft.level.Level;
 import net.minecraft.util.maths.BlockPos;
 import net.modificationstation.stationapi.api.block.BlockState;
-import paulevs.bnb.block.MossBlockCover;
+import paulevs.bnb.block.CoverMossBlock;
 
 import java.util.Random;
 
 public class MossScatterStructure extends VolumeScatterStructure {
-	private final MossBlockCover moss;
+	private final CoverMossBlock moss;
 	private BlockState state;
 	
-	public MossScatterStructure(int radius, float density, MossBlockCover moss) {
+	public MossScatterStructure(int radius, float density, CoverMossBlock moss) {
 		super(radius, density);
 		this.moss = moss;
 	}

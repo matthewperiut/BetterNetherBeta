@@ -13,21 +13,15 @@ public class BNBClient {
 	}
 	
 	static {
-		/*BNBBlocks.BLOCKS_WITH_ITEMS.forEach(block -> {
-			Identifier id = BlockRegistry.INSTANCE.getId(block);
-			if (id == null || !id.path.startsWith("nether_cloth_")) return;
-			Datagen.makeFullBlock(id.path);
-		});*/
-		//Datagen.makeFullBlock("lavarrack");
-		/*Datagen.makeStairsRecipe(
-			"netherrack_tile_stairs",
-			BNB.id("netherrack_tile"),
-			BNB.id("netherrack_tile_stairs")
-		);
-		Datagen.makeStairsRecipe(
-			"netherrack_tiles_stairs",
-			BNB.id("netherrack_tiles"),
-			BNB.id("netherrack_tiles_stairs")
-		);*/
+		/*Datagen.makeFullBlock("soul_sandstone_bricks");
+		Datagen.makeFullBlock("soul_sandstone_tiles");
+		Datagen.makeSquareRecipe("soul_sandstone_bricks", BNB.id("soul_sandstone"), BNB.id("soul_sandstone_bricks"), 4);
+		Datagen.makeSquareRecipe("soul_sandstone_bricks", BNB.id("soul_sandstone_bricks"), BNB.id("soul_sandstone_tiles"), 4);
+		Datagen.makeStairsRecipe("soul_sandstone_bricks_stairs", BNB.id("soul_sandstone_bricks"), BNB.id("soul_sandstone_bricks_stairs"));
+		Datagen.makeSlabRecipe("soul_sandstone_bricks_stairs", BNB.id("soul_sandstone_bricks"), BNB.id("soul_sandstone_bricks_stairs"));
+		Datagen.makeStairsRecipe("soul_sandstone_tiles_stairs", BNB.id("soul_sandstone_tiles"), BNB.id("soul_sandstone_tiles_stairs"));
+		Datagen.makeSlabRecipe("soul_sandstone_tiles_stairs", BNB.id("soul_sandstone_tiles"), BNB.id("soul_sandstone_tiles_stairs"));*/
+		//Datagen.makeFullBlock("jalumine_planks");
+		//Datagen.makeFullBlock("soul_soil");
 	}
 }

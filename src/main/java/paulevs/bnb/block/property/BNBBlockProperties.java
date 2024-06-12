@@ -16,6 +16,7 @@ public class BNBBlockProperties {
 	public static final BooleanProperty LIT = BooleanProperty.of("lit");
 	public static final BooleanProperty BERRIES = BooleanProperty.of("berries");
 	public static final IntProperty STAGE_4 = IntProperty.of("stage", 0, 3);
+	public static final IntProperty FLOWERS_4 = IntProperty.of("flowers", 0, 3);
 	public static final BooleanProperty[] FACES = new BooleanProperty[6];
 	
 	public static BooleanProperty getByFace(Direction dir) {

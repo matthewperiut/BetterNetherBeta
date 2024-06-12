@@ -34,7 +34,8 @@ public class BNBClientSounds {
 		getSound(BNB.id("music/sinister_cathedral-asher_fulero")),
 		getSound(BNB.id("music/an_excuse_to_do_less_not_more-patches")),
 		getSound(BNB.id("music/those_things_are_more_fun_with_other_people-patches")),
-		getSound(BNB.id("music/conner_crow_bnb_song_version1"))
+		getSound(BNB.id("music/conner_crow_phlogiston")),
+		getSound(BNB.id("music/conner_crow_glowstone_lullaby"))
 	};
 	
 	private static final byte[] MUSIC_INDEX_DATA = new byte[MUSIC.length];

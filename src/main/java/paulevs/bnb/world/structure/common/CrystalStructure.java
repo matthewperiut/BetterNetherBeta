@@ -31,7 +31,8 @@ public class CrystalStructure extends Structure {
 	
 	@Override
 	public boolean generate(Level level, Random random, int x, int y, int z) {
-		if (!level.getBlockState(x, y + direction.getOffsetY(), z).isIn(BNBBlockTags.NETHERRACK_TERRAIN)) return false;
+		BlockState state = level.getBlockState(x, y + direction.getOffsetY(), z);
+		if (!state.isIn(BNBBlockTags.NETHERRACK_TERRAIN) && !state.isIn(BNBBlockTags.SOUL_TERRAIN)) return false;
 		
 		float scale = random.nextFloat() * 0.25F + 0.75F;
 		int radius = MCMath.floor(this.radius * scale + 0.5F);
@@ -60,7 +61,7 @@ public class CrystalStructure extends Structure {
 				int start = random.nextInt(3) + 1;
 				for (int dy = -start; dy < height; dy++) {
 					int py = y + dy * sign;
-					BlockState state = level.getBlockState(px, py, pz);
+					state = level.getBlockState(px, py, pz);
 					if (!state.isAir() && !state.isIn(BNBBlockTags.NETHERRACK_TERRAIN)) continue;
 					level.setBlockState(px, py, pz, fullBlock);
 				}

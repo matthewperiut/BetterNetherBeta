@@ -22,6 +22,7 @@ public class ShardsBlock extends TemplateBlock {
 	public ShardsBlock(Identifier id) {
 		this(id, Material.GLASS);
 		this.setSounds(GLASS_SOUNDS);
+		setLightOpacity(0);
 	}
 	
 	public ShardsBlock(Identifier id, Material material) {

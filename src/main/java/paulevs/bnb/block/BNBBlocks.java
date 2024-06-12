@@ -12,6 +12,7 @@ import net.modificationstation.stationapi.api.util.Identifier;
 import paulevs.bnb.BNB;
 import paulevs.bnb.Datagen;
 import paulevs.bnb.block.property.BNBBlockProperties;
+import paulevs.bnb.rendering.BlockTextureUpdate;
 import paulevs.bnb.world.structure.BNBStructures;
 import paulevs.vbe.block.VBEFullSlabBlock;
 import paulevs.vbe.block.VBEHalfSlabBlock;
@@ -27,7 +28,8 @@ import java.util.function.Supplier;
 @SuppressWarnings("unused")
 public class BNBBlocks {
 	public static final List<Block> BLOCKS_WITH_ITEMS = new ArrayList<>();
-	public static final Set<Block> UPDATE_TEXTURE = new HashSet<>();
+	public static final Set<BlockTextureUpdate> UPDATE_TEXTURE_INTERFACE = new HashSet<>();
+	public static final Set<Block> UPDATE_TEXTURE_SINGLE = new HashSet<>();
 	
 	private static final List<VBEHalfSlabBlock> HALF_SLABS = new ArrayList<>();
 	private static final List<VBEFullSlabBlock> FULL_SLABS = new ArrayList<>();
@@ -45,7 +47,7 @@ public class BNBBlocks {
 	public static final Block FALURIAN_LOG = make("falurian_log", NetherLogBlock::new);
 	public static final Block FALURIAN_STEM = make("falurian_stem", StemBlock::new);
 	public static final Block FALURIAN_BRANCH = make("falurian_branch", BranchBlock::new);
-	public static final NetherLeavesBlock FALURIAN_LEAVES = make("falurian_leaves", NetherLeavesBlock::new);
+	public static final BNBLeavesBlock FALURIAN_LEAVES = make("falurian_leaves", BNBLeavesSolidBlock::new);
 	public static final Block FALURIAN_SAPLING = makeSapling(
 		"falurian_sapling",
 		() -> BNBStructures.FALURIAN_TREE,
@@ -65,7 +67,7 @@ public class BNBBlocks {
 	public static final Block PIROZEN_LOG = make("pirozen_log", NetherLogBlock::new);
 	public static final Block PIROZEN_STEM = make("pirozen_stem", StemBlock::new);
 	public static final Block PIROZEN_BRANCH = make("pirozen_branch", BranchBlock::new);
-	public static final NetherLeavesBlock PIROZEN_LEAVES = make("pirozen_leaves", NetherLeavesBlock::new);
+	public static final BNBLeavesBlock PIROZEN_LEAVES = make("pirozen_leaves", BNBLeavesSolidBlock::new);
 	public static final Block PIROZEN_SAPLING = makeSapling(
 		"pirozen_sapling",
 		() -> BNBStructures.PIROZEN_TREE,
@@ -85,7 +87,7 @@ public class BNBBlocks {
 	public static final Block POISON_LOG = make("poison_log", NetherLogBlock::new);
 	public static final Block POISON_STEM = make("poison_stem", StemBlock::new);
 	public static final Block POISON_BRANCH = make("poison_branch", BranchBlock::new);
-	public static final NetherLeavesBlock POISON_LEAVES = make("poison_leaves", NetherLeavesBlock::new);
+	public static final BNBLeavesBlock POISON_LEAVES = make("poison_leaves", BNBLeavesSolidBlock::new);
 	public static final Block POISON_SAPLING = makeSapling(
 		"poison_sapling",
 		() -> BNBStructures.POISON_TREE,
@@ -101,6 +103,16 @@ public class BNBBlocks {
 	public static final VBEHalfSlabBlock POISON_SLAB_HALF = make("poison_slab_half", VBEHalfSlabBlock::new, POISON_PLANKS);
 	public static final VBEFullSlabBlock POISON_SLAB_FULL = makeNI("poison_slab_full", VBEFullSlabBlock::new, POISON_PLANKS);
 	public static final Block POISON_FENCE = make("poison_fence", FenceBlock::new, POISON_PLANKS);
+	
+	public static final BNBLeavesBlock JALUMINE_LEAVES = make("jalumine_leaves", JalumineLeavesBlock::new);
+	public static final Block JALUMINE_FLOWER = make("jalumine_flower", JalumineFlowerBlock::new);
+	public static final Block JALUMINE_STEM = make("jalumine_stem", StemBlock::new);
+	public static final Block JALUMINE_BRANCH = make("jalumine_branch", BranchBlock::new);
+	public static final Block JALUMINE_PLANKS = make("jalumine_planks", NetherPlanksBlock::new);
+	public static final Block JALUMINE_STAIRS = make("jalumine_stairs", TemplateStairsBlock::new, JALUMINE_PLANKS);
+	public static final VBEHalfSlabBlock JALUMINE_SLAB_HALF = make("jalumine_slab_half", VBEHalfSlabBlock::new, JALUMINE_PLANKS);
+	public static final VBEFullSlabBlock JALUMINE_SLAB_FULL = makeNI("jalumine_slab_full", VBEFullSlabBlock::new, JALUMINE_PLANKS);
+	public static final Block JALUMINE_FENCE = make("jalumine_fence", FenceBlock::new, JALUMINE_PLANKS);
 	
 	public static final Block PALE_LOG = make("pale_log", NetherLogBlock::new);
 	public static final Block PALE_LEAVES = make("pale_leaves", NetherLeavesTransparent::new);
@@ -123,10 +135,10 @@ public class BNBBlocks {
 	public static final Block FIREWEED = make("fireweed", DoubleFloorPlantBlock::new).setLightEmittance(0.5F);
 	public static final Block LANTERN_GRASS = make("lantern_grass", DoubleFloorPlantBlock::new).setLightEmittance(0.75F);
 	
-	public static final Block FALURIAN_MOSS = make("falurian_moss_cover", MossBlockCover::new);
+	public static final Block FALURIAN_MOSS = make("falurian_moss_cover", CoverMossBlock::new);
 	public static final Block FALURIAN_MOSS_BLOCK = make("falurian_moss_block", NetherMossBlock::new);
 	
-	public static final Block PIROZEN_MOSS = make("pirozen_moss_cover", MossBlockCover::new);
+	public static final Block PIROZEN_MOSS = make("pirozen_moss_cover", CoverMossBlock::new);
 	public static final Block PIROZEN_MOSS_BLOCK = make("pirozen_moss_block", NetherMossBlock::new);
 	
 	public static final BNBCollectableVineBlock FALURIAN_VINE = (BNBCollectableVineBlock) make(
@@ -155,7 +167,7 @@ public class BNBBlocks {
 	public static final Block PIROZEN_SPIDER_COCOON = make("pirozen_spider_cocoon", SpiderCocoonBlock::new);
 	public static final Block POISON_SPIDER_COCOON = make("poison_spider_cocoon", SpiderCocoonBlock::new);
 	
-	public static final Block ORICHALCUM_ORE = make("orichalcum_ore", NetherOre::new);
+	public static final Block ORICHALCUM_ORE = make("orichalcum_ore", NetherOreBlock::new);
 	public static final Block ORICHALCUM_BLOCK = make("orichalcum_block", NetherMetalBlock::new);
 	public static final Block ORICHALCUM_TILES = make("orichalcum_tiles", NetherMetalBlock::new);
 	public static final Block ORICHALCUM_TILES_STAIRS = make("orichalcum_tiles_stairs", TemplateStairsBlock::new, ORICHALCUM_TILES);
@@ -249,11 +261,29 @@ public class BNBBlocks {
 	public static final Block NETHERRACK_ORICHALCUM_TILES = make("netherrack_orichalcum_tiles", NetherrackBricksBlock::new);
 	public static final Block LAVARRACK = make("lavarrack", LavarrackBlock::new);
 	
+	public static final Block SOUL_SOIL = make("soul_soil", SoulSoilBlock::new);
+	
+	public static final Block SOUL_SANDSTONE = make("soul_sandstone", SoulSandstoneTexturedBlock::new);
+	public static final Block SOUL_SANDSTONE_BRICKS = make("soul_sandstone_bricks", SoulSandstoneBlock::new);
+	public static final Block SOUL_SANDSTONE_TILES = make("soul_sandstone_tiles", SoulSandstoneBlock::new);
+	public static final Block SOUL_SANDSTONE_STAIRS = make("soul_sandstone_stairs", TemplateStairsBlock::new, SOUL_SANDSTONE);
+	public static final Block SOUL_SANDSTONE_BRICKS_STAIRS = make("soul_sandstone_bricks_stairs", TemplateStairsBlock::new, SOUL_SANDSTONE_BRICKS);
+	public static final Block SOUL_SANDSTONE_TILES_STAIRS = make("soul_sandstone_tiles_stairs", TemplateStairsBlock::new, SOUL_SANDSTONE_TILES);
+	public static final Block SOUL_SANDSTONE_SLAB_HALF = make("soul_sandstone_slab_half", VBEHalfSlabBlock::new, SOUL_SANDSTONE);
+	public static final Block SOUL_SANDSTONE_SLAB_FULL = makeNI("soul_sandstone_slab_full", VBEFullSlabBlock::new, SOUL_SANDSTONE);
+	public static final Block SOUL_SANDSTONE_BRICKS_SLAB_HALF = make("soul_sandstone_bricks_slab_half", VBEHalfSlabBlock::new, SOUL_SANDSTONE_BRICKS);
+	public static final Block SOUL_SANDSTONE_BRICKS_SLAB_FULL = makeNI("soul_sandstone_bricks_slab_full", VBEFullSlabBlock::new, SOUL_SANDSTONE_BRICKS);
+	public static final Block SOUL_SANDSTONE_TILES_SLAB_HALF = make("soul_sandstone_tiles_slab_half", VBEHalfSlabBlock::new, SOUL_SANDSTONE_TILES);
+	public static final Block SOUL_SANDSTONE_TILES_SLAB_FULL = makeNI("soul_sandstone_tiles_slab_full", VBEFullSlabBlock::new, SOUL_SANDSTONE_TILES);
+	
 	private static <B extends Block> B make(String name, Function<Identifier, B> constructor) {
 		Identifier id = BNB.id(name);
 		B block = constructor.apply(id);
 		block.setTranslationKey(id);
 		BLOCKS_WITH_ITEMS.add(block);
+		if (block instanceof BlockTextureUpdate update) {
+			UPDATE_TEXTURE_INTERFACE.add(update);
+		}
 		return block;
 	}
 	
@@ -262,8 +292,11 @@ public class BNBBlocks {
 		B block = constructor.apply(id, sourceBlock);
 		block.setTranslationKey(id);
 		BLOCKS_WITH_ITEMS.add(block);
+		if (block instanceof BlockTextureUpdate update) {
+			UPDATE_TEXTURE_INTERFACE.add(update);
+		}
 		if (block instanceof StairsBlock || block instanceof VBEHalfSlabBlock) {
-			UPDATE_TEXTURE.add(sourceBlock);
+			UPDATE_TEXTURE_SINGLE.add(sourceBlock);
 			if (block instanceof VBEHalfSlabBlock slab) HALF_SLABS.add(slab);
 			if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
 				if (block instanceof StairsBlock) {
@@ -286,6 +319,9 @@ public class BNBBlocks {
 		B block = constructor.apply(id, structure);
 		block.setTranslationKey(id);
 		BLOCKS_WITH_ITEMS.add(block);
+		if (block instanceof BlockTextureUpdate update) {
+			UPDATE_TEXTURE_INTERFACE.add(update);
+		}
 		return block;
 	}
 	
@@ -307,6 +343,9 @@ public class BNBBlocks {
 		B block = constructor.apply(id);
 		block.setTranslationKey(id);
 		BlockItem.BLOCK_ITEMS.remove(block);
+		if (block instanceof BlockTextureUpdate update) {
+			UPDATE_TEXTURE_INTERFACE.add(update);
+		}
 		return block;
 	}
 	
@@ -315,6 +354,9 @@ public class BNBBlocks {
 		B block = constructor.apply(id, sourceBlock);
 		block.setTranslationKey(id);
 		BlockItem.BLOCK_ITEMS.remove(block);
+		if (block instanceof BlockTextureUpdate update) {
+			UPDATE_TEXTURE_INTERFACE.add(update);
+		}
 		if (block instanceof VBEFullSlabBlock slab) FULL_SLABS.add(slab);
 		return block;
 	}

@@ -16,8 +16,8 @@ import paulevs.bnb.block.property.BNBBlockMaterials;
 import paulevs.bnb.block.property.BNBBlockProperties;
 import paulevs.bnb.sound.BNBSounds;
 
-public class MossBlockCover extends BNBPlantBlock {
-	public MossBlockCover(Identifier id) {
+public class CoverMossBlock extends BNBPlantBlock {
+	public CoverMossBlock(Identifier id) {
 		super(id, BNBBlockMaterials.NETHER_PLANT);
 		setSounds(BNBSounds.MOSS_BLOCK);
 		BlockState state = getDefaultState();

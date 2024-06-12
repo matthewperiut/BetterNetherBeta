@@ -15,10 +15,6 @@ import paulevs.bnb.world.generator.terrain.TerrainMap;
 import paulevs.bnb.world.generator.terrain.TerrainRegion;
 import paulevs.bnb.world.generator.terrain.features.OceanPillarsFeature;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Map;
 
@@ -75,23 +71,5 @@ public class BiomeMap extends DataMap<Biome> {
 		soulBiomeNoise.setSeed(random.nextInt());
 		densityBiomeNoise.setSeed(random.nextInt());
 		map = BNBWorldGenerator.getMapCopy();
-		
-		BufferedImage buffer = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
-		
-		for (int x = 0; x < 512; x++) {
-			for (int z = 0; z < 512; z++) {
-				Biome biome = getData(x << 2, z << 2);
-				int color = biome.getFogColor().getColor(null, 0, 0) | 255 << 24;
-				buffer.setRGB(x, z, color);
-			}
-		}
-		
-		JFrame frame = new JFrame();
-		frame.add(new JLabel(new ImageIcon(buffer)));
-		frame.setResizable(false);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
 	}
 }
