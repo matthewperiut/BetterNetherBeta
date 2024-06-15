@@ -1,7 +1,17 @@
 {
-	"parent": "bnb:block/emissive_cube_all",
+	"parent": "bnb:block/emissive_cube",
 	"textures": {
-		"all": "bnb:block/jalumine_leaves",
-		"all_e": "bnb:block/jalumine_flowers_2"
+		"down": "bnb:block/jalumine_leaves",
+		"up": "bnb:block/jalumine_leaves",
+		"north": "bnb:block/jalumine_leaves",
+		"south": "bnb:block/jalumine_leaves",
+		"east": "bnb:block/jalumine_leaves",
+		"west": "bnb:block/jalumine_leaves",
+		"down_e": "bnb:block/jalumine_flowers_1",
+		"up_e": "bnb:block/jalumine_flowers_2",
+		"north_e": "bnb:block/jalumine_flowers_2",
+		"south_e": "bnb:block/jalumine_flowers_2",
+		"east_e": "bnb:block/jalumine_flowers_1",
+		"west_e": "bnb:block/jalumine_flowers_1"
 	}
 }

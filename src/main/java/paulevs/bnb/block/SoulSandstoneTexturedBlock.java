@@ -1,7 +1,6 @@
 package paulevs.bnb.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.StairsBlock;
 import net.minecraft.level.BlockView;
 import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.util.Identifier;

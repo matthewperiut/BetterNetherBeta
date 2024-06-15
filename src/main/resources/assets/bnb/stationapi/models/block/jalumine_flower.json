@@ -1,5 +1,6 @@
 {
 	"credit": "Made by paulevs",
+	"parent": "minecraft:block/block",
 	"textures": {
 		"particle": "bnb:block/jalumine_flower",
 		"flower": "bnb:block/jalumine_flower"

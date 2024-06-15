@@ -11,6 +11,7 @@ import net.modificationstation.stationapi.api.worldgen.surface.condition.Positio
 import paulevs.bnb.block.BNBBlocks;
 import paulevs.bnb.noise.FractalNoise;
 import paulevs.bnb.noise.PerlinNoise;
+import paulevs.bnb.noise.VoronoiNoise;
 import paulevs.bnb.sound.BNBSounds;
 import paulevs.bnb.world.generator.terrain.TerrainRegion;
 import paulevs.bnb.world.structure.BNBPlacers;
@@ -28,6 +29,7 @@ public class BNBBiomes {
 	
 	private static final FractalNoise SHORE_NOISE = new FractalNoise(PerlinNoise::new);
 	private static final PositionSurfaceCondition SHORE_COND = new PositionSurfaceCondition(BNBBiomes::shoreHeight);
+	private static final FractalNoise GRAPE_NYLIUM_NOISE = new FractalNoise(VoronoiNoise::new);
 	
 	public static final Biome FALURIAN_FOREST = addLand(BiomeBuilder
 		.start("bnb_falurian_forest")
@@ -193,6 +195,9 @@ public class BNBBiomes {
 	public static final Biome GLOWSTONE_FOREST = addLand(BiomeBuilder
 		.start("bnb_glowstone_forest")
 		.fogColor(0x4A306B)
+		.surfaceRule(SurfaceBuilder.start(BNBBlocks.GRAPE_NYLIUM).replace(Block.NETHERRACK).ground(1).condition(
+			(level, x, y, z, state) -> GRAPE_NYLIUM_NOISE.get(x * 0.1, z * 0.1) < 0.5F, 5
+		).build())
 		.surfaceRule(SurfaceBuilder.start(BNBBlocks.SOUL_SOIL).replace(Block.NETHERRACK).ground(3).build())
 		.surfaceRule(SurfaceBuilder.start(BNBBlocks.SOUL_SANDSTONE).replace(Block.NETHERRACK).ground(10).build())
 		.noDimensionFeatures()
@@ -200,7 +205,9 @@ public class BNBBiomes {
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_FLOOR_PLACER_FREQUENT)
 		.feature(BNBPlacers.GLOWSTONE_CRYSTAL_CEILING_PLACER_FREQUENT)
 		.feature(BNBPlacers.JALUMINE_TREE_PLACER)
+		.feature(BNBPlacers.JALUMINE_BUSH_PLACER)
 		.feature(BNBPlacers.GLOWSTONE_SHARDS_PLACER)
+		.feature(BNBPlacers.FERRUMINE_PLANT_PLACER)
 		.build(), BiomeArea.SOUL_LUSH);
 	
 	public static final Biome MEDIUM_SOUL_BIOME = addLand(BiomeBuilder
@@ -273,5 +280,6 @@ public class BNBBiomes {
 	static {
 		SHORE_NOISE.setOctaves(2);
 		SHORE_NOISE.setSeed(123);
+		GRAPE_NYLIUM_NOISE.setSeed(513);
 	}
 }

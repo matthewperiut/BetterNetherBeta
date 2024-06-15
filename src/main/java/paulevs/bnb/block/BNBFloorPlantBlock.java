@@ -6,12 +6,12 @@ import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.util.Identifier;
 import paulevs.bnb.block.property.BNBBlockMaterials;
 
-public class NetherFloorPlantBlock extends BNBPlantBlock {
-	public NetherFloorPlantBlock(Identifier id) {
+public class BNBFloorPlantBlock extends BNBPlantBlock {
+	public BNBFloorPlantBlock(Identifier id) {
 		this(id, BNBBlockMaterials.NETHER_PLANT_REPLACEABLE);
 	}
 	
-	public NetherFloorPlantBlock(Identifier id, Material material) {
+	public BNBFloorPlantBlock(Identifier id, Material material) {
 		super(id, material);
 		this.setBoundingBox(0.125F, 0.0F, 0.125F, 0.875F, 0.875F, 0.875F);
 	}

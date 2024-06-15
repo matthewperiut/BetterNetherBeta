@@ -16,8 +16,8 @@ import paulevs.bnb.block.property.BNBBlockProperties.DoubleShape;
 import java.util.Collections;
 import java.util.List;
 
-public class DoubleFloorPlantBlock extends NetherFloorPlantBlock {
-	public DoubleFloorPlantBlock(Identifier id) {
+public class BNBDoubleFloorPlantBlock extends BNBFloorPlantBlock {
+	public BNBDoubleFloorPlantBlock(Identifier id) {
 		super(id, BNBBlockMaterials.NETHER_PLANT);
 		setDefaultState(getDefaultState().with(BNBBlockProperties.DOUBLE_SHAPE, DoubleShape.BOTTOM));
 	}

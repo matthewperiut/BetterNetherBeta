@@ -1,0 +1,7 @@
+{
+	"parent": "bnb:block/cross_emissive",
+	"textures": {
+		"cross": "bnb:block/ferrumine_plant",
+		"cross_e": "bnb:block/ferrumine_plant_e"
+	}
+}

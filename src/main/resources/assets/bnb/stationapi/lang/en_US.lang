@@ -241,6 +241,10 @@ tile.bnb.jalumine_stairs.name=Jalumine Stairs
 tile.bnb.jalumine_slab_half.name=Jalumine Slab
 tile.bnb.jalumine_slab_full.name=Jalumine Slab
 tile.bnb.jalumine_fence.name=Jalumine Fence
+tile.bnb.grape_nylium.name=Grape Nylium
+tile.bnb.ferrumine_plant.name=Ferrumine Plant
+tile.bnb.soul_soil.name=Soul Soil
+item.bnb.jalumine_tree_placer.name=Jalumine Tree Placer
 
 item.bnb.fiber_helmet.name=Fiber Helmet
 item.bnb.fiber_chestplate.name=Fiber Chestplate

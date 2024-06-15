@@ -40,6 +40,7 @@ public class BNBBlocks {
 	public static final NetherTerrainBlock CORRUPTED_NYLIUM = make("corrupted_nylium", NetherTerrainBlock::new);
 	public static final NetherTerrainBlock SOUL_NYLIUM = make("soul_nylium", SoulTerrainBlock::new);
 	public static final NetherTerrainBlock DARK_NYLIUM = make("dark_nylium", NetherTerrainBlock::new);
+	public static final NetherTerrainBlock GRAPE_NYLIUM = make("grape_nylium", SoulTerrainBlock::new);
 	
 	public static final Block TREE_LANTERN = make("tree_lantern", NetherLanternBlock::new);
 	public static final Block GHOST_PUMPKIN = make("ghost_pumpkin", GhostPumpkinBlock::new);
@@ -104,7 +105,7 @@ public class BNBBlocks {
 	public static final VBEFullSlabBlock POISON_SLAB_FULL = makeNI("poison_slab_full", VBEFullSlabBlock::new, POISON_PLANKS);
 	public static final Block POISON_FENCE = make("poison_fence", FenceBlock::new, POISON_PLANKS);
 	
-	public static final BNBLeavesBlock JALUMINE_LEAVES = make("jalumine_leaves", JalumineLeavesBlock::new);
+	public static final BNBLeavesBlock JALUMINE_LEAVES = make("jalumine_leaves", BNBLeavesTransparent::new);
 	public static final Block JALUMINE_FLOWER = make("jalumine_flower", JalumineFlowerBlock::new);
 	public static final Block JALUMINE_STEM = make("jalumine_stem", StemBlock::new);
 	public static final Block JALUMINE_BRANCH = make("jalumine_branch", BranchBlock::new);
@@ -115,10 +116,10 @@ public class BNBBlocks {
 	public static final Block JALUMINE_FENCE = make("jalumine_fence", FenceBlock::new, JALUMINE_PLANKS);
 	
 	public static final Block PALE_LOG = make("pale_log", NetherLogBlock::new);
-	public static final Block PALE_LEAVES = make("pale_leaves", NetherLeavesTransparent::new);
+	public static final Block PALE_LEAVES = make("pale_leaves", BNBLeavesTransparent::new);
 	
 	public static final Block EMBER_LOG = make("ember_log", EmberLogBlock::new);
-	public static final Block EMBER_LEAVES = make("ember_leaves", NetherLeavesTransparent::new);
+	public static final Block EMBER_LEAVES = make("ember_leaves", BNBLeavesTransparent::new);
 	
 	public static final Block FLAME_BAMBOO_BLOCK = make("flame_bamboo_block", NetherLogBlock::new);
 	
@@ -128,12 +129,14 @@ public class BNBBlocks {
 	public static final Block PALE_TREE_WEEPING_VINE = make("pale_tree_weeping_vine", BNBVineBlock::new);
 	public static final Block EMBER_TREE_WEEPING_VINE = make("ember_tree_weeping_vine", BNBVineBlock::new);
 	
-	public static final Block FLAME_BULBS = make("flame_bulbs", NetherFloorPlantBlock::new);
-	public static final Block FLAME_BULBS_TALL = make("flame_bulbs_tall", DoubleGrassPlantBlock::new);
-	public static final Block FALURIAN_ROOTS = make("falurian_roots", NetherRootsBlock::new);
-	public static final Block NETHER_DAISY = make("nether_daisy", NetherFloorPlantBlock::new).setLightEmittance(0.5F);
-	public static final Block FIREWEED = make("fireweed", DoubleFloorPlantBlock::new).setLightEmittance(0.5F);
-	public static final Block LANTERN_GRASS = make("lantern_grass", DoubleFloorPlantBlock::new).setLightEmittance(0.75F);
+	public static final Block FLAME_BULBS = make("flame_bulbs", BNBFloorPlantBlock::new);
+	public static final Block FLAME_BULBS_TALL = make("flame_bulbs_tall", BNBDoubleGrassPlantBlock::new);
+	public static final Block FALURIAN_ROOTS = make("falurian_roots", BNBRootsBlock::new);
+	public static final Block NETHER_DAISY = make("nether_daisy", BNBFloorPlantBlock::new).setLightEmittance(0.5F);
+	public static final Block FIREWEED = make("fireweed", BNBDoubleFloorPlantBlock::new).setLightEmittance(0.5F);
+	public static final Block LANTERN_GRASS = make("lantern_grass", BNBDoubleFloorPlantBlock::new).setLightEmittance(0.75F);
+	
+	public static final FerruminePlantBlock FERRUMINE_PLANT = make("ferrumine_plant", FerruminePlantBlock::new);
 	
 	public static final Block FALURIAN_MOSS = make("falurian_moss_cover", CoverMossBlock::new);
 	public static final Block FALURIAN_MOSS_BLOCK = make("falurian_moss_block", NetherMossBlock::new);
@@ -148,8 +151,8 @@ public class BNBBlocks {
 	
 	public static final BNBVineBlock PIROZEN_VINE = make("pirozen_vine", BNBVineBlock::new);
 	
-	public static final Block PIROZEN_ROOTS = make("pirozen_roots", NetherRootsBlock::new);
-	public static final Block POISON_ROOTS = make("poison_roots", NetherRootsBlock::new);
+	public static final Block PIROZEN_ROOTS = make("pirozen_roots", BNBRootsBlock::new);
+	public static final Block POISON_ROOTS = make("poison_roots", BNBRootsBlock::new);
 	
 	public static final ShardsBlock GLOWSTONE_SHARDS = (ShardsBlock) make("glowstone_shards", ShardsBlock::new).setLightEmittance(1F);
 	public static final ShardsBlock OBSIDIAN_SHARDS = make("obsidian_shards", ObsidianShardsBlock::new);

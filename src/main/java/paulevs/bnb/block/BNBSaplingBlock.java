@@ -12,10 +12,10 @@ import paulevs.bnb.block.property.BNBBlockProperties;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class NetherSaplingBlock extends NetherFloorPlantBlock {
+public class BNBSaplingBlock extends BNBFloorPlantBlock {
 	protected final Supplier<Structure> structure;
 	
-	public NetherSaplingBlock(Identifier id, Supplier<Structure> structure) {
+	public BNBSaplingBlock(Identifier id, Supplier<Structure> structure) {
 		super(id);
 		this.structure = structure;
 		setTicksRandomly(true);

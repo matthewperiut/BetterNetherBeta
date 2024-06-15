@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/cross",
+	"textures": {
+		"cross": "bnb:block/ferrumine_plant_normal"
+	}
+}

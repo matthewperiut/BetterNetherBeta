@@ -18,11 +18,13 @@ import paulevs.bnb.world.structure.plant.BerriesVineStructure;
 import paulevs.bnb.world.structure.plant.VineStructure;
 import paulevs.bnb.world.structure.scatter.BlockMossScatterStructure;
 import paulevs.bnb.world.structure.scatter.DoublePlantScatterStructure;
+import paulevs.bnb.world.structure.scatter.FerruminePlantScatterStructure;
 import paulevs.bnb.world.structure.scatter.MossScatterStructure;
 import paulevs.bnb.world.structure.scatter.SimpleScatterStructure;
 import paulevs.bnb.world.structure.scatter.SolidSupportScatterStructure;
 import paulevs.bnb.world.structure.tree.CommonLargeTreeStructure;
 import paulevs.bnb.world.structure.tree.CommonTreeStructure;
+import paulevs.bnb.world.structure.tree.JalumineBushStructure;
 import paulevs.bnb.world.structure.tree.JalumineTreeStructure;
 
 public class BNBStructures {
@@ -127,8 +129,8 @@ public class BNBStructures {
 		0.25F
 	);
 	
-	//JalumineTreeStructure
 	public static final Structure JALUMINE_TREE = new JalumineTreeStructure();
+	public static final Structure JALUMINE_BUSH = new JalumineBushStructure();
 	
 	public static final Structure FALURIAN_TREE_BUSH = new PillarStructure()
 		.addSection(BNBBlocks.FALURIAN_STEM.getDefaultState(), 1, 2)
@@ -172,4 +174,6 @@ public class BNBStructures {
 	public static final Structure OBSIDIAN_GRAVEL_BLOB = new PatchBlobStructure(
 		BNBBlocks.OBSIDIAN_GRAVEL.getDefaultState(), 1.5F, 2.5F, Block.GRAVEL.getDefaultState()
 	);
+	
+	public static final Structure FERRUMINE_PLANT = new FerruminePlantScatterStructure(3, 15);
 }

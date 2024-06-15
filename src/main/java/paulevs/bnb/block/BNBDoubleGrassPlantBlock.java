@@ -7,8 +7,8 @@ import net.minecraft.level.Level;
 import net.modificationstation.stationapi.api.util.Identifier;
 import paulevs.vbe.utils.CreativeUtil;
 
-public class DoubleGrassPlantBlock extends DoubleFloorPlantBlock {
-	public DoubleGrassPlantBlock(Identifier id) {
+public class BNBDoubleGrassPlantBlock extends BNBDoubleFloorPlantBlock {
+	public BNBDoubleGrassPlantBlock(Identifier id) {
 		super(id);
 	}
 	

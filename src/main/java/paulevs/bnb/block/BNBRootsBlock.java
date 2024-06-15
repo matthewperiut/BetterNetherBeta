@@ -8,8 +8,8 @@ import net.minecraft.level.Level;
 import net.modificationstation.stationapi.api.util.Identifier;
 import paulevs.vbe.utils.CreativeUtil;
 
-public class NetherRootsBlock extends NetherFloorPlantBlock {
-	public NetherRootsBlock(Identifier id) {
+public class BNBRootsBlock extends BNBFloorPlantBlock {
+	public BNBRootsBlock(Identifier id) {
 		super(id);
 	}
 	

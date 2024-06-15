@@ -1,10 +1,46 @@
 {
 	"variants": {
 		"": [
-			{ "model": "bnb:block/jalumine_leaves" },
+			{ "model": "bnb:block/jalumine_leaves", "weight": 39 },
 			{ "model": "bnb:block/jalumine_leaves_flowers_1" },
 			{ "model": "bnb:block/jalumine_leaves_flowers_2" },
-			{ "model": "bnb:block/jalumine_leaves_flowers_3" }
+			{ "model": "bnb:block/jalumine_leaves_flowers_3" },
+			{ "model": "bnb:block/jalumine_leaves_flowers_1", "x": 90, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_2", "x": 90, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_3", "x": 90, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_1", "x": 180, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_2", "x": 180, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_3", "x": 180, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_1", "x": 270, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_2", "x": 270, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_3", "x": 270, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_1", "x": 90, "y": 90, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_2", "x": 90, "y": 90, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_3", "x": 90, "y": 90, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_1", "x": 180, "y": 90, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_2", "x": 180, "y": 90, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_3", "x": 180, "y": 90, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_1", "x": 270, "y": 90, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_2", "x": 270, "y": 90, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_3", "x": 270, "y": 90, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_1", "x": 90, "y": 180, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_2", "x": 90, "y": 180, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_3", "x": 90, "y": 180, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_1", "x": 180, "y": 180, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_2", "x": 180, "y": 180, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_3", "x": 180, "y": 180, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_1", "x": 270, "y": 180, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_2", "x": 270, "y": 180, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_3", "x": 270, "y": 180, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_1", "x": 90, "y": 270, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_2", "x": 90, "y": 270, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_3", "x": 90, "y": 270, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_1", "x": 180, "y": 270, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_2", "x": 180, "y": 270, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_3", "x": 180, "y": 270, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_1", "x": 270, "y": 270, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_2", "x": 270, "y": 270, "uvlock": true },
+			{ "model": "bnb:block/jalumine_leaves_flowers_3", "x": 270, "y": 270, "uvlock": true }
 		]
 	}
 }

@@ -43,6 +43,12 @@ public abstract class StructurePlacer extends Structure {
 		return setDensityFunction(pos -> noise.get(pos.x * 0.03, pos.y * 0.03, pos.z * 0.03) > 0.5F);
 	}
 	
+	public StructurePlacer setNoiseDensityFunction(int seed, float threshold) {
+		PerlinNoise noise = new PerlinNoise();
+		noise.setSeed(seed);
+		return setDensityFunction(pos -> noise.get(pos.x * 0.03, pos.y * 0.03, pos.z * 0.03) < threshold);
+	}
+	
 	public StructurePlacer setRandomDensityFunction(int seed, int chance) {
 		return setDensityFunction(pos ->
 			Math.abs((int) MathHelper.hashCode(pos.x, pos.y + seed, pos.z)) % chance == 0

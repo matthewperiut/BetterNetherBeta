@@ -9,7 +9,7 @@ import paulevs.bnb.block.property.BNBBlockProperties;
 
 import java.util.function.Supplier;
 
-public class TreeSaplingBlock extends NetherSaplingBlock {
+public class TreeSaplingBlock extends BNBSaplingBlock {
 	private final Supplier<Structure> bigTree;
 	private final boolean[] mask;
 	private final int maskWidth;

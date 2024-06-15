@@ -13,11 +13,10 @@ import paulevs.bnb.block.property.BNBBlockProperties;
 
 import java.util.Random;
 
-public class JalumineTreeStructure extends Structure {
+public class JalumineBushStructure extends Structure {
 	private static final BlockState STEM = BNBBlocks.JALUMINE_STEM.getDefaultState().with(BNBBlockProperties.AXIS, Axis.Y);
 	private static final BlockState LEAVES = BNBBlocks.JALUMINE_LEAVES.getDefaultState();
 	private static final BlockState FLOWER = BNBBlocks.JALUMINE_FLOWER.getDefaultState();
-	private static final BlockState BRANCH = BNBBlocks.JALUMINE_BRANCH.getDefaultState();
 	
 	@Override
 	public boolean generate(Level level, Random random, int x, int y, int z) {
@@ -25,60 +24,16 @@ public class JalumineTreeStructure extends Structure {
 			return false;
 		}
 		
-		int height = random.nextInt(5) + 5;
-		if (makeStem(level, x, y, z, height)) {
-			float radius = height * 0.5F;
-			makeFoliage(level, x, y + height, z, radius, random);
-		}
-		makeRoots(level, x, y, z, random);
+		level.setBlockState(x, y, z, STEM);
+		makeFoliage(level, x, y, z, random.nextFloat() * 2.0F + 1.5F, random);
 		
 		return false;
 	}
 	
-	private boolean makeStem(Level level, int x, int y, int z, int height) {
-		for (int i = 0; i < height; i++) {
-			BlockState state = level.getBlockState(x, y, z);
-			if (!canReplace(state)) return false;
-			level.setBlockState(x, y, z, STEM);
-			y++;
-		}
-		return true;
-	}
-	
-	private void makeRoots(Level level, int x, int y, int z, Random random) {
-		for (int i = 3; i >= 0; i--) {
-			Direction direction = Direction.fromHorizontal(random.nextInt(4));
-			int wx = x + direction.getOffsetX();
-			int wz = z + direction.getOffsetZ();
-			int wy = y + i;
-			
-			BlockState state = level.getBlockState(wx, wy, wz);
-			if (!canReplace(state)) continue;
-			
-			level.setBlockState(x, wy, z, BRANCH
-				.with(BNBBlockProperties.getByFace(direction), true)
-				.with(BNBBlockProperties.getByFace(Direction.DOWN), true)
-				.with(BNBBlockProperties.getByFace(Direction.UP), true)
-			);
-			level.setBlockState(wx, wy, wz, BRANCH
-				.with(BNBBlockProperties.getByFace(direction.getOpposite()), true)
-				.with(BNBBlockProperties.getByFace(Direction.DOWN), true)
-			);
-			
-			for (int j = i; j >= -2; j--) {
-				state = level.getBlockState(wx, --wy, wz);
-				if (!canReplace(state)) break;
-				level.setBlockState(wx, wy, wz, STEM);
-			}
-		}
-	}
-	
 	private void makeFoliage(Level level, int x, int y, int z, float radius, Random random) {
-		makeLeafCylinder(level, x, y - 1, z, radius * 0.5F + random.nextFloat() * radius * 0.1F, random);
+		makeLeafCylinder(level, x, y - 1, z, radius * 0.75F + random.nextFloat() * radius * 0.1F, random);
 		makeLeafCylinder(level, x, y, z, radius + random.nextFloat() * radius * 0.1F, random);
-		makeLeafCylinder(level, x, y + 1, z, radius * 0.75F + random.nextFloat() * radius * 0.1F, random);
-		makeLeafCylinder(level, x, y + 2, z, radius * 0.5F + random.nextFloat() * radius * 0.1F, random);
-		makeLeafCylinder(level, x, y + 3, z, radius * 0.25F + random.nextFloat() * radius * 0.1F, random);
+		makeLeafCylinder(level, x, y + 1, z, radius * 0.5F + random.nextFloat() * radius * 0.1F, random);
 	}
 	
 	private void makeLeafCylinder(Level level, int x, int y, int z, float radius, Random random) {
@@ -98,7 +53,6 @@ public class JalumineTreeStructure extends Structure {
 				BlockState state = level.getBlockState(wx, y, wz);
 				if (!canReplace(state)) continue;
 				level.setBlockState(wx, y, wz, LEAVES);
-				
 				if (random.nextInt(3) > 0) continue;
 				
 				Direction direction = Direction.byId(random.nextInt(6));

@@ -12,7 +12,7 @@ public class BNBPlacers {
 	public static final StructurePlacer GLOWSTONE_CRYSTAL_CEILING_PLACER = new CeilingPlacer(BNBStructures.GLOWSTONE_CRYSTAL_CEILING, 1).setRandomDensityFunction(2, 15);
 	public static final StructurePlacer GLOWSTONE_CRYSTAL_FLOOR_PLACER_FREQUENT = new FloorPlacer(BNBStructures.GLOWSTONE_CRYSTAL_FLOOR, 1).setRandomDensityFunction(1, 4);
 	public static final StructurePlacer GLOWSTONE_CRYSTAL_CEILING_PLACER_FREQUENT = new CeilingPlacer(BNBStructures.GLOWSTONE_CRYSTAL_CEILING, 1).setRandomDensityFunction(2, 4);
-	public static final StructurePlacer GLOWSTONE_SHARDS_PLACER = new FloorPlacer(BNBStructures.GLOWSTONE_SHARDS, 4).setNoiseDensityFunction(13);
+	public static final StructurePlacer GLOWSTONE_SHARDS_PLACER = new FloorPlacer(BNBStructures.GLOWSTONE_SHARDS, 1).setNoiseDensityFunction(13);
 	
 	public static final StructurePlacer FLAME_BULBS_PLACER = new FloorPlacer(BNBStructures.FLAME_BULBS, 5);
 	public static final StructurePlacer FALURIAN_ROOTS_PLACER = new FloorPlacer(BNBStructures.FALURIAN_ROOTS, 1).setNoiseDensityFunction(0);
@@ -57,5 +57,7 @@ public class BNBPlacers {
 	public static final StructurePlacer OBSIDIAN_SHARDS_PLACER = new FloorPlacer(BNBStructures.OBSIDIAN_SHARDS, 4).setNoiseDensityFunction(13);
 	public static final StructurePlacer LAVARRACK_BOLDER_PLACER = new FloorPlacerLimited(BNBStructures.LAVARRACK_BOLDER, 3, 0, 90).setNoiseDensityFunction(17);
 	
-	public static final StructurePlacer JALUMINE_TREE_PLACER = new FloorPlacer(BNBStructures.JALUMINE_TREE, 3).setNoiseDensityFunction(0);
+	public static final StructurePlacer JALUMINE_TREE_PLACER = new FloorPlacer(BNBStructures.JALUMINE_TREE, 3).setNoiseDensityFunction(0, 0.75F);
+	public static final StructurePlacer JALUMINE_BUSH_PLACER = new FloorPlacer(BNBStructures.JALUMINE_BUSH, 3).setNoiseDensityFunction(1, 0.75F);
+	public static final StructurePlacer FERRUMINE_PLANT_PLACER = new FloorPlacer(BNBStructures.FERRUMINE_PLANT, 5);
 }

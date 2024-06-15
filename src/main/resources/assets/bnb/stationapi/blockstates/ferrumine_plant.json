@@ -1,0 +1,12 @@
+{
+	"variants": {
+		"grape=false": [
+			{ "model": "bnb:block/ferrumine_plant_normal", "weight": 8 },
+			{ "model": "bnb:block/ferrumine_plant" }
+		],
+		"grape=true": [
+			{ "model": "bnb:block/ferrumine_plant_normal_grape", "weight": 8 },
+			{ "model": "bnb:block/ferrumine_plant_grape" }
+		]
+	}
+}

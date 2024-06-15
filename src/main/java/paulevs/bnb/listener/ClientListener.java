@@ -89,6 +89,7 @@ public class ClientListener {
 		BNBConnectedTextures.add4SideTextures(BNBBlocks.MAROON_NYLIUM, BNB.id("block/maroon_nylium_side"), Direction.UP);
 		BNBConnectedTextures.add4SideTextures(BNBBlocks.TURQUOISE_NYLIUM, BNB.id("block/turquoise_nylium_side"), Direction.UP);
 		BNBConnectedTextures.add4SideTextures(BNBBlocks.POISON_NYLIUM, BNB.id("block/poison_nylium_side"), Direction.UP);
+		BNBConnectedTextures.add4SideTextures(BNBBlocks.GRAPE_NYLIUM, BNB.id("block/grape_nylium_side"), Direction.UP);
 		
 		BNBBlocks.UPDATE_TEXTURE_SINGLE.forEach(block -> {
 			Identifier id = BlockRegistry.INSTANCE.getId(block);
