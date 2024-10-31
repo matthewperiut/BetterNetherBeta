@@ -82,30 +82,10 @@ public class BNBWeatherManager {
 		if (currentWeather != WeatherType.LAVA_RAIN) return;
 		
 		if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-			PlayerEntity player = BNBClient.getMinecraft().player;
-			for (int x = -7; x <= 7; x++) {
-				int px = player.chunkX + x;
-				for (int z = -7; z <= 7; z++) {
-					int pz = player.chunkZ + z;
-					if (level.getChunkFromCache(px, pz) != null) {
-						CHUNKS.add(((long) px & 0xFFFFFFFFL) << 32L | (long) pz & 0xFFFFFFFFL);
-					}
-				}
-			}
+			updateOnClient(level);
 		}
 		else {
-			for (Object obj : level.players) {
-				PlayerEntity player = (PlayerEntity) obj;
-				for (int x = -7; x <= 7; x++) {
-					int px = player.chunkX + x;
-					for (int z = -7; z <= 7; z++) {
-						int pz = player.chunkZ + z;
-						if (level.getChunkFromCache(px, pz) != null) {
-							CHUNKS.add(((long) px & 0xFFFFFFFFL) << 32L | (long) pz & 0xFFFFFFFFL);
-						}
-					}
-				}
-			}
+			updateOnServer(level);
 		}
 		
 		for (long pos : CHUNKS) {
@@ -143,6 +123,36 @@ public class BNBWeatherManager {
 		}
 		
 		CHUNKS.clear();
+	}
+	
+	@Environment(EnvType.CLIENT)
+	private static void updateOnClient(Level level) {
+		PlayerEntity player = BNBClient.getMinecraft().player;
+		for (int x = -7; x <= 7; x++) {
+			int px = player.chunkX + x;
+			for (int z = -7; z <= 7; z++) {
+				int pz = player.chunkZ + z;
+				if (level.getChunkFromCache(px, pz) != null) {
+					CHUNKS.add(((long) px & 0xFFFFFFFFL) << 32L | (long) pz & 0xFFFFFFFFL);
+				}
+			}
+		}
+	}
+	
+	@Environment(EnvType.SERVER)
+	private static void updateOnServer(Level level) {
+		for (Object obj : level.players) {
+			PlayerEntity player = (PlayerEntity) obj;
+			for (int x = -7; x <= 7; x++) {
+				int px = player.chunkX + x;
+				for (int z = -7; z <= 7; z++) {
+					int pz = player.chunkZ + z;
+					if (level.getChunkFromCache(px, pz) != null) {
+						CHUNKS.add(((long) px & 0xFFFFFFFFL) << 32L | (long) pz & 0xFFFFFFFFL);
+					}
+				}
+			}
+		}
 	}
 	
 	public static WeatherType getCurrentWeather() {

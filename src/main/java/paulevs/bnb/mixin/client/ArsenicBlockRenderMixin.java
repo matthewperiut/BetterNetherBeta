@@ -15,7 +15,7 @@ import paulevs.bnb.rendering.BNBConnectedTextures;
 
 @Mixin(ArsenicBlockRenderer.class)
 public class ArsenicBlockRenderMixin {
-	@Shadow @Final private BlockRenderManagerAccessor blockRendererAccessor;
+	@Shadow(remap = false) @Final private BlockRenderManagerAccessor blockRendererAccessor;
 	@Shadow @Final private BlockRenderer blockRenderer;
 	
 	@Inject(method = "renderWorld", at = @At("TAIL"))

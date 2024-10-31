@@ -16,7 +16,7 @@ public class LevelMixin {
 	
 	@Shadow @Final public Dimension dimension;
 	
-	@Inject(method = "processEntities", at = @At("HEAD"))
+	@Inject(method = "processLevel", at = @At("HEAD"))
 	private void bnb_tickWeather(CallbackInfo info) {
 		if (isRemote || dimension.id != -1) return;
 		BNBWeatherManager.tick(Level.class.cast(this));
